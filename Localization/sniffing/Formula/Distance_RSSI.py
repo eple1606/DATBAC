@@ -4,7 +4,7 @@ import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from sniffing.packet_sniffer import start_sniffing
-from device_identifier import DeviceIdentifier
+from Localization.Identifying.device_identifier import DeviceIdentifier
 
 # Constants
 REFERENCE_RSSI = -40  # RSSI value at 1 meter (example value, needs calibration)

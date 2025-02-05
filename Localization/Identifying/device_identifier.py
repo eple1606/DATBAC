@@ -1,4 +1,5 @@
 import pandas as pd
+import data
 
 class DeviceIdentifier:
     def __init__(self, oui_file):
