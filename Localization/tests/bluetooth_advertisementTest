@@ -2,6 +2,7 @@ import os
 import yaml
 import asyncio
 from bleak import BleakScanner
+import time
 
 # Path to YAML file
 YAML_PATH = "DATBAC/Localization/data/company_identifiers.yaml"
@@ -12,6 +13,10 @@ COMPANY_IDENTIFIERS = {}
 # Configuration
 SORT_BY_RSSI = True  # Set to False for updating every 2 seconds without sorting
 SCAN_INTERVAL = 10 if SORT_BY_RSSI else 2  # 10s with sorting, 2s without sorting
+
+# Constants for RSSI to Distance Conversion
+A = -70  # RSSI value at 1 meter (calibration constant, adjust as needed)
+n = 2.0  # Path-loss exponent (adjust for your environment)
 
 def load_company_identifiers():
     """Load Bluetooth company identifiers from the YAML file."""
@@ -34,6 +39,19 @@ def format_hex(value):
         return value.upper()
     else:
         raise ValueError(f"Invalid manufacturer value format: {value}")
+    
+def calculate_distance(rssi):
+    """
+    Convert RSSI to distance in centimeters using the Bluetooth formula.
+    """
+    if rssi == 0:
+        return float('inf')  # Return infinity if RSSI is zero (no signal)
+    
+    # Convert RSSI to distance in meters
+    distance_meters = 10 ** ((A - rssi) / (10 * n))
+    # Convert meters to centimeters
+    distance_cm = distance_meters * 100
+    return distance_cm
 
 def decode_manufacturer_data(manufacturer_data):
     """Decode manufacturer-specific data and match IDs from YAML."""
@@ -60,6 +78,9 @@ scanned_devices = {}
 
 def callback(device, advertisement_data):
     """Handle BLE advertisement data."""
+    timestamp_ms = time.time_ns() // 1_000_000  # Current time in milliseconds
+    formatted_time = time.strftime('%H:%M:%S', time.localtime(timestamp_ms // 1000))
+    milliseconds = timestamp_ms % 1000  # Extract milliseconds
     scanned_devices[device.address] = {
         "device": device,
         "rssi": advertisement_data.rssi,
@@ -67,6 +88,7 @@ def callback(device, advertisement_data):
         "manufacturer_data": decode_manufacturer_data(advertisement_data.manufacturer_data),
         "service_uuids": advertisement_data.service_uuids,
         "service_data": decode_service_data(advertisement_data.service_data),
+        "timestamp": f"{formatted_time}.{milliseconds:03d}",
     }
 
 async def scan_ble_devices():
@@ -92,13 +114,15 @@ def display_results():
 
     devices = list(scanned_devices.values())
     if SORT_BY_RSSI:
-        devices.sort(key=lambda d: d["rssi"], reverse=True)  # Sort highest RSSI first
+        devices.sort(key=lambda d: d["rssi"], reverse=False)  # Sort lowest RSSI first
 
     for entry in devices:
         print(f"Device: {entry['device']}")
         print(f"  RSSI: {entry['rssi']}")
+        print(f"  Distance: {calculate_distance(entry['rssi']):.2f} cm")
         print(f"  Name: {entry['name']}")
         print(f"  Address: {entry['device'].address}")
+        print(f"  Timestamp: {entry['timestamp']}")
 
         if entry["manufacturer_data"]:
             print(f"  Manufacturer Data: {entry['manufacturer_data']}")
