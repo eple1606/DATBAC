@@ -1,6 +1,9 @@
 from scapy.all import *
+
 import os
 import ctypes
+import sys
+import scapy
 
 # Check if the script is running with administrative privileges on Windows
 def is_admin():

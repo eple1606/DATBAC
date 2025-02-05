@@ -1,35 +1,148 @@
-import sys
-import os
-import Identifying
-import sniffing.Formula
-import sniffing
+import asyncio
+import json
+import uuid
+from datetime import datetime
+from bleak import BleakScanner
 
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+# Path to the file where the devices' data will be stored
+KNOWN_DEVICES_FILE = 'known_devices.json'
 
-from sniffing.packet_sniffer import start_sniffing
-from Localization.Identifying.device_identifier import DeviceIdentifier
+# Load known devices from the file if it exists
+def load_known_devices():
+    try:
+        with open(KNOWN_DEVICES_FILE, 'r') as file:
+            return json.load(file)
+    except FileNotFoundError:
+        return {}
 
+# Save the known devices back to the file
+def save_known_devices(known_devices):
+    with open(KNOWN_DEVICES_FILE, 'w') as file:
+        json.dump(known_devices, file, indent=4)
+
+# Generate a new unique ID for a device
+def generate_device_id():
+    return str(uuid.uuid4())
+
+# Get the current timestamp
+def get_current_timestamp():
+    return datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+# Bluetooth Device Data Storage (Global)
+known_devices = load_known_devices()  # Load the known devices from the file
+
+# RSSI to distance conversion function (simplified model)
+def rssi_to_distance(rssi):
+    if rssi == 0:  # Avoid division by zero errors
+        return float('inf')  # Return max distance if RSSI is zero
+    return 10 ** ((27.55 - (20 * 2.4) + abs(rssi)) / 20)
+
+# Helper function to check if RSSI is within an acceptable threshold
+def is_rssi_similar(rssi1, rssi2, threshold=5):
+    return abs(rssi1 - rssi2) <= threshold  # RSSI difference within threshold is considered similar
+
+# Function to add or update a device
+def add_or_update_device(device_id, mac, name, rssi, advertisement_data=None):
+    global known_devices
+    existing_device_id = None
+
+    # Check if device already exists based on MAC address or advertisement data
+    for dev_id, device in known_devices.items():
+        # Check if the RSSI is similar and if the advertisement data is matching
+        if (mac in device['previous_mac_addresses'] or
+            is_rssi_similar(rssi, device['current_rssi'])):
+            # Further check for matching advertisement data, e.g., UUID or manufacturer data
+            if advertisement_data:
+                if 'service_uuids' in advertisement_data and advertisement_data['service_uuids'] == device.get('advertisement_data', {}).get('service_uuids'):
+                    existing_device_id = dev_id
+                    break
+                if 'manufacturer_data' in advertisement_data and advertisement_data['manufacturer_data'] == device.get('advertisement_data', {}).get('manufacturer_data'):
+                    existing_device_id = dev_id
+                    break
+                # Additional check for TX power (if available)
+                if 'tx_power' in advertisement_data and advertisement_data['tx_power'] == device.get('advertisement_data', {}).get('tx_power'):
+                    existing_device_id = dev_id
+                    break
+            else:
+                existing_device_id = dev_id
+                break
+
+    # If device is not already present, generate a new ID and add it
+    if not existing_device_id:
+        device_id = generate_device_id()
+        known_devices[device_id] = {
+            "id": device_id,
+            "mac": mac,
+            "name": name,
+            "current_rssi": rssi,
+            "current_distance": rssi_to_distance(rssi),
+            "timestamp": get_current_timestamp(),  # Add timestamp
+            "previous_mac_addresses": [mac],  # Store the first MAC address
+            "advertisement_data": advertisement_data or {}  # Save additional advertisement data
+        }
+    else:
+        # Update the device data if already exists
+        device = known_devices[existing_device_id]
+        device["current_rssi"] = rssi
+        device["current_distance"] = rssi_to_distance(rssi)
+        device["timestamp"] = get_current_timestamp()  # Update timestamp
+
+        # If the new MAC address is different, add it to the list of previous addresses
+        if mac not in device["previous_mac_addresses"]:
+            device["previous_mac_addresses"].append(mac)  # Add to history
+
+# Bluetooth Device Scanning (this will track movement but keep the device fixed)
+async def scan_bluetooth():
+    global known_devices
+    print("Scanning for Bluetooth devices...")
+
+    devices = await BleakScanner.discover()
+
+    for device in devices:
+        rssi = device.rssi  # Use the correct attribute for RSSI
+        mac = device.address  # The device MAC address
+        advertisement_data = device.metadata.get("advertisement_data", None)  # Get advertisement data from metadata
+
+        device_name = f"Device {mac.replace(':', '')[:8]}"  # Assign a unique name based on the MAC address
+
+        # Extract advertisement data if available
+        advertisement_info = {}
+        if advertisement_data:
+            # Extract relevant information (e.g., service UUIDs, manufacturer data, TX power)
+            if 'service_uuids' in advertisement_data:
+                advertisement_info['service_uuids'] = advertisement_data['service_uuids']
+            if 'manufacturer_data' in advertisement_data:
+                advertisement_info['manufacturer_data'] = advertisement_data['manufacturer_data']
+            if 'tx_power' in advertisement_data:
+                advertisement_info['tx_power'] = advertisement_data['tx_power']
+        
+        # If the device is already known (based on RSSI or previous MAC addresses)
+        add_or_update_device(None, mac, device_name, rssi, advertisement_info)  # Handle new or updated device
+
+    # Save the updated devices to the file
+    save_known_devices(known_devices)
+
+# Function to display tracked devices based on proximity
+def display_devices():
+    # Sort devices by distance (closest first)
+    sorted_devices = sorted(known_devices.values(), key=lambda x: x['current_distance'])
+
+    print("\nBluetooth Devices sorted by Proximity:")
+    for device in sorted_devices:
+        print(f"{device['name']} (MAC: {device['mac']}) | RSSI: {device['current_rssi']} | Distance: {device['current_distance']:.2f} meters | Last Seen: {device['timestamp']}")
+        
+        # Print advertisement data (if available)
+        if device["advertisement_data"]:
+            print(f"  Advertisement Data: {device['advertisement_data']}")
+
+# Continuous Scanning and Updating
+async def continuous_scan():
+    while True:
+        await scan_bluetooth()
+        display_devices()
+        await asyncio.sleep(5)  # Wait for 5 seconds before the next scan
+
+# Main function to run the scanning process
 if __name__ == "__main__":
-    # Load the OUI data for device identification
-    identifier = DeviceIdentifier(oui_file=os.path.join(os.path.dirname(__file__), "data", "oui.csv"))
-
-    def packet_callback(packet):
-        """
-        Callback function for processing sniffed packets.
-        """
-        print("Packet captured: ", packet.summary())  # Debugging line to show the packet
-
-        # Check if the packet has the Dot11ProbeReq layer (Probe Request)
-        if packet.haslayer("Dot11ProbeReq"):
-            mac_address = packet.addr2
-            device_vendor = identifier.identify_device(mac_address)
-            print(f"Detected Probe Request from {mac_address} ({device_vendor})")
-        else:
-            print(f"Captured a non-Probe Request packet: {packet.summary()}")
-
-    # Start WiFi sniffing on the specified interface
-    interface = "WiFi"  # Use the correct interface name (WiFi on Windows)
-    print(f"Starting sniffing on {interface}...")
-
-    # Start sniffing without any filters (to capture all packets)
-    start_sniffing(interface, packet_callback)
+    # Run the continuous scanning loop
+    asyncio.run(continuous_scan())
