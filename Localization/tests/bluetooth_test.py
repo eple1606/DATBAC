@@ -7,7 +7,8 @@ async def scan_ble_devices():
     if devices:
         print(f"Found {len(devices)} device(s):")
         for device in devices:
-            print(f"  - Name: {device.name or 'Unknown'}, Address: {device.address}")
+            # print(f"  - Name: {device.name or 'Unknown'}, Address: {device.address}")
+            print(f"{device}")
     else:
         print("No devices found.")
 

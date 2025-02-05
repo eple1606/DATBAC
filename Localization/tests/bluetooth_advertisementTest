@@ -1,0 +1,115 @@
+import os
+import yaml
+import asyncio
+from bleak import BleakScanner
+
+# Path to YAML file
+YAML_PATH = "DATBAC/Localization/data/company_identifiers.yaml"
+
+# Global dictionary for company identifiers
+COMPANY_IDENTIFIERS = {}
+
+# Configuration
+SORT_BY_RSSI = True  # Set to False for updating every 2 seconds without sorting
+SCAN_INTERVAL = 10 if SORT_BY_RSSI else 2  # 10s with sorting, 2s without sorting
+
+def load_company_identifiers():
+    """Load Bluetooth company identifiers from the YAML file."""
+    global COMPANY_IDENTIFIERS
+    try:
+        with open(YAML_PATH, "r", encoding="utf-8") as file:
+            data = yaml.safe_load(file)
+            COMPANY_IDENTIFIERS = {
+                format_hex(entry["value"]): entry["name"]
+                for entry in data.get("company_identifiers", [])
+            }
+    except Exception as e:
+        print(f"Error loading company identifiers: {e}")
+
+def format_hex(value):
+    """Ensure manufacturer ID is in 0xXXXX format."""
+    if isinstance(value, int):
+        return f"0x{value:04X}"
+    elif isinstance(value, str) and value.startswith("0x"):
+        return value.upper()
+    else:
+        raise ValueError(f"Invalid manufacturer value format: {value}")
+
+def decode_manufacturer_data(manufacturer_data):
+    """Decode manufacturer-specific data and match IDs from YAML."""
+    result = {}
+    for decimal_id, data in manufacturer_data.items():
+        hex_id = format_hex(decimal_id)
+        company_name = COMPANY_IDENTIFIERS.get(hex_id, f"Unknown (ID: {hex_id})")
+        hex_data = data.hex()
+        result[company_name] = hex_data
+    return result
+
+def decode_service_data(service_data):
+    """Decode service data as hex or UTF-8 if possible."""
+    result = {}
+    for uuid, data in service_data.items():
+        try:
+            decoded = data.decode("utf-8")
+        except UnicodeDecodeError:
+            decoded = data.hex()
+        result[uuid] = decoded
+    return result
+
+scanned_devices = {}
+
+def callback(device, advertisement_data):
+    """Handle BLE advertisement data."""
+    scanned_devices[device.address] = {
+        "device": device,
+        "rssi": advertisement_data.rssi,
+        "name": device.name or "Unknown",
+        "manufacturer_data": decode_manufacturer_data(advertisement_data.manufacturer_data),
+        "service_uuids": advertisement_data.service_uuids,
+        "service_data": decode_service_data(advertisement_data.service_data),
+    }
+
+async def scan_ble_devices():
+    """Continuously scan for Bluetooth devices and display sorted results."""
+    load_company_identifiers()  # Load manufacturer data from YAML
+    scanner = BleakScanner(callback)
+    
+    print("Scanning for Bluetooth devices... (Press Ctrl+C to stop)")
+    
+    await scanner.start()
+
+    try:
+        while True:
+            await asyncio.sleep(SCAN_INTERVAL)
+            display_results()
+    except KeyboardInterrupt:
+        print("\nStopping scan...")
+        await scanner.stop()
+
+def display_results():
+    """Display scanned Bluetooth devices, sorted by RSSI if enabled."""
+    print("\nScan Results:\n")
+
+    devices = list(scanned_devices.values())
+    if SORT_BY_RSSI:
+        devices.sort(key=lambda d: d["rssi"], reverse=True)  # Sort highest RSSI first
+
+    for entry in devices:
+        print(f"Device: {entry['device']}")
+        print(f"  RSSI: {entry['rssi']}")
+        print(f"  Name: {entry['name']}")
+        print(f"  Address: {entry['device'].address}")
+
+        if entry["manufacturer_data"]:
+            print(f"  Manufacturer Data: {entry['manufacturer_data']}")
+        
+        if entry["service_uuids"]:
+            print(f"  Service UUIDs: {entry['service_uuids']}")
+        
+        if entry["service_data"]:
+            print(f"  Service Data: {entry['service_data']}")
+        
+        print("-" * 50)
+
+if __name__ == "__main__":
+    asyncio.run(scan_ble_devices())
