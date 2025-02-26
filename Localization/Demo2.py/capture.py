@@ -15,14 +15,16 @@ def handle_probe_request(packet):
         # Extract Wi-Fi Capabilities (Rates, HT, Extended)
         wifi_features = []
         if packet.haslayer(Dot11Elt):
-            for elt in packet.iterlayer(Dot11Elt):
-                if elt.ID == 1:   # Supported Rates
-                    wifi_features.append(f"Rates:{elt.info.hex()}")
-                elif elt.ID == 45: # HT Capabilities
-                    wifi_features.append(f"HT:{elt.info.hex()}")
-                elif elt.ID == 127: # Extended Capabilities
-                    wifi_features.append(f"Ext:{elt.info.hex()}")
-
+            try:
+                for elt in packet.iterlayer(Dot11Elt):
+                    if elt.ID == 1:   # Supported Rates
+                        wifi_features.append(f"Rates:{elt.info.hex()}")
+                    elif elt.ID == 45: # HT Capabilities
+                        wifi_features.append(f"HT:{elt.info.hex()}")
+                    elif elt.ID == 127: # Extended Capabilities
+                        wifi_features.append(f"Ext:{elt.info.hex()}")
+            except Exception as e:
+                print(f"[!] Error parsing Dot11Elt: {e}")
         # Store the fingerprint
         probe_data.append({
             "MAC": mac,
