@@ -9,7 +9,7 @@ def handle_probe_request(packet):
     if packet.haslayer(Dot11ProbeReq):
         mac = packet.addr2  # Source MAC (even if randomized)
         ssid = packet.info.decode(errors="ignore") if packet.info else "<Hidden SSID>"
-        rssi = packet.dBm_AntSignal if hasattr(packet, 'dBm_AntSignal') else None
+        rssi = packet.dBm_AntSignal if hasattr(packet, 'dBm_AntSignal', None) else None
         timestamp = time.time()
 
         # Extract Wi-Fi Capabilities (Rates, HT, Extended)
