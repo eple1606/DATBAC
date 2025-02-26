@@ -35,7 +35,7 @@ def handle_probe_request(packet):
 
             except Exception as e:
                 print(f"[!] Error parsing Dot11Elt: {e}")
-        wifi_features.append("Null")
+                wifi_features.append("Null")
 
         # Store the fingerprint
         probe_data.append({
