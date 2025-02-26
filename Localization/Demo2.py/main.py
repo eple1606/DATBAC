@@ -38,6 +38,7 @@ def main():
 
     # Step 2: Feature extraction
     print("[*] Extracting features from captured probe requests...")
+    print("Captured Probe Data:", probe_data)
     X, df = extract_features(probe_data)
 
     # Step 3: Anomaly detection
