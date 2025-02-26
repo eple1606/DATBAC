@@ -14,6 +14,7 @@ def handle_probe_request(packet):
         
         # DEBUG INFO
         print(packet.summary())  # Basic packet info
+        print("split")
         print(packet.show())     # Full packet structure
         
         
