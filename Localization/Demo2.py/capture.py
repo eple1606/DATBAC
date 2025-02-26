@@ -11,21 +11,32 @@ def handle_probe_request(packet):
         ssid = packet.info.decode(errors="ignore") if packet.info else "<Hidden SSID>"
         rssi = packet.dBm_AntSignal if hasattr(packet, 'dBm_AntSignal') else None
         timestamp = time.time()
-
+        
+        # DEBUG INFO
+        print(packet.summary())  # Basic packet info
+        print(packet.show())     # Full packet structure
+        
+        
         # Extract Wi-Fi Capabilities (Rates, HT, Extended)
         wifi_features = []
         if packet.haslayer(Dot11Elt):
             try:
-                for elt in packet.iterlayer(Dot11Elt):
-                    if elt.ID == 1:   # Supported Rates
+                elt = packet.getlayer(Dot11Elt)
+                while elt:
+                    if elt.ID == 1:  # Supported Rates
                         wifi_features.append(f"Rates:{elt.info.hex()}")
-                    elif elt.ID == 45: # HT Capabilities
+                    elif elt.ID == 45:  # HT Capabilities
                         wifi_features.append(f"HT:{elt.info.hex()}")
-                    elif elt.ID == 127: # Extended Capabilities
+                    elif elt.ID == 127:  # Extended Capabilities
                         wifi_features.append(f"Ext:{elt.info.hex()}")
+
+                    # Move to the next Dot11Elt layer
+                    elt = elt.payload.getlayer(Dot11Elt)
+
             except Exception as e:
                 print(f"[!] Error parsing Dot11Elt: {e}")
-                wifi_features.append(f"Null")
+        wifi_features.append("Null")
+
         # Store the fingerprint
         probe_data.append({
             "MAC": mac,
