@@ -30,5 +30,5 @@ def start_sniffing(interface):
 
 if __name__ == "__main__":
     # Replace 'Wi-Fi' with your wireless interface name
-    wireless_interface = "Wi-Fi"
+    wireless_interface = "Wi-Fi 2"
     start_sniffing(wireless_interface)
