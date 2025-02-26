@@ -34,7 +34,7 @@ def main():
 
     # Wait for the sniffing process to complete (60 seconds)
     print("[*] Capturing data for 60 seconds...")
-    time.sleep(60)  # Capture for 60 seconds (you can adjust the time as needed)
+    time.sleep(2)  # Capture for 60 seconds (you can adjust the time as needed)
 
     # Step 2: Feature extraction
     print("[*] Extracting features from captured probe requests...")
