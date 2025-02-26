@@ -25,6 +25,7 @@ def handle_probe_request(packet):
                         wifi_features.append(f"Ext:{elt.info.hex()}")
             except Exception as e:
                 print(f"[!] Error parsing Dot11Elt: {e}")
+                wifi_features.append(f"Null")
         # Store the fingerprint
         probe_data.append({
             "MAC": mac,
