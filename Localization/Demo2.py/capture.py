@@ -11,11 +11,15 @@ def handle_probe_request(packet):
         ssid = packet.info.decode(errors="ignore") if packet.info else "<Hidden SSID>"
         rssi = packet.dBm_AntSignal if hasattr(packet, 'dBm_AntSignal') else None
         timestamp = time.time()
-        
+
+        # Filter only for "HUAWEI-5G-9Ysz" or hidden SSID
+        if ssid != "HUAWEI-5G-9Ysz" and mac !="ce:0a:dd:5c:9e:f7":
+            return  # Ignore packets that don't match the filter
+
         # DEBUG INFO
-        print(packet.summary())  # Basic packet info
-        print("split")
-        print(packet.show())     # Full packet structure
+        #print(packet.summary())  # Basic packet info
+        #print("split")
+        #print(packet.show())     # Full packet structure
         
         
         # Extract Wi-Fi Capabilities (Rates, HT, Extended)
@@ -24,17 +28,12 @@ def handle_probe_request(packet):
             try:
                 elt = packet.getlayer(Dot11Elt)
                 while elt:
-
-                    if elt.ID == 45:  # HT Capabilities
+                    if elt.ID == 1:  # Supported Rates
+                        wifi_features.append(f"Rates:{elt.info.hex()}")
+                    elif elt.ID == 45:  # HT Capabilities
                         wifi_features.append(f"HT:{elt.info.hex()}")
                     elif elt.ID == 127:  # Extended Capabilities
                         wifi_features.append(f"Ext:{elt.info.hex()}")
-                    elif elt.ID == 221:  # Vendor Specific (Extract OUI and info)
-                        vendor_oui = elt.info[:3].hex().upper()  # Get OUI (first 3 bytes)
-                        vendor_info = elt.info[3:].hex().upper()  # Get vendor-specific data after OUI
-                        
-                        # Add vendor-specific info to the wifi_features
-                        wifi_features.append(f"Vendor:{vendor_oui} Info:{vendor_info}")
 
                     # Move to the next Dot11Elt layer
                     elt = elt.payload.getlayer(Dot11Elt)
