@@ -53,7 +53,7 @@ def main():
 
     for entry in probe_data:
         # Create a device signature based on SSID and other features like RSSI, Probe Interval, etc.
-        device_signature = (entry["MAC"])
+        device_signature = (entry["MAC"], entry["Features"])
 
         # Get or assign a device name based on the device signature
         device_name = get_device_name(device_signature)
