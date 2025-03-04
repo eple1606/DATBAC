@@ -64,6 +64,6 @@ def handle_probe_request(packet):
         print(f"    - RSSI: {rssi} dBm")
         print(f"    - Features: {wifi_features}")
 
-def start_sniffing(interface="wlan0", duration):
+def start_sniffing(duration, interface="wlan0"):
     print("[*] Listening for Wi-Fi probe requests...")
     sniff(iface=interface, prn=handle_probe_request, store=0, filter="type mgt subtype probe-req", timeout=duration)
