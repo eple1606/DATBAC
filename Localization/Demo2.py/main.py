@@ -29,12 +29,13 @@ def get_device_name(device_signature):
 
 
 def main():
-    # Step 1: Start sniffing and capture probe requests for 60 seconds
-    start_sniffing(interface="wlan0")  # Replace with your Wi-Fi interface
+    # Step 1: Start sniffing and capture probe requests for x seconds
+    duration = 10  # Capture duration in seconds
+    start_sniffing(interface="wlan0", duration)  # Replace with your Wi-Fi interface
 
     # Wait for the sniffing process to complete (60 seconds)
     print("[*] Capturing data for 60 seconds...")
-    time.sleep(60)  # Capture for 60 seconds (you can adjust the time as needed)
+    time.sleep(2)  # Wait for 2 seconds to ensure the sniffing process has finished
 
     # Step 2: Feature extraction
     print("[*] Extracting features from captured probe requests...")

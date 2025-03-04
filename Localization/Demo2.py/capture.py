@@ -9,13 +9,15 @@ def handle_probe_request(packet):
     if packet.haslayer(Dot11ProbeReq):
         mac = packet.addr2  # Source MAC (even if randomized)
         ssid = packet.info.decode(errors="ignore") if packet.info else "<Hidden SSID>"
-        rssi = packet.dBm_AntSignal if hasattr(packet, 'dBm_AntSignal') else None
-        timestamp = time.time()
-
+        
         # Filter only for "HUAWEI-5G-9Ysz" or hidden SSID
-        if ssid != "HUAWEI-5G-9Ysz" and mac !="ce:0a:dd:5c:9e:f7":
+        if ssid != "HUAWEI-5G-9Ysz" and mac !="de:0f:c5:13:d9:ec":
             return  # Ignore packets that don't match the filter
 
+        rssi = packet.dBm_AntSignal if hasattr(packet, 'dBm_AntSignal') else None
+        print(f"Raw RSSI: {rssi}, Adjusted RSSI: {rssi - 256 if rssi > 0 else rssi}")
+        timestamp = time.time()
+        
         # DEBUG INFO
         #print(packet.summary())  # Basic packet info
         #print("split")
@@ -37,7 +39,8 @@ def handle_probe_request(packet):
                         vendor_info = elt.info[3:].hex().upper()  # Get vendor-specific data after OUI
                         
                         # Add vendor-specific info to the wifi_features
-                        wifi_features.append(f"Vendor:{vendor_oui} Info:{vendor_info}")
+                        wifi_features.append(f"Vendor:{vendor_oui}")
+                        wifi_features.append(f"VendorInfo:{vendor_info}")
                     # Move to the next Dot11Elt layer
                     elt = elt.payload.getlayer(Dot11Elt)
 
@@ -61,6 +64,6 @@ def handle_probe_request(packet):
         print(f"    - RSSI: {rssi} dBm")
         print(f"    - Features: {wifi_features}")
 
-def start_sniffing(interface="wlan0"):
+def start_sniffing(interface="wlan0", duration):
     print("[*] Listening for Wi-Fi probe requests...")
-    sniff(iface=interface, prn=handle_probe_request, store=0, filter="type mgt subtype probe-req")
+    sniff(iface=interface, prn=handle_probe_request, store=0, filter="type mgt subtype probe-req", timeout=duration)
