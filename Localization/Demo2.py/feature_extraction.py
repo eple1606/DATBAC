@@ -7,7 +7,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 def extract_features(probe_data):
     # Convert captured data into a DataFrame
     df = pd.DataFrame(probe_data)
-
+    
     # Handle missing values (e.g., if RSSI is None)
     df["RSSI"] = df["RSSI"].fillna(df["RSSI"].mean())
 

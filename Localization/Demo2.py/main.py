@@ -1,8 +1,10 @@
 import time
 import json
+import asyncio
 from capture import start_sniffing, probe_data
 from feature_extraction import extract_features
 from anomaly_detection import detect_anomalies
+
 
 
 # Dictionary to store device signatures and their assigned names
@@ -39,12 +41,16 @@ def main():
 
     # Step 2: Feature extraction
     print("[*] Extracting features from captured probe requests...")
-    print("Captured Probe Data:", probe_data)
+    print(probe_data)
+    if probe_data == []:
+        print("[*] No data captured. Exiting")
+        return None
     X, df = extract_features(probe_data)
 
     # Step 3: Anomaly detection
     print("[*] Detecting anomalies in the captured data...")
     detect_anomalies(X, df)
+    print(detect_anomalies(X, df))
 
     # Step 4: Assign device names based on device signatures (e.g., SSID, RSSI, Probe Interval)
     print("[*] Assigning device names...")
@@ -54,7 +60,7 @@ def main():
 
     for entry in probe_data:
         # Create a device signature based on SSID and other features like RSSI, Probe Interval, etc.
-        device_signature = (entry["SSID"], entry["RSSI"], entry["Features"])
+        device_signature = (entry["SSID"], entry["Features"])
 
         # Get or assign a device name based on the device signature
         device_name = get_device_name(device_signature)
@@ -79,5 +85,22 @@ def main():
     print("[*] Data saved to 'probe_request_results.json'")
 
 
+async def main():
+    duration = 30
+    # Step 1: Capture data asynchronously
+    print("[*] Capturing data for 30 seconds...")
+    probe_data = await capture_data(duration=30, interface="wlan0")
+
+    # Step 2: Process data asynchronously
+    asyncio.create_task(process_data())
+
+    # Step 3: Calculate the average RSSI periodically
+    asyncio.create_task(calculate_average_rssi())
+
+    # Keep the event loop running
+    while True:
+        await asyncio.sleep(1)
+
+
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())

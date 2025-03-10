@@ -11,8 +11,8 @@ def handle_probe_request(packet):
         ssid = packet.info.decode(errors="ignore") if packet.info else "<Hidden SSID>"
         
         # Filter only for "HUAWEI-5G-9Ysz" or hidden SSID
-        if ssid != "HUAWEI-5G-9Ysz" and mac !="de:0f:c5:13:d9:ec":
-            return  # Ignore packets that don't match the filter
+        #if ssid != "HUAWEI-5G-9Ysz" and mac !="de:0f:c5:13:d9:ec":
+         #   return  # Ignore packets that don't match the filter
 
         rssi = packet.dBm_AntSignal if hasattr(packet, 'dBm_AntSignal') else None
         print(f"Raw RSSI: {rssi}, Adjusted RSSI: {rssi - 256 if rssi > 0 else rssi}")
@@ -24,7 +24,7 @@ def handle_probe_request(packet):
         #print(packet.show())     # Full packet structure
         
         
-        # Extract Wi-Fi Capabilities (Rates, HT, Extended)
+        # Extract Wi-Fi Capabilities (HT, Extended, Vendor)
         wifi_features = []
         if packet.haslayer(Dot11Elt):
             try:
