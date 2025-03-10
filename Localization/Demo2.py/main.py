@@ -3,7 +3,8 @@ import json
 from capture import start_sniffing, probe_data
 from feature_extraction import extract_features
 from anomaly_detection import detect_anomalies
-from rssi_measurement import calculate_average_rssi  # Import the function to calculate average RSSI
+from rssi_measurement import calculate_average_rssi_from_json # Import the function to calculate average RSSI
+from distance_measurement import calculate_distance_from_rssi # Import the function to calculate distance from RSSI
 
 # Dictionary to store device signatures and their assigned names
 device_signatures = {}
