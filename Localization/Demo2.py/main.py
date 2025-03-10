@@ -3,12 +3,11 @@ import json
 from capture import start_sniffing, probe_data
 from feature_extraction import extract_features
 from anomaly_detection import detect_anomalies
-
+from rssi_measurement import calculate_average_rssi  # Import the function to calculate average RSSI
 
 # Dictionary to store device signatures and their assigned names
 device_signatures = {}
 device_counter = 1
-
 
 def get_device_name(device_signature):
     """
@@ -27,10 +26,8 @@ def get_device_name(device_signature):
     
     return device_name
 
-
 def main():
     # Step 1: Start sniffing and capture probe requests for x seconds
-    # Wait for the sniffing process to complete (30 seconds)
     print("[*] Capturing data for 30 seconds...")
     duration = 30  # Capture duration in seconds
     start_sniffing(duration, interface="wlan0")  # Replace with your Wi-Fi interface
@@ -44,11 +41,11 @@ def main():
 
     # Step 3: Anomaly detection
     print("[*] Detecting anomalies in the captured data...")
-    detect_anomalies(X, df)
+    df_filtered = detect_anomalies(X, df)  # Filter out persistent devices
 
     # Step 4: Assign device names based on device signatures (e.g., SSID, RSSI, Probe Interval)
     print("[*] Assigning device names...")
-    
+
     # Structure the data into a list of dictionaries suitable for JSON
     json_data = []
 
@@ -78,6 +75,11 @@ def main():
 
     print("[*] Data saved to 'probe_request_results.json'")
 
+    # Step 6: Calculate average RSSI for known devices (persistent devices)
+    print("[*] Calculating average RSSI for persistent devices...")
+    average_rssi = calculate_average_rssi(df_filtered)  # Call the function to calculate average RSSI
+    # Optionally print out or return the average RSSI if needed elsewhere
+    print(f"\nAverage RSSI for persistent devices: {average_rssi}")
 
 if __name__ == "__main__":
     main()
