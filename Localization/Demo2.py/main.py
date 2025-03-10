@@ -1,10 +1,8 @@
 import time
 import json
-import asyncio
 from capture import start_sniffing, probe_data
 from feature_extraction import extract_features
 from anomaly_detection import detect_anomalies
-from distance_measurement import measure_distance_to_persistent_device  # Import the distance measurement logic
 
 
 # Dictionary to store device signatures and their assigned names
@@ -30,42 +28,38 @@ def get_device_name(device_signature):
     return device_name
 
 
-async def capture_data(duration, interface="wlan0"):
-    """
-    Captures probe request data asynchronously for the given duration.
-    """
-    print("[*] Starting to capture data asynchronously...")
-    start_sniffing(duration, interface)
-    await asyncio.sleep(duration)
-    return probe_data
+def main():
+    # Step 1: Start sniffing and capture probe requests for x seconds
+    # Wait for the sniffing process to complete (30 seconds)
+    print("[*] Capturing data for 30 seconds...")
+    duration = 30  # Capture duration in seconds
+    start_sniffing(duration, interface="wlan0")  # Replace with your Wi-Fi interface
 
+    time.sleep(2)  # Wait for 2 seconds to ensure the sniffing process has finished
 
-async def process_data(probe_data):
-    """
-    Processes captured data asynchronously, including feature extraction and anomaly detection.
-    """
+    # Step 2: Feature extraction
     print("[*] Extracting features from captured probe requests...")
-    if probe_data == []:
-        print("[*] No data captured. Exiting")
-        return None
+    print("Captured Probe Data:", probe_data)
     X, df = extract_features(probe_data)
 
+    # Step 3: Anomaly detection
     print("[*] Detecting anomalies in the captured data...")
-    df_filtered = detect_anomalies(X, df)
-    return df_filtered
+    detect_anomalies(X, df)
 
-
-async def save_data(probe_data):
-    """
-    Saves the captured data to a JSON file asynchronously.
-    """
-    print("[*] Saving captured data to 'probe_request_results.json'...")
+    # Step 4: Assign device names based on device signatures (e.g., SSID, RSSI, Probe Interval)
+    print("[*] Assigning device names...")
+    
+    # Structure the data into a list of dictionaries suitable for JSON
     json_data = []
 
     for entry in probe_data:
-        device_signature = (entry["SSID"], entry["Features"])
+        # Create a device signature based on SSID and other features like RSSI, Probe Interval, etc.
+        device_signature = (entry["SSID"], entry["RSSI"], entry["Features"])
+
+        # Get or assign a device name based on the device signature
         device_name = get_device_name(device_signature)
 
+        # Add the device name to the entry
         json_entry = {
             "Device_Name": device_name,
             "MAC": entry["MAC"],
@@ -76,50 +70,14 @@ async def save_data(probe_data):
         }
         json_data.append(json_entry)
 
+    # Step 5: Save captured data to a JSON file
+    print("[*] Saving captured data to 'probe_request_results.json'...")
+
     with open("probe_request_results.json", "w") as json_file:
         json.dump(json_data, json_file, indent=4)
 
     print("[*] Data saved to 'probe_request_results.json'")
 
 
-async def measure_distance(probe_data, df_filtered):
-    """
-    Measure the distance to persistent devices asynchronously.
-    Instead of a known MAC, it will measure distance for all persistent devices.
-    """
-    print("[*] Measuring distance to persistent devices...")
-    
-    for index, row in df_filtered.iterrows():
-        # Assuming that each device in df_filtered is persistent
-        mac = row["MAC"]
-        distance = await measure_distance_to_persistent_device(df_filtered, mac)
-        
-        if distance:
-            print(f"Distance to persistent device {mac}: {distance:.2f} meters")
-        else:
-            print(f"Device with MAC address {mac} not found.")
-
-
-async def main():
-    duration = 30  # Duration for sniffing
-
-    # Step 1: Capture data asynchronously
-    print("[*] Capturing data for 30 seconds...")
-    probe_data = await capture_data(duration=duration, interface="wlan0")
-
-    # Step 2: Process data asynchronously (feature extraction + anomaly detection)
-    df_filtered = await process_data(probe_data)
-
-    # Step 3: Save captured data to a JSON file
-    await save_data(probe_data)
-
-    # Step 4: Measure distance to all persistent devices asynchronously
-    await measure_distance(probe_data, df_filtered)
-
-    # Keep the event loop running
-    while True:
-        await asyncio.sleep(1)
-
-
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
