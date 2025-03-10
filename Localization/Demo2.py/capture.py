@@ -1,6 +1,7 @@
 from scapy.all import Dot11, Dot11ProbeReq, Dot11Elt
 from scapy.all import sniff
 import time
+import asyncio
 
 # Global list to store captured probe data
 probe_data = []
@@ -59,11 +60,13 @@ def handle_probe_request(packet):
         })
 
         # Print captured details
-        print(f"\n[+] Probe Request from {mac}")
-        print(f"    - SSID: {ssid}")
-        print(f"    - RSSI: {rssi} dBm")
-        print(f"    - Features: {wifi_features}")
+        #print(f"\n[+] Probe Request from {mac}")
+        #print(f"    - SSID: {ssid}")
+        #print(f"    - RSSI: {rssi} dBm")
+        #print(f"    - Features: {wifi_features}")
 
-def start_sniffing(duration, interface="wlan0"):
-    print("[*] Listening for Wi-Fi probe requests...")
-    sniff(iface=interface, prn=handle_probe_request, store=0, filter="type mgt subtype probe-req", timeout=duration)
+async def start_sniffing(duration, interface="wlan0"):
+    while True:
+        print("[*] Listening for Wi-Fi probe requests...")
+        sniff(iface=interface, prn=handle_probe_request, store=0, filter="type mgt subtype probe-req", timeout=duration)
+        time.sleep(2)

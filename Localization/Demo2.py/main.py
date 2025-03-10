@@ -3,7 +3,7 @@ import json
 from capture import start_sniffing, probe_data
 from feature_extraction import extract_features
 from anomaly_detection import detect_anomalies
-
+import asyncio
 
 # Dictionary to store device signatures and their assigned names
 device_signatures = {}
@@ -28,14 +28,14 @@ def get_device_name(device_signature):
     return device_name
 
 
-def main():
+async def main():
     # Step 1: Start sniffing and capture probe requests for x seconds
     # Wait for the sniffing process to complete (30 seconds)
     print("[*] Capturing data for 30 seconds...")
-    duration = 30  # Capture duration in seconds
-    start_sniffing(duration, interface="wlan0")  # Replace with your Wi-Fi interface
-
-    time.sleep(2)  # Wait for 2 seconds to ensure the sniffing process has finished
+    duration = 12  # Capture duration in seconds
+    task = asyncio.create_task(start_sniffing(duration, interface="wlan0"))  # Replace with your Wi-Fi interface
+    
+    print("[*] Capturing data...")
 
     # Step 2: Feature extraction
     print("[*] Extracting features from captured probe requests...")
@@ -77,7 +77,14 @@ def main():
         json.dump(json_data, json_file, indent=4)
 
     print("[*] Data saved to 'probe_request_results.json'")
+    
+    await asyncio.sleep(5)  # Wait for 5 seconds
 
+    task.cancel()
+    try:
+        await task
+    except asyncio.CancelledError:
+        print("[*] Sniffing task cancelled")
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
