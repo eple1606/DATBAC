@@ -16,7 +16,7 @@ def handle_probe_request(packet):
          #   return  # Ignore packets that don't match the filter
 
         rssi = packet.dBm_AntSignal if hasattr(packet, 'dBm_AntSignal') else None
-        print(f"Raw RSSI: {rssi}, Adjusted RSSI: {rssi - 256 if rssi > 0 else rssi}")
+        #print(f"Raw RSSI: {rssi}, Adjusted RSSI: {rssi - 256 if rssi > 0 else rssi}")
         timestamp = time.time()
         
         # DEBUG INFO
@@ -65,8 +65,9 @@ def handle_probe_request(packet):
         #print(f"    - RSSI: {rssi} dBm")
         #print(f"    - Features: {wifi_features}")
 
-async def start_sniffing(duration, interface="wlan0"):
+async def start_sniffing(interface="wlan0"):
     while True:
+        duration = 10
         print("[*] Listening for Wi-Fi probe requests...")
         sniff(iface=interface, prn=handle_probe_request, store=0, filter="type mgt subtype probe-req", timeout=duration)
-        time.sleep(2)
+        await asyncio.sleep(2)
