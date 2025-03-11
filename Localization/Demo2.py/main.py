@@ -4,6 +4,8 @@ from capture import start_sniffing, probe_data
 from feature_extraction import extract_features
 from anomaly_detection import detect_anomalies
 from rssi_measurement import calculate_average_rssi  # Import the function to calculate average RSSI
+from clustering import cluster_devices_by_rssi  # Import the clustering function from clustering.py
+
 
 # Dictionary to store device signatures and their assigned names
 device_signatures = {}
@@ -78,8 +80,38 @@ def main():
     # Step 6: Calculate average RSSI for known devices (persistent devices)
     print("[*] Calculating average RSSI for persistent devices...")
     average_rssi = calculate_average_rssi(df_filtered)  # Call the function to calculate average RSSI
-    # Optionally print out or return the average RSSI if needed elsewhere
-    print(f"\nAverage RSSI for persistent devices: {average_rssi}")
+
+    # Step 7: Cluster the devices based on their average RSSI values
+    print("[*] Clustering devices by average RSSI...")
+    clustered_devices = cluster_devices_by_rssi(average_rssi)  # Call clustering from clustering.py
+
+    # Step 8: Replace the RSSI values with the average RSSI and prepare the data for final output
+    print("[*] Replacing RSSI with average RSSI and preparing final clustered data...")
+
+    # Updated data to be stored in the new JSON file
+    final_json_data = []
+
+    for cluster, devices in clustered_devices.items():
+        for device in devices:
+            # Find the original device data by MAC address
+            device_data = next((entry for entry in json_data if entry["MAC"] == device["MAC"]), None)
+            if device_data:
+                # Replace the RSSI with the average RSSI
+                device_data["RSSI"] = device["Average_RSSI"]
+
+                # Add the cluster label to the device data
+                device_data["Cluster_Label"] = cluster
+                
+                # Append to the final data list
+                final_json_data.append(device_data)
+
+    # Step 9: Save the final clustered and updated data to a new JSON file
+    print("[*] Saving clustered and updated data to 'final_clustered_data.json'...")
+
+    with open("final_clustered_data.json", "w") as json_file:
+        json.dump(final_json_data, json_file, indent=4)
+
+    print("[*] Clustered and updated data saved to 'final_clustered_data.json'")
 
 if __name__ == "__main__":
     main()
