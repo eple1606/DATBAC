@@ -1,73 +1,62 @@
-import time
 import json
-from capture import start_sniffing, probe_data
-from feature_extraction import extract_features
-from anomaly_detection import detect_anomalies
-from rssi_measurement import calculate_average_rssi  # (If still used elsewhere)
-from clustering import cluster_devices_with_sliding_window  # Import our new clustering function
-from clustering import cluster_devices_by_rssi
+import numpy as np
+from sklearn.cluster import KMeans
+from collections import defaultdict
 
-# Dictionary to store device signatures and their assigned names
-device_signatures = {}
-device_counter = 1
-
-def get_device_name(device_signature):
+def cluster_devices_by_rssi(input_file="probe_request_results.json", output_file="final_results.json", n_clusters=3):
     """
-    Assigns or retrieves the device name based on the device signature.
+    Reads labeled device data from a JSON file, computes the average RSSI per device, 
+    clusters the devices, and writes the results to a new JSON file.
+
+    Args:
+        input_file (str): Path to the JSON file containing probe request results.
+        output_file (str): Path to save the clustered results.
+        n_clusters (int): Number of clusters for KMeans.
     """
-    global device_counter
-    
-    if device_signature not in device_signatures:
-        device_name = f"Device {device_counter}"
-        device_signatures[device_signature] = device_name
-        device_counter += 1
-    else:
-        device_name = device_signatures[device_signature]
-    
-    return device_name
+    # Step 1: Load device data
+    try:
+        with open(input_file, "r") as file:
+            data = json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        print("[!] Error: Could not read probe request data.")
+        return
 
-def main():
-    # Step 1: Start sniffing and capture probe requests for a duration
-    print("[*] Capturing data for 30 seconds...")
-    duration = 30  # Capture duration in seconds
-    start_sniffing(duration, interface="wlan0")
-    
-    time.sleep(2)  # Wait to ensure the sniffing process has finished
-    
-    # Step 2: Feature extraction
-    print("[*] Extracting features from captured probe requests...")
-    print("Captured Probe Data:", probe_data)
-    X, df = extract_features(probe_data)
-    
-    # Step 3: Anomaly detection
-    print("[*] Detecting anomalies in the captured data...")
-    df_filtered = detect_anomalies(X, df)  # Filter out persistent devices
-    
-    # Step 4: Assign device names based on device signatures
-    print("[*] Assigning device names...")
-    json_data = []
-    for entry in probe_data:
-        device_signature = (entry["SSID"], entry["RSSI"], entry["Features"])
-        device_name = get_device_name(device_signature)
-        json_entry = {
-            "Device_Name": device_name,
-            "MAC": entry["MAC"],
-            "SSID": entry["SSID"],
-            "RSSI": entry["RSSI"],
-            "Timestamp": entry["Timestamp"],
-            "Features": entry["Features"]
-        }
-        json_data.append(json_entry)
-    
-    # Step 5: Save captured data to a JSON file
-    print("[*] Saving captured data to 'probe_request_results.json'...")
-    with open("probe_request_results.json", "w") as json_file:
-        json.dump(json_data, json_file, indent=4)
-    print("[*] Data saved to 'probe_request_results.json'")
-    
-    # Step 6: Cluster the devices using the sliding window method
-    print("[*] Clustering devices based on the most recent signals...")
-    cluster_devices_with_sliding_window(file_path="probe_request_results.json", output_path="final_clustered_data.json", window_size=10, n_clusters=3)
+    if not data:
+        print("[!] No data available for clustering.")
+        return
 
-if __name__ == "__main__":
-    main()
+    # Step 2: Aggregate RSSI readings by device name
+    rssi_data = defaultdict(list)
+    for entry in data:
+        rssi_data[entry["Device_Name"]].append(entry["RSSI"])
+
+    # Step 3: Compute the average RSSI per device
+    avg_rssi_per_device = {device: np.mean(rssi) for device, rssi in rssi_data.items()}
+
+    # Step 4: Prepare data for clustering
+    device_names = list(avg_rssi_per_device.keys())
+    rssi_values = np.array(list(avg_rssi_per_device.values())).reshape(-1, 1)
+
+    # Step 5: Apply KMeans clustering
+    if len(rssi_values) < n_clusters:
+        print("[!] Not enough devices for the desired clusters. Adjusting cluster count.")
+        n_clusters = max(1, len(rssi_values))
+
+    kmeans = KMeans(n_clusters=n_clusters, random_state=42, n_init=10)
+    labels = kmeans.fit_predict(rssi_values)
+
+    # Step 6: Update data with average RSSI and cluster labels
+    clustered_data = []
+    for entry in data:
+        device_name = entry["Device_Name"]
+        if device_name in avg_rssi_per_device:
+            entry["RSSI"] = avg_rssi_per_device[device_name]  # Replace RSSI with Average RSSI
+            entry["Cluster_Label"] = int(labels[device_names.index(device_name)])  # Assign cluster
+            clustered_data.append(entry)
+
+    # Step 7: Save the clustered data to the output JSON file
+    with open(output_file, "w") as file:
+        json.dump(clustered_data, file, indent=4)
+
+    print(f"[*] Clustering complete! Results saved to '{output_file}'.")
+
