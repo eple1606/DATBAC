@@ -58,7 +58,7 @@ def handle_probe_request(packet):
             "Timestamp": timestamp,
             "Features": ", ".join(wifi_features)
         })
-
+        
         # Print captured details
         #print(f"\n[+] Probe Request from {mac}")
         #print(f"    - SSID: {ssid}")
