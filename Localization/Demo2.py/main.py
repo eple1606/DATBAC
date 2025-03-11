@@ -4,8 +4,7 @@ from capture import start_sniffing, probe_data
 from feature_extraction import extract_features
 from anomaly_detection import detect_anomalies
 from rssi_measurement import calculate_average_rssi  # Import the function to calculate average RSSI
-from clustering import cluster_devices_by_rssi  # Import the clustering function from clustering.py
-
+from clustering import cluster_devices_by_rssi
 
 # Dictionary to store device signatures and their assigned names
 device_signatures = {}

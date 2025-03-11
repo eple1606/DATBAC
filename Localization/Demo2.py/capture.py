@@ -59,10 +59,10 @@ def handle_probe_request(packet):
         })
 
         # Print captured details
-        print(f"\n[+] Probe Request from {mac}")
-        print(f"    - SSID: {ssid}")
-        print(f"    - RSSI: {rssi} dBm")
-        print(f"    - Features: {wifi_features}")
+        #rint(f"\n[+] Probe Request from {mac}")
+        #print(f"    - SSID: {ssid}")
+        #print(f"    - RSSI: {rssi} dBm")
+        #print(f"    - Features: {wifi_features}")
 
 def start_sniffing(duration, interface="wlan0"):
     print("[*] Listening for Wi-Fi probe requests...")
