@@ -7,6 +7,7 @@ import asyncio
 from collections import defaultdict
 from radar import visualize_radar  # Import radar visualization function
 from clustering import cluster_data
+import matplotlib.pyplot as plt
 
 # Dictionary to store device signatures and their assigned names
 device_signatures = {}
@@ -30,7 +31,7 @@ def get_device_name(device_signature):
     
     return device_name
 
-async def save_packets():
+async def save_packets(ax):
     while True:
         # Step 2: Feature extraction
         print("[*] Extracting features from captured probe requests...")
@@ -84,21 +85,35 @@ async def save_packets():
 
                 # Step 7: Call radar visualization function
         print("Generating radar visualization...")
-        visualize_radar()
+        visualize_radar(clustered_results, ax)
 
         await asyncio.sleep(3)
 
 async def main():
+    # Create Radar Plot (Straight Line Representation)
+    fig, ax = plt.subplots(subplot_kw={'projection': 'polar'}, figsize=(8, 8))
+    ax.set_theta_zero_location('N')  # Devices will be placed along 0° (North)
+    ax.set_theta_direction(-1)  # Clockwise rotation
+    ax.set_title("Estimated Distance Radar", fontsize=14, fontweight='bold')
+
+    # Adjust grid
+    ax.set_yticklabels([])  # Hide radial labels
+    ax.set_xticklabels(["N", "", "", "", "", "", "", ""], fontsize=10)  # Only show 'N'
+    ax.scatter(0, 1, color='red', s=100, label="Devices", alpha=0.75)
+
+    plt.ion()
+    plt.show()
+
     # Step 1: Start sniffing and capture probe requests for x seconds
     # Wait for the sniffing process to complete (30 seconds)
     print("[*] Capturing data for 30 seconds...")
     task1 = asyncio.create_task(start_sniffing(interface="wlan0"))  # Replace with your Wi-Fi interface
-    task2 = asyncio.create_task(save_packets())
+    task2 = asyncio.create_task(save_packets(ax))
     print("[*] Capturing data...")
 
     
     await asyncio.sleep(60)  # Wait for 5 seconds
-
+    plt.ioff()
     task1.cancel()
     task2.cancel()
     try:
