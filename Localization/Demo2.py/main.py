@@ -87,6 +87,7 @@ def cluster_data(data, TIME_WINDOW):
         json.dump(clustered_results, outfile, indent=4)
 
     print(f"Clustering complete. Processed last {TIME_WINDOW} seconds of data. Output saved to probe_request_results_clustered.json")
+    return clustered_results
 
 
 
@@ -139,7 +140,8 @@ async def save_packets():
         #with open("probe_request_results.json", "r") as file:
         #   data = json.load(file)
         TIME_WINDOW = 60  # Time window in seconds
-        clustered_data = cluster_data(data, TIME_WINDOW)
+        clustered_results = cluster_data(data, TIME_WINDOW)
+        
 
                 # Step 7: Call radar visualization function
         print("Generating radar visualization...")
