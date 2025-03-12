@@ -5,6 +5,7 @@ from feature_extraction import extract_features
 from anomaly_detection import detect_anomalies
 import asyncio
 from collections import defaultdict
+from radar import visualize_radar  # Import radar visualization function
 
 # Dictionary to store device signatures and their assigned names
 device_signatures = {}
@@ -139,6 +140,10 @@ async def save_packets():
         #   data = json.load(file)
         TIME_WINDOW = 60  # Time window in seconds
         clustered_data = cluster_data(data, TIME_WINDOW)
+
+                # Step 7: Call radar visualization function
+        print("Generating radar visualization...")
+        visualize_radar()
 
         await asyncio.sleep(3)
 
