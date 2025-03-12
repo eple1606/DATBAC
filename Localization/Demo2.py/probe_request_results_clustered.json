@@ -1,0 +1,74 @@
+[
+    {
+        "Device_Name": "Device 10",
+        "MAC": "fc:b0:de:f8:fb:ef",
+        "SSID": "<Hidden SSID>",
+        "RSSI": -45.333333333333336,
+        "First_Timestamp": 1741783139.4137075,
+        "Last_Timestamp": 1741783139.4874904,
+        "Features": "Ext:00004800004000400020, Vendor:506F9A, VendorInfo:16030103"
+    },
+    {
+        "Device_Name": "Device 11",
+        "MAC": "ca:d6:93:90:08:3f",
+        "SSID": "<Hidden SSID>",
+        "RSSI": -29.0,
+        "First_Timestamp": 1741783143.2240748,
+        "Last_Timestamp": 1741783143.2438436,
+        "Features": "HT:2d401bff00000000000000000000000000000000000000000000, Ext:0000080400000040000020"
+    },
+    {
+        "Device_Name": "Device 12",
+        "MAC": "1e:8a:ac:56:79:a0",
+        "SSID": "<Hidden SSID>",
+        "RSSI": -30.0,
+        "First_Timestamp": 1741783143.4058297,
+        "Last_Timestamp": 1741783143.4248931,
+        "Features": "HT:2d401bff00000000000000000000000000000000000000000000, Ext:0000080400000040000020"
+    },
+    {
+        "Device_Name": "Device 13",
+        "MAC": "56:a5:ca:ad:7c:7e",
+        "SSID": "<Hidden SSID>",
+        "RSSI": -28.0,
+        "First_Timestamp": 1741783143.6608455,
+        "Last_Timestamp": 1741783143.6608455,
+        "Features": "HT:2d401bff00000000000000000000000000000000000000000000, Ext:0000080400000040000020"
+    },
+    {
+        "Device_Name": "Device 14",
+        "MAC": "2a:10:bb:fb:ab:ab",
+        "SSID": "<Hidden SSID>",
+        "RSSI": -42.0,
+        "First_Timestamp": 1741783144.6110198,
+        "Last_Timestamp": 1741783144.6110198,
+        "Features": "HT:2d401bff00000000000000000000000000000000000000000000, Ext:0000080400000040000020"
+    },
+    {
+        "Device_Name": "Device 15",
+        "MAC": "98:8d:46:df:61:14",
+        "SSID": "eduroam",
+        "RSSI": -38.0,
+        "First_Timestamp": 1741783145.1502988,
+        "Last_Timestamp": 1741783145.2582233,
+        "Features": "HT:e70917ffff000000000000000000000000000000000000000000, Ext:0400c880014000000000, Vendor:506F9A, VendorInfo:16030103"
+    },
+    {
+        "Device_Name": "Device 16",
+        "MAC": "c2:a8:e0:15:1e:9c",
+        "SSID": "<Hidden SSID>",
+        "RSSI": -50.0,
+        "First_Timestamp": 1741783147.339787,
+        "Last_Timestamp": 1741783147.339787,
+        "Features": "HT:ef0913ffff000000000000000000000000000000000000000100, Vendor:0050F2, VendorInfo:08002600, Ext:00000a8200400000000120, Vendor:506F9A, VendorInfo:16030101650101, Vendor:8CFDF0, VendorInfo:0101020100"
+    },
+    {
+        "Device_Name": "Device 17",
+        "MAC": "32:63:bf:d4:ee:e2",
+        "SSID": "<Hidden SSID>",
+        "RSSI": -36.0,
+        "First_Timestamp": 1741783148.2623334,
+        "Last_Timestamp": 1741783148.2623334,
+        "Features": "HT:2d401bff00000000000000000000000000000000000000000000, Ext:0000080400000040000020"
+    }
+]
