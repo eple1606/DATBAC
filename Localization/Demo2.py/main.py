@@ -100,7 +100,7 @@ async def main():
     ax.set_yticklabels([])  # Hide radial labels
     ax.set_xticklabels(["N", "", "", "", "", "", "", ""], fontsize=10)  # Only show 'N'
     ax.scatter(0, 1, color='red', s=100, label="Devices", alpha=0.75)
-
+    
     plt.ion()
     plt.show()
 

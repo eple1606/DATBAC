@@ -33,6 +33,6 @@ def visualize_radar(data, ax):
 
     # Show Radar Plot
     plt.legend()
-    plt.draw()    
+    plt.draw()
     plt.pause(0.1)  # Allow GUI events to update
 
