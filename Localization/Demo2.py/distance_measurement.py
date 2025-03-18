@@ -18,7 +18,7 @@ def calculate_distance(rssi, A=-50, n=2):
     return 10 ** ((A - rssi) / (10 * n))
 
 #free loss path model
-def calculate_distance3(rssi, A=-50, n=3, X=0, d0=1, C = 0):
+def calculate_distance_beacon_to_device(rssi, A=-50, n=3, X=0, d0=1, C = 0):
     """
     Calculate the distance to a device based on RSSI using the Path Loss model.
 
