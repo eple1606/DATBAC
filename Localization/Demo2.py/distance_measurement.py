@@ -5,7 +5,7 @@ import json
 with open("probe_request_results_clustered.json", "r") as file:
     data = json.load(file)
 
-# Function to calculate distance from RSSI
+# Function to calculate distance from RSSI free model
 def calculate_distance(rssi, A=-50, n=2):
     """
     Estimate the distance to a device using RSSI.
@@ -16,6 +16,23 @@ def calculate_distance(rssi, A=-50, n=2):
     :return: Estimated distance in meters.
     """
     return 10 ** ((A - rssi) / (10 * n))
+
+#free loss path model
+def calculate_distance3(rssi, A=-50, n=3, X=0, d0=1, C = 0):
+    """
+    Calculate the distance to a device based on RSSI using the Path Loss model.
+
+    :param rssi: Received Signal Strength Indicator (RSSI) in dBm.
+    :param A: RSSI at reference distance (typically 1 meter, default is -50 dBm).
+    :param n: Path loss exponent (default is 3 for tunnels).
+    :param X: Shadowing effect (default is 0).
+    :param d0: Reference distance (default is 1 meter).
+    :param C: Environmental correction constant (default is 0).
+    :return: Estimated distance in meters.
+    """
+    # Rearranged formula to calculate distance
+    distance = d0 * 10 ** ((A - rssi - X + C) / (10 * n))
+    return distance
 
 # Function to measure the distance to a fingerprinted device
 def measure_distance_to_device(data, device_name):
