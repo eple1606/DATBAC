@@ -6,7 +6,6 @@ from concurrent.futures import ThreadPoolExecutor
 
 beacon_positions = [(x1, y1), (x2, y2), (x3, y3)]  # Example fixed positions of beacons
 
-
 # Function to check if points are collinear
 def are_collinear(p1, p2, p3):
     # Unpack points
@@ -77,3 +76,4 @@ def process_multiple_devices(beacon_positions, rssi_data_for_devices):
                 device_positions[device_id] = "Invalid position (collinear beacons)"
 
     return device_positions
+    
