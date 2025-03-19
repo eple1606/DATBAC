@@ -8,6 +8,11 @@ from collections import defaultdict
 from radar import visualize_radar  # Import radar visualization function
 from clustering import cluster_data
 import matplotlib.pyplot as plt
+import keyboard
+
+TIME_WINDOW = 60  # Time window in seconds
+
+
 
 # Dictionary to store device signatures and their assigned names
 device_signatures = {}
@@ -111,8 +116,12 @@ async def main():
     task2 = asyncio.create_task(save_packets(ax))
     print("[*] Capturing data...")
 
-    
-    await asyncio.sleep(60)  # Wait for 5 seconds
+    while True:
+        if keyboard.is_pressed("esc"):
+            print("\n[*] Escape pressed! Stopping...")
+            break
+        await asyncio.sleep(0.1)  # Low sleep time to check ESC frequently
+
     plt.ioff()
     task1.cancel()
     task2.cancel()
