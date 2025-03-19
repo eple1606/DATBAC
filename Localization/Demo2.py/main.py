@@ -8,6 +8,7 @@ from collections import defaultdict
 from radar import visualize_radar  # Import radar visualization function
 from clustering import cluster_data
 import matplotlib.pyplot as plt
+import keyboard
 
 # Dictionary to store device signatures and their assigned names
 device_signatures = {}
@@ -110,9 +111,12 @@ async def main():
     task1 = asyncio.create_task(start_sniffing(interface="wlan0"))  # Replace with your Wi-Fi interface
     task2 = asyncio.create_task(save_packets(ax))
     print("[*] Capturing data...")
+    while True:
+        if keyboard.is_pressed("esc"):
+            print("\n[*] Escape pressed! Stopping...")
+            break
+        await asyncio.sleep(1)
 
-    
-    await asyncio.sleep(60)  # Wait for 5 seconds
     plt.ioff()
     task1.cancel()
     task2.cancel()
