@@ -22,7 +22,7 @@ def cluster_data(data, TIME_WINDOW):
     # Process each group
     clustered_results = []
     for device_name, entries in grouped_data.items():
-        mac = entries[0]["MAC"]  # MAC should be the same across entries
+        mac = list(set(entry["MAC"] for entry in entries))  # Collect all unique MACs
         features = entries[0]["Features"]
         
         # Extract all RSSI values, handling missing keys
