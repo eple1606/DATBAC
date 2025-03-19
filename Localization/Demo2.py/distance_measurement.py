@@ -6,7 +6,7 @@ with open("probe_request_results_clustered.json", "r") as file:
     data = json.load(file)
 
 # Function to calculate distance from RSSI
-def calculate_distance(rssi, A=-22, n=2):
+def calculate_distance(rssi, A=-50, n=2):
     """
     Estimate the distance to a device using RSSI.
 
