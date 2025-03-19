@@ -4,7 +4,7 @@ device_counter = 1
 def get_device_name(device_signature):
     """
     Assigns or retrieves the device name based on the device signature.
-    A device is considered the same if 2 or more attributes (SSID, MAC, or Features) match.
+    A device is considered the same if 2 or more attributes (SSID, MAC, HT, EXT, or Vendor) match.
     """
     global device_counter
 
@@ -17,8 +17,6 @@ def get_device_name(device_signature):
     ext_count = sum(1 for f in device_features if f.startswith("Ext:"))
     vendor_count = sum(1 for f in device_features if f.startswith("Vendor:"))
 
-    feature_counts = (ht_count, ext_count, vendor_count)
-
     # Compare against existing device signatures
     for existing_signature, existing_device_name in device_signatures.items():
         existing_ssid, existing_mac, existing_features = existing_signature
@@ -29,17 +27,17 @@ def get_device_name(device_signature):
         existing_ext_count = sum(1 for f in existing_feature_list if f.startswith("Ext:"))
         existing_vendor_count = sum(1 for f in existing_feature_list if f.startswith("Vendor:"))
 
-        existing_feature_counts = (existing_ht_count, existing_ext_count, existing_vendor_count)
-
-        # Count matching attributes
+        # Count matching attributes separately
         match_count = sum([
-            ssid == existing_ssid,            # Match SSID
-            mac == existing_mac,              # Match MAC
-            feature_counts == existing_feature_counts  # Match Features
+            ssid == existing_ssid,        # Match SSID
+            mac == existing_mac,          # Match MAC
+            ht_count == existing_ht_count,    # Match HT feature count
+            ext_count == existing_ext_count,  # Match EXT feature count
+            vendor_count == existing_vendor_count  # Match Vendor feature count
         ])
 
         # If at least 2 attributes match, assign the existing device name
-        if match_count >= 2:
+        if match_count >= 3:
             return existing_device_name
 
     # No match found, assign a new device name
