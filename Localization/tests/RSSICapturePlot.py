@@ -28,17 +28,10 @@ def capture_rssi(interface, duration, target_prefix):
                 rssi_values.append(rssi)
                 timestamps.append(timestamp)
                 print(f"[{timestamp:.2f}s] Captured RSSI: {rssi} dBm from {mac}")
-    
-    sniff(iface=interface, prn=handle_probe_request, timeout=duration/10)
-    sniff(iface=interface, prn=handle_probe_request, timeout=duration/10)
-    sniff(iface=interface, prn=handle_probe_request, timeout=duration/10)
-    sniff(iface=interface, prn=handle_probe_request, timeout=duration/10)
-    sniff(iface=interface, prn=handle_probe_request, timeout=duration/10)
-    sniff(iface=interface, prn=handle_probe_request, timeout=duration/10)
-    sniff(iface=interface, prn=handle_probe_request, timeout=duration/10)
-    sniff(iface=interface, prn=handle_probe_request, timeout=duration/10)
-    sniff(iface=interface, prn=handle_probe_request, timeout=duration/10)
-    sniff(iface=interface, prn=handle_probe_request, timeout=duration/10)
+    for i in range(10):
+        print(i)
+        sniff(iface=interface, prn=handle_probe_request, timeout=duration/10)
+
     return timestamps, rssi_values
 
 # Function to save RSSI measurements to a file

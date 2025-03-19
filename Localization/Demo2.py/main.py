@@ -117,11 +117,10 @@ async def main():
     print("[*] Capturing data...")
 
     while True:
-        if keyboard.is_pressed("esc"):
-            print("\n[*] Escape pressed! Stopping...")
+        if keyboard.is_pressed('esc'):
+            print("[*] Stopping the program...")
             break
-        await asyncio.sleep(0.1)  # Low sleep time to check ESC frequently
-
+        await asyncio.sleep(1)
     plt.ioff()
     task1.cancel()
     task2.cancel()
