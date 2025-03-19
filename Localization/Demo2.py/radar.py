@@ -27,7 +27,7 @@ def visualize_radar(data, ax, max_distance=10):
     angles = np.zeros(len(distances))  # Keep all devices aligned to North
 
     # Plot devices with scaled sizes
-    ax.scatter(angles, distances, color='red', s=sizes, label="Devices", alpha=0.75)
+    ax.scatter(angles, distances, color='red', label="Devices", alpha=0.75)
 
     # Add labels for each device
     for i, name in enumerate(device_names):

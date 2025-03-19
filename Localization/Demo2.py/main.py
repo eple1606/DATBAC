@@ -9,32 +9,10 @@ from radar import visualize_radar  # Import radar visualization function
 from clustering import cluster_data
 import matplotlib.pyplot as plt
 import keyboard
+from device_signature import get_device_name
 
 TIME_WINDOW = 60  # Time window in seconds
 
-
-
-# Dictionary to store device signatures and their assigned names
-device_signatures = {}
-device_counter = 1
-
-
-def get_device_name(device_signature):
-    """
-    Assigns or retrieves the device name based on the device signature.
-    """
-    global device_counter
-    
-    if device_signature not in device_signatures:
-        # If this device signature doesn't exist, assign a new name (e.g., "Device 1")
-        device_name = f"Device {device_counter}"
-        device_signatures[device_signature] = device_name
-        device_counter += 1
-    else:
-        # If this device signature already exists, return the existing name
-        device_name = device_signatures[device_signature]
-    
-    return device_name
 
 async def save_packets(ax):
     while True:
@@ -84,7 +62,6 @@ async def save_packets(ax):
         # Load JSON data
         #with open("probe_request_results.json", "r") as file:
         #   data = json.load(file)
-        TIME_WINDOW = 60  # Time window in seconds
         clustered_results = cluster_data(data, TIME_WINDOW)
 
 
