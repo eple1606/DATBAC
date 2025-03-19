@@ -121,6 +121,7 @@ async def main():
             print("[*] Stopping the program...")
             break
         await asyncio.sleep(1)
+    
     plt.ioff()
     task1.cancel()
     task2.cancel()
