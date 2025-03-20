@@ -19,6 +19,8 @@ clustered_results_all = []
 
 async def save_packets(ax):
     while True:
+        print("data_data_data_data_data_data_data_data_data_data_data")
+        print(probe_data)
         # Step 2: Feature extraction
         print("[*] Extracting features from captured probe requests...")
         X, df = extract_features(probe_data)
@@ -71,8 +73,9 @@ async def save_packets(ax):
         
         # Step 7: Call radar visualization function
         print("Generating radar visualization...")
+        print(clustered_results)
         visualize_radar(clustered_results, ax)
-
+        print("[*] Radar visualization updated")
         await asyncio.sleep(3)
 
 async def main():
@@ -103,9 +106,7 @@ async def main():
     plt.ion()
     plt.show()
 
-    # Step 1: Start sniffing and capture probe requests for x seconds
-    # Wait for the sniffing process to complete (30 seconds)
-    print("[*] Capturing data for 30 seconds...")
+    # Step 1: Start sniffing and capture probe requests until you press 'esc'
     task1 = asyncio.create_task(start_sniffing(interface="wlan0"))  # Replace with your Wi-Fi interface
     task2 = asyncio.create_task(save_packets(ax))
     print("[*] Capturing data...")

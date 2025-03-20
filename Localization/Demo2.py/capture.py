@@ -1,13 +1,17 @@
 from scapy.all import Dot11, Dot11ProbeReq, Dot11Elt
-from scapy.all import sniff
+from scapy.all import sniff, wrpcap
 import time
 import asyncio
 
 # Global list to store captured probe data
 probe_data = []
+unsorted_probe_data = []
 
 def handle_probe_request(packet):
     if packet.haslayer(Dot11ProbeReq):
+
+        #wrpcap("captured_packets.pcap", [packet], append=True)
+
         mac = packet.addr2  # Source MAC (even if randomized)
         ssid = packet.info.decode(errors="ignore") if packet.info else "<Hidden SSID>"
         
@@ -29,7 +33,6 @@ def handle_probe_request(packet):
         wifi_features = []
         if packet.haslayer(Dot11Elt):
             try:
-                print(packet)
                 elt = packet.getlayer(Dot11Elt)
                 while elt:
                     if elt.ID == 45:  # HT Capabilities
