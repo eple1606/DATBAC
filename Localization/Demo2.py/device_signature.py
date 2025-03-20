@@ -37,7 +37,7 @@ def get_device_name(device_signature):
         ])
 
         # If at least 2 attributes match, assign the existing device name
-        if match_count >= 3:
+        if match_count >= 4:
             return existing_device_name
 
     # No match found, assign a new device name

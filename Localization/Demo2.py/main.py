@@ -10,9 +10,12 @@ from clustering import cluster_data
 import matplotlib.pyplot as plt
 import keyboard
 from device_signature import get_device_name
+import os
 
 TIME_WINDOW = 60  # Time window in seconds
 
+# List to store all clustered results
+clustered_results_all = []
 
 async def save_packets(ax):
     while True:
@@ -62,16 +65,30 @@ async def save_packets(ax):
         # Load JSON data
         #with open("probe_request_results.json", "r") as file:
         #   data = json.load(file)
+        
+        # Perform clustering
         clustered_results = cluster_data(data, TIME_WINDOW)
 
-
-                # Step 7: Call radar visualization function
+        # Step 7: Call radar visualization function
         print("Generating radar visualization...")
         visualize_radar(clustered_results, ax)
 
         await asyncio.sleep(3)
 
 async def main():
+    # Check if the file exists
+    if os.path.exists("probe_request_results_clustered.json"):
+        # Rename the existing file to .bak
+        os.rename("probe_request_results_clustered.json", "probe_request_results_clustered.json.bak")
+        print("[*] Existing 'probe_request_results_clustered.json' renamed to 'probe_request_results_clustered.json.bak'")
+    
+    if os.path.exists("probe_request_results.json"):
+        # Rename the existing file to .bak
+        os.rename("probe_request_results.json", "probe_request_results.json.bak")
+        print("[*] Existing 'probe_request_results.json' renamed to 'probe_request_results.json.bak'")
+
+
+
     # Create Radar Plot (Straight Line Representation)
     fig, ax = plt.subplots(subplot_kw={'projection': 'polar'}, figsize=(8, 8))
     ax.set_theta_zero_location('N')  # Devices will be placed along 0° (North)

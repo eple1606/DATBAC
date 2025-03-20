@@ -1,10 +1,6 @@
 import math
 import json
 
-# Load clustered data from JSON
-with open("probe_request_results_clustered.json", "r") as file:
-    data = json.load(file)
-
 # Function to calculate distance from RSSI free model
 def calculate_distance(rssi, A=-50, n=2):
     """

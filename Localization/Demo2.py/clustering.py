@@ -1,6 +1,8 @@
 import json
 from collections import defaultdict
 
+clustered_results = []
+
 def cluster_data(data, TIME_WINDOW):
     # Define time window (seconds)
 
@@ -20,7 +22,7 @@ def cluster_data(data, TIME_WINDOW):
         grouped_data[entry["Device_Name"]].append(entry)
 
     # Process each group
-    clustered_results = []
+    clustered_results_window = []
     for device_name, entries in grouped_data.items():
         mac = list(set(entry["MAC"] for entry in entries))  # Collect all unique MACs
         features = entries[0]["Features"]
@@ -44,7 +46,7 @@ def cluster_data(data, TIME_WINDOW):
                 break  # Stop at the first valid SSID
 
         # Create new JSON entry
-        clustered_results.append({
+        clustered_results_window.append({
             "Device_Name": device_name,
             "MAC": mac,
             "SSID": ssid,
@@ -53,10 +55,24 @@ def cluster_data(data, TIME_WINDOW):
             "Last_Timestamp": last_timestamp,
             "Features": features
         })
+    print(clustered_results_window)
 
-    # Save to a new JSON file
-    with open("probe_request_results_clustered.json", "w") as outfile:
-        json.dump(clustered_results, outfile, indent=4)
+    # Extract existing device names for quick lookup
+    existing_device_names = {entry["Device_Name"] for entry in clustered_results}
+    
+    # Filter new entries to avoid duplicates
+    new_entries = [
+        entry for entry in clustered_results_window if entry["Device_Name"] not in existing_device_names
+    ]
+    print(f"Found {len(new_entries)} new entries to append")
+    
+    # Append only new entries
+    if new_entries:
+        clustered_results.extend(new_entries)
 
+        # Save updated data back to JSON
+        with open("probe_request_results_clustered.json", "w") as outfile:
+            json.dump(clustered_results, outfile, indent=4)
+    
     print(f"Clustering complete. Processed last {TIME_WINDOW} seconds of data. Output saved to probe_request_results_clustered.json")
     return clustered_results
