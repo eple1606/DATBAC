@@ -68,7 +68,7 @@ async def save_packets(ax):
         
         # Perform clustering
         clustered_results = cluster_data(data, TIME_WINDOW)
-
+        
         # Step 7: Call radar visualization function
         print("Generating radar visualization...")
         visualize_radar(clustered_results, ax)
