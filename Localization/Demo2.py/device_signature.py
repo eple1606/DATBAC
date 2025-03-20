@@ -27,17 +27,22 @@ def get_device_name(device_signature):
         existing_ext_count = sum(1 for f in existing_feature_list if f.startswith("Ext:"))
         existing_vendor_count = sum(1 for f in existing_feature_list if f.startswith("Vendor:"))
 
-        # Count matching attributes separately
-        match_count = sum([
-            ssid == existing_ssid,        # Match SSID
-            mac == existing_mac,          # Match MAC
-            ht_count == existing_ht_count,    # Match HT feature count
-            ext_count == existing_ext_count,  # Match EXT feature count
-            vendor_count == existing_vendor_count  # Match Vendor feature count
-        ])
+        # Initialize match_count
+        match_count = 0
 
+        # Check SSID, MAC, and Features (HT, EXT, Vendor) for matching
+        if ssid and ssid == existing_ssid:  # Only count if SSID is not null or empty
+            match_count += 1
+        if mac and mac == existing_mac:  # Only count if MAC is not null or empty
+            match_count += 1
+        if ht_count > 0 and ht_count == existing_ht_count:  # Only count if HT count is greater than 0
+            match_count += 1
+        if ext_count > 0 and ext_count == existing_ext_count:  # Only count if EXT count is greater than 0
+            match_count += 1
+        if vendor_count > 0 and vendor_count == existing_vendor_count:  # Only count if Vendor count is greater than 0
+            match_count += 1
         # If at least 2 attributes match, assign the existing device name
-        if match_count >= 4:
+        if match_count >= 3:
             return existing_device_name
 
     # No match found, assign a new device name
