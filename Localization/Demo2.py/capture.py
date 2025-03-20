@@ -29,6 +29,7 @@ def handle_probe_request(packet):
         wifi_features = []
         if packet.haslayer(Dot11Elt):
             try:
+                print(packet)
                 elt = packet.getlayer(Dot11Elt)
                 while elt:
                     if elt.ID == 45:  # HT Capabilities
