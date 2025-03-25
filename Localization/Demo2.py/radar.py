@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from distance_measurement import calculate_distance
 import time
 
-max_distance=30 # Maximum display range in meters
+max_distance=100 # Maximum display range in meters
 
 def visualize_radar(data, ax, time_window=60):
     device_names = []

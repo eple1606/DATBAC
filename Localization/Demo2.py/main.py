@@ -129,6 +129,7 @@ async def main():
 
     # Step 1: Start sniffing and capture probe requests until you press 'esc'
     task1 = asyncio.create_task(start_sniffing(interface="wlan0"))  # Replace with your Wi-Fi interface
+    time.sleep(3)
     task2 = asyncio.create_task(save_packets(ax))
     print("[*] Capturing data...")
 

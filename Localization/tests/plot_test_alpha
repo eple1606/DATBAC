@@ -1,0 +1,99 @@
+import matplotlib.pyplot as plt
+import numpy as np
+import time
+
+# Create Radar Plot (Straight Line Representation)
+fig, ax = plt.subplots(subplot_kw={'projection': 'polar'}, figsize=(8, 8))
+ax.set_theta_zero_location('N')  # Devices will be placed along 0° (North)
+ax.set_theta_direction(-1)  # Clockwise rotation
+ax.set_title("Device Movement Radar", fontsize=14, fontweight='bold')
+
+# Adjust grid
+ax.set_xticks(ax.get_xticks())
+ax.set_yticks(ax.get_yticks())
+ax.set_yticklabels([])  # Hide radial labels
+ax.set_xticklabels(["N", "", "", "", "", "", "", ""], fontsize=10)  # Only show 'N'
+ax.legend(loc="upper right")
+
+# Initialize the list to store device data with timestamps and IDs
+device_data = []  # This will store the (angle, distance, timestamp, device_id)
+labels_displayed = set()  # Set to keep track of displayed labels
+
+# Minimum and maximum alpha values for fading effect
+min_alpha = 0.2  # Minimum alpha value (faded but visible)
+max_alpha = 1.0  # Maximum alpha value (fully visible)
+
+# Simulate the device creation and movement
+num_devices = 5  # Number of devices to simulate
+
+# Initialize devices with random starting positions and IDs
+for i in range(num_devices):
+    angle = np.random.rand() * 2 * np.pi  # Random angle in radians
+    #angle = 0
+    distance = np.random.rand() * 10  # Random distance
+    timestamp = time.time()  # Store the time the device was added
+    device_id = f"Device_{i}"  # Generate a unique ID for each device
+    device_data.append([angle, distance, timestamp, device_id])
+
+# Store previous devices positions for fading effect
+history_data = []
+
+# Simulate the movement and updates
+for _ in range(20):  # Update 20 times
+    # Clear the previous scatter plot and redraw
+    ax.clear()
+
+    # Re-apply the title and axis configurations after clearing
+    ax.set_theta_zero_location('N')
+    ax.set_theta_direction(-1)
+    ax.set_title("Device Movement Radar", fontsize=14, fontweight='bold')
+    ax.set_xticks(ax.get_xticks())
+    ax.set_yticks(ax.get_yticks())
+    ax.set_yticklabels([])  # Hide radial labels
+    ax.set_xticklabels(["N", "", "", "", "", "", "", ""], fontsize=10)
+
+    # Extract angles, distances, timestamps, and IDs for the current data points
+    angles, distances, timestamps, ids = zip(*device_data)
+
+    # Calculate the alpha value (transparency) based on the time difference for all previous positions
+    time_diff = np.array([time.time() - t for t in timestamps])
+
+    # Normalize the alpha values (fade over time) with a minimum and maximum
+    alpha = np.clip(max_alpha - (time_diff / max(time_diff)) * (max_alpha - min_alpha), min_alpha, max_alpha)
+
+    # Set the color to red with constant RGB values and variable alpha for new positions
+    colors_new = [(1, 0, 0, a) for a in alpha]  # RGB color with varying alpha (only red channel used)
+
+    # Store the history of previous positions
+    history_data.append((angles, distances, timestamps, ids, alpha))
+
+    # Simulate movement (5% change in position each time)
+    for i in range(len(device_data)):
+        # Random movement: +-5% of current position
+        movement_factor = 0.05 * np.random.randn(2)
+        device_data[i][0] += movement_factor[0]  # Update angle (direction)
+        device_data[i][1] += movement_factor[1]  # Update distance (magnitude)
+        
+        # Keep the distance within a reasonable range
+        device_data[i][1] = max(0, min(device_data[i][1], 10))
+
+    # Plot the previous positions (faded circles) without labels
+    for prev_angles, prev_distances, prev_timestamps, prev_ids, prev_alpha in history_data:
+        ax.scatter(prev_angles, prev_distances, c=[(1, 0, 0, a) for a in prev_alpha], marker='o', alpha=0.5)
+
+    # Plot the new positions (full color) and show the label
+    scatter_new = ax.scatter(angles, distances, c=colors_new, marker='o', alpha=1.0, label="Device ID")
+    
+    # Display the label for each device (full color)
+    for i, circle_id in enumerate(ids):
+        ax.annotate(circle_id, (angles[i], distances[i]), textcoords="offset points", xytext=(0, 5), ha='center', fontsize=8, color='black')
+
+    # Show the plot and pause for a moment
+    plt.draw()
+    plt.pause(0.5)  # Pause for 0.5 seconds
+
+# Show the legend for the new positions (only the recent positions will be shown in the legend)
+ax.legend(loc="upper right")
+
+# Show the final plot
+plt.show()
