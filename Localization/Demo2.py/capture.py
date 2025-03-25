@@ -53,7 +53,6 @@ def handle_probe_request(packet):
                 print(f"[!] Error parsing Dot11Elt: {e}")
                 wifi_features.append("Null")
                 
-
         # Store the fingerprint
         probe_data.append({
             "MAC": mac,

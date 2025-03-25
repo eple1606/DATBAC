@@ -24,12 +24,11 @@ def on_click(event):
 
 async def save_packets(ax):
     while True:
-        start_time = time.time()
         print("data_data_data_data_data_data_data_data_data_data_data")
         print(probe_data)
         # Step 2: Feature extraction
         print("[*] Extracting features from captured probe requests...")
-        
+
         if not probe_data:
             print("[*] No probe data captured. Skipping this iteration.")
             await asyncio.sleep(1)
@@ -72,7 +71,10 @@ async def save_packets(ax):
             json.dump(json_data, json_file, indent=4)
 
         print("[*] Data saved to 'probe_request_results.json'")
-        data = json_data
+        print("-----------------------------")
+        print(json_data)
+        print("-----------------------------")
+        
 
         # Step 6: Cluster the data
 
@@ -81,7 +83,8 @@ async def save_packets(ax):
         #   data = json.load(file)
         
         # Perform clustering
-        clustered_results = cluster_data(data, TIME_WINDOW)
+        print("[*] Clustering data...")
+        clustered_results = cluster_data(json_data, TIME_WINDOW)
         
         # Step 7: Call radar visualization function
         print("Generating radar visualization...")
@@ -90,13 +93,6 @@ async def save_packets(ax):
         print("[*] Radar visualization updated")
         
         await asyncio.sleep(1)
-
-        end_time = time.time()
-        elapsed_time = end_time - start_time
-
-        print("-----------------------------")
-        print(elapsed_time)
-        print("-----------------------------")
 
 async def main():
     # Check if the file exists
@@ -119,7 +115,7 @@ async def main():
     ax.set_title("Estimated Distance Radar", fontsize=14, fontweight='bold')
 
     # Adjust grid
-    ax.set_xticks(ax.get_xticks()); 
+    ax.set_xticks(ax.get_xticks())
     ax.set_yticks(ax.get_yticks())
     ax.set_yticklabels([])  # Hide radial labels
     ax.set_xticklabels(["N", "", "", "", "", "", "", ""], fontsize=10)  # Only show 'N'

@@ -2,23 +2,34 @@
     {
         "Device_Name": "Device 1",
         "MAC": [
-            "02:a5:cc:e7:2d:1a"
+            "a0:e7:0b:68:4c:1a"
         ],
-        "SSID": "<Hidden SSID>",
-        "Average_RSSI": -62.0,
-        "First_Timestamp": 1742868563.4762604,
-        "Last_Timestamp": 1742868563.4762604,
-        "Features": "HT:2d401bffff000000000000000000000000000000000000000000, Ext:00000884"
+        "SSID": "DIRECT-",
+        "Average_RSSI": -64.0,
+        "First_Timestamp": 1742906044.1605973,
+        "Last_Timestamp": 1742906044.1605973,
+        "Features": "Vendor:0050F2, VendorInfo:04104A000110103A0001001008000211E8104700102910999C8951460D94E657CDB33DC6A41054000800010050F2000000103C0001021002000200001009000200001012000200001011000F4C4150544F502D4C30325254564A55104900090001371005000200011049000600372A000120, Vendor:506F9A, VendorInfo:0A00000601101C440006, Vendor:506F9A, VendorInfo:090202002500"
     },
     {
         "Device_Name": "Device 2",
         "MAC": [
-            "de:0f:c5:13:d9:ec"
+            "ae:50:52:76:d3:ba"
         ],
-        "SSID": "HUAWEI-5G-9Ysz",
-        "Average_RSSI": -25.75,
-        "First_Timestamp": 1742868609.694553,
-        "Last_Timestamp": 1742868610.5155325,
-        "Features": "HT:6f0913ff00000000000000000000000000000000000000000000, Vendor:0050F2, VendorInfo:08002600, Ext:00000a82, Vendor:8CFDF0, VendorInfo:0101020100"
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -66.0,
+        "First_Timestamp": 1742906051.01223,
+        "Last_Timestamp": 1742906051.01223,
+        "Features": "HT:2d001bffff000000000000000000000000000000000000000000, Ext:0000480000400040c021, Vendor:00904C, VendorInfo:0408BF0C3278910FFAFF0000FAFF0000, Vendor:0050F2, VendorInfo:08001200, Vendor:001018, VendorInfo:02000010000000, Vendor:506F9A, VendorInfo:16030101650101"
+    },
+    {
+        "Device_Name": "Device 3",
+        "MAC": [
+            "96:2a:71:bd:18:96"
+        ],
+        "SSID": "eduroam",
+        "Average_RSSI": -60.0,
+        "First_Timestamp": 1742906049.2562833,
+        "Last_Timestamp": 1742906049.2562833,
+        "Features": "HT:2d401bff00000000000000000000000000000000000000000000, Ext:0000080400000040, Vendor:0017F2, VendorInfo:0A00010400000000, Vendor:0050F2, VendorInfo:08001200, Vendor:001018, VendorInfo:02010010000000"
     }
 ]

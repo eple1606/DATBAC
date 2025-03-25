@@ -2,122 +2,65 @@
     {
         "Device_Name": "Device 1",
         "MAC": [
-            "de:0f:c5:13:d9:ec"
+            "72:72:a5:cd:7c:22",
+            "1e:c6:16:06:55:96",
+            "d4:54:8b:45:a6:aa",
+            "8a:0a:08:57:6a:a7",
+            "9a:cb:01:cc:b3:56",
+            "aa:9c:36:78:fe:2c",
+            "0e:af:87:22:84:7c",
+            "3a:ad:69:c1:c2:bd",
+            "72:3c:87:df:7f:c2",
+            "66:39:b8:07:bc:84"
         ],
-        "SSID": "HUAWEI-5G-9Ysz",
-        "Average_RSSI": -19.692307692307693,
-        "First_Timestamp": 1742868167.5218942,
-        "Last_Timestamp": 1742868168.2424269,
-        "Features": "HT:6f0913ff00000000000000000000000000000000000000000000, Vendor:0050F2, VendorInfo:08002600, Ext:00000a82, Vendor:8CFDF0, VendorInfo:0101020100"
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -39.69230769230769,
+        "First_Timestamp": 1742906023.177289,
+        "Last_Timestamp": 1742906029.0345585,
+        "Features": "HT:2d401bff00000000000000000000000000000000000000000000, Ext:0000080400000040000020"
     },
     {
         "Device_Name": "Device 2",
         "MAC": [
-            "00:25:d3:82:25:b5"
+            "d0:c0:bf:bc:79:55"
         ],
         "SSID": "<Hidden SSID>",
-        "Average_RSSI": -40.0,
-        "First_Timestamp": 1742868268.4906986,
-        "Last_Timestamp": 1742868268.4906986,
+        "Average_RSSI": -62.0,
+        "First_Timestamp": 1742906024.425489,
+        "Last_Timestamp": 1742906024.425489,
         "Features": ""
     },
     {
         "Device_Name": "Device 3",
         "MAC": [
-            "00:25:d3:82:25:b5"
+            "40:1a:58:b8:ff:b9"
         ],
         "SSID": "<Hidden SSID>",
-        "Average_RSSI": -40.0,
-        "First_Timestamp": 1742868269.5037332,
-        "Last_Timestamp": 1742868269.5037332,
-        "Features": ""
+        "Average_RSSI": -68.0,
+        "First_Timestamp": 1742906029.3461862,
+        "Last_Timestamp": 1742906029.3461862,
+        "Features": "Ext:04004800004000c00020, Vendor:506F9A, VendorInfo:16030103"
     },
     {
         "Device_Name": "Device 4",
         "MAC": [
-            "00:25:d3:82:25:b5"
+            "d0:c0:bf:bc:79:55"
         ],
         "SSID": "<Hidden SSID>",
-        "Average_RSSI": -44.0,
-        "First_Timestamp": 1742868269.7159033,
-        "Last_Timestamp": 1742868269.7159033,
+        "Average_RSSI": -62.0,
+        "First_Timestamp": 1742906024.425489,
+        "Last_Timestamp": 1742906024.425489,
         "Features": ""
     },
     {
         "Device_Name": "Device 5",
         "MAC": [
-            "00:25:d3:82:25:b5"
+            "d0:c0:bf:bc:79:55"
         ],
         "SSID": "<Hidden SSID>",
-        "Average_RSSI": -40.0,
-        "First_Timestamp": 1742868268.4906986,
-        "Last_Timestamp": 1742868268.4906986,
-        "Features": ""
-    },
-    {
-        "Device_Name": "Device 6",
-        "MAC": [
-            "00:25:d3:82:25:b5"
-        ],
-        "SSID": "<Hidden SSID>",
-        "Average_RSSI": -40.0,
-        "First_Timestamp": 1742868269.5037332,
-        "Last_Timestamp": 1742868269.5037332,
-        "Features": ""
-    },
-    {
-        "Device_Name": "Device 7",
-        "MAC": [
-            "00:25:d3:82:25:b5"
-        ],
-        "SSID": "<Hidden SSID>",
-        "Average_RSSI": -44.0,
-        "First_Timestamp": 1742868269.7159033,
-        "Last_Timestamp": 1742868269.7159033,
-        "Features": ""
-    },
-    {
-        "Device_Name": "Device 8",
-        "MAC": [
-            "00:25:d3:82:25:b5"
-        ],
-        "SSID": "<Hidden SSID>",
-        "Average_RSSI": -40.0,
-        "First_Timestamp": 1742868268.4906986,
-        "Last_Timestamp": 1742868268.4906986,
-        "Features": ""
-    },
-    {
-        "Device_Name": "Device 9",
-        "MAC": [
-            "00:25:d3:82:25:b5"
-        ],
-        "SSID": "<Hidden SSID>",
-        "Average_RSSI": -40.0,
-        "First_Timestamp": 1742868269.5037332,
-        "Last_Timestamp": 1742868269.5037332,
-        "Features": ""
-    },
-    {
-        "Device_Name": "Device 10",
-        "MAC": [
-            "00:25:d3:82:25:b5"
-        ],
-        "SSID": "<Hidden SSID>",
-        "Average_RSSI": -44.0,
-        "First_Timestamp": 1742868269.7159033,
-        "Last_Timestamp": 1742868269.7159033,
-        "Features": ""
-    },
-    {
-        "Device_Name": "Device 14",
-        "MAC": [
-            "00:25:d3:82:25:b5"
-        ],
-        "SSID": "<Hidden SSID>",
-        "Average_RSSI": -46.0,
-        "First_Timestamp": 1742868331.796683,
-        "Last_Timestamp": 1742868331.796683,
+        "Average_RSSI": -62.0,
+        "First_Timestamp": 1742906024.425489,
+        "Last_Timestamp": 1742906024.425489,
         "Features": ""
     }
 ]
