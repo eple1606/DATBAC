@@ -2,7 +2,7 @@ import math
 import json
 
 # Function to calculate distance from RSSI free model
-def calculate_distance(rssi, A=-50, n=2):
+def calculate_distance(rssi, A=-22, n=2):
     """
     Estimate the distance to a device using RSSI.
 

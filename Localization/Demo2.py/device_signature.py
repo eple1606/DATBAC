@@ -42,7 +42,7 @@ def get_device_name(device_signature):
         if vendor_count > 0 and vendor_count == existing_vendor_count:  # Only count if Vendor count is greater than 0
             match_count += 1
         # If at least 2 attributes match, assign the existing device name
-        if match_count >= 4:
+        if match_count >= 3:
             return existing_device_name
 
     # No match found, assign a new device name
