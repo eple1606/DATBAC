@@ -37,9 +37,21 @@ def visualize_radar(data, ax, time_window=60):
         distances.append(distance)
 
     angles = np.zeros(len(distances))  # Keep all devices aligned to North
+    
+    ax.clear()
+    print("clearing")
+
+    ax.set_theta_zero_location('N')  # Devices will be placed along 0° (North)
+    ax.set_theta_direction(-1)  # Clockwise rotation
+    ax.set_title("Estimated Distance Radar", fontsize=14, fontweight='bold')
+
+    # Adjust grid
+    ax.set_yticklabels([])  # Hide radial labels
+    ax.set_xticklabels(["N", "", "", "", "", "", "", ""], fontsize=10)  # Only show 'N'
 
     # Plot devices with scaled sizes
-    ax.scatter(angles, distances, color='red', label="Devices", alpha=0.75)
+    ax.scatter(angles, distances, color='red', label="Devices", alpha=alphas, s=100 * np.array(alphas))
+
     # Add labels for each device
     for i, name in enumerate(device_names):
         ax.text(angles[i], distances[i] + 0.3,labels[i], 
@@ -51,6 +63,5 @@ def visualize_radar(data, ax, time_window=60):
     ax.set_yticks(np.arange(0, max_distance + 1, 2))  # Y-axis every 2m
     ax.set_ylabel("Distance (m)")
     # Refresh the plot
-    plt.legend()
     plt.draw()
     plt.pause(0.1)

@@ -12,17 +12,29 @@ import keyboard
 from device_signature import get_device_name
 import os
 
+
 TIME_WINDOW = 60  # Time window in seconds
 
 # List to store all clustered results
 clustered_results_all = []
 
+def on_click(event):
+    print(f"Clicked at ({event.x}, {event.y})")
+
+
 async def save_packets(ax):
     while True:
+        start_time = time.time()
         print("data_data_data_data_data_data_data_data_data_data_data")
         print(probe_data)
         # Step 2: Feature extraction
         print("[*] Extracting features from captured probe requests...")
+        
+        if not probe_data:
+            print("[*] No probe data captured. Skipping this iteration.")
+            await asyncio.sleep(1)
+            continue
+
         X, df = extract_features(probe_data)
 
         # Step 3: Anomaly detection
@@ -76,7 +88,15 @@ async def save_packets(ax):
         print(clustered_results)
         visualize_radar(clustered_results, ax)
         print("[*] Radar visualization updated")
-        await asyncio.sleep(3)
+        
+        await asyncio.sleep(1)
+
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+
+        print("-----------------------------")
+        print(elapsed_time)
+        print("-----------------------------")
 
 async def main():
     # Check if the file exists
@@ -99,11 +119,16 @@ async def main():
     ax.set_title("Estimated Distance Radar", fontsize=14, fontweight='bold')
 
     # Adjust grid
+    ax.set_xticks(ax.get_xticks()); 
+    ax.set_yticks(ax.get_yticks())
     ax.set_yticklabels([])  # Hide radial labels
     ax.set_xticklabels(["N", "", "", "", "", "", "", ""], fontsize=10)  # Only show 'N'
     ax.scatter(0, 1, color='red', s=100, label="Devices", alpha=0.75)
-    
+    fig.canvas.mpl_connect('button_press_event', on_click)
+
+    plt.legend(loc='upper right')
     plt.ion()
+    plt.draw()
     plt.show()
 
     # Step 1: Start sniffing and capture probe requests until you press 'esc'
