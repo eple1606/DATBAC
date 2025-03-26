@@ -23,7 +23,7 @@ def on_click(event):
     print(f"Clicked at ({event.x}, {event.y})")
 
 
-async def save_packets(ax):
+async def save_packets():
     while True:
         print("data_data_data_data_data_data_data_data_data_data_data")
         print(probe_data)
@@ -92,7 +92,7 @@ async def save_packets(ax):
         print(clustered_results)
         #visualize_radar(clustered_results, ax)
         #print("[*] Radar visualization updated")
-        visualize_plot(clustered_results, ax)
+        visualize_plot(clustered_results)
         print("[*] Plot visualization updated")
         
         await asyncio.sleep(1)
@@ -110,7 +110,7 @@ async def main():
         print("[*] Existing 'probe_request_results.json' renamed to 'probe_request_results.json.bak'")
 
 
-
+    '''
     # Create Radar Plot (Straight Line Representation)
     fig, ax = plt.subplots(subplot_kw={'projection': 'polar'}, figsize=(8, 8))
     ax.set_theta_zero_location('N')  # Devices will be placed along 0° (North)
@@ -124,8 +124,9 @@ async def main():
     ax.set_xticklabels(["N", "", "", "", "", "", "", ""], fontsize=10)  # Only show 'N'
     ax.scatter(0, 1, color='red', s=100, label="Devices", alpha=0.75)
     fig.canvas.mpl_connect('button_press_event', on_click)
+    '''
+    plt.plot([1, 2, 3, 4], [1, 4, 9, 16], 'ro')
 
-    plt.legend(loc='upper right')
     plt.ion()
     plt.draw()
     plt.show()
@@ -133,7 +134,7 @@ async def main():
     # Step 1: Start sniffing and capture probe requests until you press 'esc'
     task1 = asyncio.create_task(start_sniffing(interface="wlan0"))  # Replace with your Wi-Fi interface
     time.sleep(3)
-    task2 = asyncio.create_task(save_packets(ax))
+    task2 = asyncio.create_task(save_packets())
     print("[*] Capturing data...")
 
     while True:

@@ -2,6 +2,7 @@ from scapy.all import Dot11, Dot11ProbeReq, Dot11Elt
 from scapy.all import sniff, wrpcap
 import time
 import asyncio
+import json
 
 # Global list to store captured probe data
 probe_data = []
@@ -35,7 +36,6 @@ def handle_probe_request(packet):
             try:
                 elt = packet.getlayer(Dot11Elt)
                 while elt:
-                    print(elt)
                     if elt.ID == 1:  # Supported Rates (Element 0x01)
                         wifi_features.append(f"Supported Rates:{elt.info.hex()}")
                     elif elt.ID == 221:  # Vendor Specific (Element 0x2d)

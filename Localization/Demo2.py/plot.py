@@ -5,68 +5,44 @@ import matplotlib.pyplot as plt
 from distance_measurement import calculate_distance
 import time
 
-max_distance=100 # Maximum display range in meters
+max_distance = 30  # Maximum display range in meters
 
-def visualize_plot(data, ax, time_window=60):
-    device_names = []
-    rssi_values = []
-    distances = []
-    alphas = []
-    labels = []
+def visualize_plot(data, time_window=60):
     current_time = time.time()
-    print("Radar: First fail")
+    
+    valid_data = []
+    
     for device in data:
-        print(device)
         device_name = device["Device_Name"]
         first_timestamp = device["First_Timestamp"]
         rssi = device["Average_RSSI"]
-        print(rssi)
         distance = calculate_distance(rssi)
-
-        # Limit distance to the max range
-        if distance > max_distance:
-            continue
-
-        age = current_time - first_timestamp
-        alpha = max(0.2, 1 - (age / time_window))  # Fading effect
-        print(alpha)
-
-        alphas.append(alpha)
-        labels.append(f"{device_name} / {rssi:.2f}dBm / {distance:.2f}m")
-        device_names.append(device_name)
-        rssi_values.append(rssi)
-        distances.append(distance)
-    print("Radar: Second fail")
-    angles = np.zeros(len(distances))  # Keep all devices aligned to North
+        
+        valid_data.append((device_name, first_timestamp, rssi, distance))
     
-    ax.clear()
-    print("clearing")
-
-    ax.set_title("Estimated Distance Radar", fontsize=14, fontweight='bold')
-    print("Radar: Third fail")
-    # Adjust grid
-    print("Radar: Fourth fail")
-    # Plot devices with scaled sizes
-    print(angles)
-    print(distances)
-    print(alphas)
-    ax.scatter(angles, distances, color='red', label="Devices", alpha=alphas, s=100 * np.array(alphas))
-    plt.plot([1, 2, 3, 4], [1, 4, 9, 16], 'ro')
-    print("Radar: Fifth fail")
-    # Add labels for each device
-    for i, name in enumerate(device_names):
-        ax.text(angles[i] - np.deg2rad(5),  # Shift left
-                distances[i] + 2.5,
-                labels[i], 
-                fontsize=8, ha='right', va='center', color='black', 
-                bbox=dict(facecolor='white', alpha=0.5))
-
-    print("Radar: Sixth fail")
-    # Set plot limits
-    ax.set_ylim(0, max_distance)  # Max display range
-    ax.set_xticks([])  # Hide x-axis labels
-    ax.set_yticks(np.arange(0, max_distance + 1, 2))  # Y-axis every 2m
-    ax.set_ylabel("Distance (m)")
-    # Refresh the plot
-    plt.draw()
-    plt.pause(0.1)
+    # Sort by timestamp to keep older points at lower alpha
+    valid_data.sort(key=lambda x: x[1])
+    
+    plt.clf()
+    
+    # Plotting
+    for i, (device_name, first_timestamp, rssi, distance) in enumerate(valid_data):
+        age = current_time - first_timestamp
+        
+        if age <= time_window:
+            color = (1, 0, 0, 1)  # Bright red for recent devices
+        else:
+            alpha = max(0.05, 1 - (age / (time_window * 2)))  # More extreme fading for older devices
+            color = (1, 0, 0, alpha)
+        
+        plt.scatter(i + 1, distance, color=color)
+        plt.text(i + 1, distance + 0.2, f"{device_name} / {rssi:.2f}dBm / {distance:.2f}m", fontsize=8, alpha=color[3])
+    
+    # Set maximum distance for the y-axis (adjustable with max_distance variable)
+    plt.ylim(0, max_distance)
+    
+    plt.xlabel("Device Nr.")
+    plt.ylabel("Distance (m)")
+    plt.title("Device Distance Visualization")
+    plt.pause(0.5)
+    plt.show()
