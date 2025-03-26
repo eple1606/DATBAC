@@ -37,7 +37,7 @@ def get_device_name(device_signature):
     print(f"All Features Missing: {all_features_missing}")
 
     # Set initial threshold based on whether the SSID is hidden or not
-    required_matches = 7 if not is_hidden_ssid else 6
+    required_matches = 6 if not is_hidden_ssid else 5
 
     # Adjust threshold down based on missing features
     missing_features = 0
