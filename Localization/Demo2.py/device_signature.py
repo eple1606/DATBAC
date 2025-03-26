@@ -4,10 +4,9 @@ device_counter = 1
 def get_device_name(device_signature):
     """
     Assigns or retrieves the device name based on the device signature.
-    A device is considered the same if 3 or more attributes (SSID, MAC, HT, EXT, or Vendor) match.
-    If all three features (HT, EXT, and Vendor) are missing, it counts as 1 match.
+    A device is considered the same if all features and identifiers match.
     """
-
+    
     print("------------------")
     print("New Data")
     print("------------------")
@@ -29,7 +28,6 @@ def get_device_name(device_signature):
     vendor_info_count = sum(1 for f in device_features if f.startswith("Vendor Info:"))  # Separate Vendor Info count
     supported_rates_count = sum(1 for f in device_features if f.startswith("Supported Rates:"))
     rsn_count = sum(1 for f in device_features if f.startswith("RSN:"))
-
 
     # Check if all feature types are missing
     all_features_missing = (ht_count == 0 and ext_count == 0 and vendor_oui_count == 0 and vendor_info_count == 0 and
@@ -89,7 +87,7 @@ def get_device_name(device_signature):
         print(f"Existing HT Count: {existing_ht_count}, EXT Count: {existing_ext_count}, Vendor OUI Count: {existing_vendor_oui_count}, Vendor Info Count: {existing_vendor_info_count}")
         print(f"Existing Supported Rates Count: {existing_supported_rates_count}")
 
-        # Check SSID and Features (HT, EXT, Vendor OUI, Vendor Info, Supported Rates, RSN, WMM) for matching
+        # Check SSID and Features (HT, EXT, Vendor OUI, Vendor Info, Supported Rates, RSN) for matching
         if ssid and ssid == existing_ssid:
             match_count += 1
             print("SSID Match")
@@ -111,10 +109,12 @@ def get_device_name(device_signature):
         if rsn_count > 0 and rsn_count == existing_rsn_count:
             match_count += 1
             print("RSN Match")
-        # If all HT, EXT, Vendor, Supported Rates, RSN, and WMM features are missing, count as 1 match
-        if all_features_missing:
-            match_count += 1
-            print("All Features Missing, Adding 1 Match")
+        
+        # **STRICT MATCHING**: If features are completely different, it will NOT count as a match
+        # Here we check for exact feature differences
+        if (device_features != existing_feature_list):
+            print("Feature Set Mismatch: Different features found")
+            match_count = 0  # No match if features are completely different
 
         print(f"Total Match Count: {match_count}")
 
