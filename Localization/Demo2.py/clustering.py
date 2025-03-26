@@ -55,7 +55,6 @@ def cluster_data(data, TIME_WINDOW):
             "Last_Timestamp": last_timestamp,
             "Features": features
         })
-    print(clustered_results_window)
 
     # Extract existing device names for quick lookup
     existing_device_names = {entry["Device_Name"] for entry in clustered_results}
