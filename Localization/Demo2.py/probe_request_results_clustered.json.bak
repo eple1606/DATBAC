@@ -2,140 +2,525 @@
     {
         "Device_Name": "Device 1",
         "MAC": [
-            "f0:77:c3:71:b2:8b",
-            "86:89:f8:19:22:f2",
-            "10:f6:0a:06:c5:93",
-            "ca:e9:9b:55:77:54"
+            "14:ac:60:4b:8c:b1"
         ],
         "SSID": "eduroam",
-        "Average_RSSI": -51.714285714285715,
-        "First_Timestamp": 1742909125.7045696,
-        "Last_Timestamp": 1742909130.721208,
-        "Features": "HT:ad0917ffff000000000000000000000000000000000000000100, Ext:04000a8201404040802120, Vendor:506F9A, VendorInfo:16030103650101"
+        "Average_RSSI": -57.75,
+        "First_Timestamp": 1742911441.6490138,
+        "Last_Timestamp": 1742911441.886394,
+        "Features": "Ext:00004800004000c00020, Vendor:506F9A, VendorInfo:16030103"
     },
     {
         "Device_Name": "Device 2",
         "MAC": [
-            "86:89:f8:19:22:f2",
-            "66:fa:5e:67:09:b5",
-            "2a:91:d0:eb:6d:02",
-            "82:94:a3:92:8f:b7",
-            "62:ae:74:ec:b0:8f"
+            "dc:a6:32:10:43:0e"
         ],
-        "SSID": "<Hidden SSID>",
-        "Average_RSSI": -36.81818181818182,
-        "First_Timestamp": 1742909128.28084,
-        "Last_Timestamp": 1742909135.6618788,
-        "Features": "HT:ef1917ffff00000000000000002c010100000000000000000000, Ext:0400ca02010040c0012020, Vendor:0050F2, VendorInfo:04104A000110103A000100100800023108104700107736F9294E8F5F9FBBD96A95B93569CB105400080000000000000000103C00010310020002000010090002000010120002000010210001201023000120102400012010110001201049000600372A000120, Vendor:506F9A, VendorInfo:090202002500060500585804510B, Vendor:0050F2, VendorInfo:08001000"
+        "SSID": "<Name of your wireless LAN>",
+        "Average_RSSI": -59.0,
+        "First_Timestamp": 1742911442.1257882,
+        "Last_Timestamp": 1742911442.1268613,
+        "Features": "HT:210017ff00000000000000000000000000000000000000000000, Ext:0100080000000040, Vendor:0050F2, VendorInfo:04104A000110103A00010010080002314810470010EA2EE719A4A3588095A08B05F55F6949105400080000000000000000103C00010310020002000010090002000010120002000010210001201023000120102400012010110001201049000600372A000120, Vendor:506F9A, VendorInfo:090202002500060500555304510B, Vendor:0050F2, VendorInfo:08000F0042, Vendor:001018, VendorInfo:020000100000"
     },
     {
         "Device_Name": "Device 3",
         "MAC": [
-            "66:fa:5e:67:09:b5"
+            "96:28:56:c1:2b:70",
+            "e6:9c:24:12:c4:bd"
         ],
-        "SSID": "HUAWEI-5G-9Ysz",
-        "Average_RSSI": -29.333333333333332,
-        "First_Timestamp": 1742909132.3192089,
-        "Last_Timestamp": 1742909132.5779376,
-        "Features": "HT:6f0913ff00000000000000000000000000000000000000000000, Vendor:0050F2, VendorInfo:08002600, Ext:00000a82, Vendor:8CFDF0, VendorInfo:0101020100"
+        "SSID": "Altibox954658",
+        "Average_RSSI": -67.6,
+        "First_Timestamp": 1742911455.0140502,
+        "Last_Timestamp": 1742911462.8779643,
+        "Features": "HT:ef0913ffff000000000000000000000000000000000000000100, Vendor:0050F2, VendorInfo:08002700, Ext:00000a8200400000000120, Vendor:506F9A, VendorInfo:16030101650101, Vendor:8CFDF0, VendorInfo:0101020100"
     },
     {
         "Device_Name": "Device 4",
         "MAC": [
-            "d0:c0:bf:bc:79:55"
+            "a8:63:7d:6a:5b:23"
         ],
-        "SSID": "<Hidden SSID>",
+        "SSID": "yhn951",
         "Average_RSSI": -66.0,
-        "First_Timestamp": 1742909154.939042,
-        "Last_Timestamp": 1742909154.939042,
+        "First_Timestamp": 1742911455.834659,
+        "Last_Timestamp": 1742911462.000982,
         "Features": ""
     },
     {
         "Device_Name": "Device 5",
         "MAC": [
-            "a8:6d:aa:73:f8:07"
+            "86:79:6b:3c:32:98",
+            "7a:35:8d:83:f8:fb",
+            "d2:cd:91:42:57:54",
+            "06:60:a9:ec:4c:46",
+            "86:05:a6:b7:e2:b7"
         ],
-        "SSID": "eduroam",
-        "Average_RSSI": -40.0,
-        "First_Timestamp": 1742909164.016075,
-        "Last_Timestamp": 1742909164.1075864,
-        "Features": "HT:ef0917ffff000000000000000000000000000000000000000000"
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -56.0,
+        "First_Timestamp": 1742911456.4006965,
+        "Last_Timestamp": 1742911460.994919,
+        "Features": "HT:2d401bff00000000000000000000000000000000000000000000, Ext:0000080400000040000020"
     },
     {
         "Device_Name": "Device 6",
         "MAC": [
-            "d0:c0:bf:bc:79:55"
+            "0c:96:e6:d5:95:5d"
         ],
-        "SSID": "<Hidden SSID>",
-        "Average_RSSI": -64.0,
-        "First_Timestamp": 1742909187.8091943,
-        "Last_Timestamp": 1742909187.8091943,
-        "Features": "Vendor:0050F2, VendorInfo:04104A000110103A00010010080002314810470010DBA25395AD673FA6A198C75A09BD4509105400080000000000000000103C00010310020002000010090002000010120002000010210001201023000120102400012010110001201049000600372A000120"
+        "SSID": "electronics",
+        "Average_RSSI": -71.0,
+        "First_Timestamp": 1742911507.1875582,
+        "Last_Timestamp": 1742911507.2391903,
+        "Features": "HT:2d091bff00000000000000000000008000000000000000000000, Ext:0000080000000000, Vendor:506F9A, VendorInfo:16030103"
     },
     {
         "Device_Name": "Device 7",
         "MAC": [
-            "ae:98:40:cb:ac:4e"
+            "22:0e:8e:5f:0e:66"
         ],
-        "SSID": "eduroam",
-        "Average_RSSI": -68.0,
-        "First_Timestamp": 1742909208.0053263,
-        "Last_Timestamp": 1742909208.0068574,
-        "Features": "HT:ff0903ffff000000000000000000000100000000000000000000, Ext:00000a0201004040000020, HT:ff0903ffff000000000000000000000100000000000000000000, Ext:00000a0201004040000020, Vendor:0050F2, VendorInfo:04104A000110103A00010010080002310810470010DC77DAB09A5E5850A68689A10BC013A1105400080000000000000000103C00010310020002000010090002000010120002000010210001201023000120102400012010110001201049000600372A000120, Vendor:506F9A, VendorInfo:0902020025000605005858045101"
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -70.0,
+        "First_Timestamp": 1742911529.8705344,
+        "Last_Timestamp": 1742911529.8922331,
+        "Features": "HT:ef0103ffff000000000000000000000000000000000000000000"
     },
     {
         "Device_Name": "Device 8",
         "MAC": [
-            "6c:2f:80:84:c2:81"
+            "0a:67:2c:f4:4e:53"
         ],
         "SSID": "<Hidden SSID>",
-        "Average_RSSI": -34.0,
-        "First_Timestamp": 1742909336.600617,
-        "Last_Timestamp": 1742909336.600617,
-        "Features": "Ext:0400488000400080010000000000, Vendor:506F9A, VendorInfo:16030103650101"
+        "Average_RSSI": -62.333333333333336,
+        "First_Timestamp": 1742911533.1030045,
+        "Last_Timestamp": 1742911533.4144964,
+        "Features": "Vendor:0050F2, VendorInfo:08001400"
     },
     {
         "Device_Name": "Device 9",
         "MAC": [
-            "36:87:b2:26:5b:b6"
+            "3a:f7:6f:64:1a:d1"
         ],
         "SSID": "<Hidden SSID>",
-        "Average_RSSI": -60.0,
-        "First_Timestamp": 1742909400.6055613,
-        "Last_Timestamp": 1742909400.6055613,
-        "Features": "Vendor:0050F2, VendorInfo:08001500"
+        "Average_RSSI": -70.0,
+        "First_Timestamp": 1742911677.1485183,
+        "Last_Timestamp": 1742911677.169862,
+        "Features": "Vendor:0050F2, VendorInfo:08001000"
     },
     {
         "Device_Name": "Device 10",
         "MAC": [
-            "58:1c:f8:94:3b:09"
+            "66:fa:5e:67:09:b5"
         ],
-        "SSID": "DIRECT-",
-        "Average_RSSI": -86.0,
-        "First_Timestamp": 1742909420.4332757,
-        "Last_Timestamp": 1742909420.4332757,
-        "Features": "Vendor:0050F2, VendorInfo:04104A000110103A0001001008000211E810470010B4453B776FC147849D0799FE3F890C0B1054000800010050F2000000103C0001021002000200001009000200001012000200001011000C534F4C53494E4C4150544F50104900090001371005000200011049000600372A000120, Vendor:506F9A, VendorInfo:0A00000601101C440006, Vendor:506F9A, VendorInfo:090202002500"
+        "SSID": "uis-gjestenett",
+        "Average_RSSI": -30.0,
+        "First_Timestamp": 1742911718.2452493,
+        "Last_Timestamp": 1742911718.2694764,
+        "Features": "HT:6f0913ff00000000000000000000000000000000000000000000, Ext:04000a820100004080"
     },
     {
         "Device_Name": "Device 11",
         "MAC": [
-            "a2:9c:53:e0:6c:e2"
+            "1a:c9:c6:48:53:98"
         ],
-        "SSID": "Phone Astrid ",
-        "Average_RSSI": -42.0,
-        "First_Timestamp": 1742909465.4896443,
-        "Last_Timestamp": 1742909465.4896443,
-        "Features": "HT:2d401bffff000000000000000000000000000000000000000000, Ext:0000080400000040"
+        "SSID": "Altibox954658_5G",
+        "Average_RSSI": -71.0,
+        "First_Timestamp": 1742911733.3359885,
+        "Last_Timestamp": 1742911733.420681,
+        "Features": "HT:ef0913ffff000000000000000000000000000000000000000100, Ext:04000a8200400040800120, Vendor:0050F2, VendorInfo:08002700, Vendor:506F9A, VendorInfo:16030101650101"
     },
     {
         "Device_Name": "Device 12",
         "MAC": [
-            "52:04:83:2a:ab:be"
+            "84:fc:e6:7a:93:00"
         ],
-        "SSID": "wifilamarsa_BW30",
-        "Average_RSSI": -44.0,
-        "First_Timestamp": 1742909465.6378186,
-        "Last_Timestamp": 1742909465.6378186,
+        "SSID": "uis-gjestenett",
+        "Average_RSSI": -66.0,
+        "First_Timestamp": 1742911813.9060023,
+        "Last_Timestamp": 1742911814.0264163,
+        "Features": ""
+    },
+    {
+        "Device_Name": "Device 13",
+        "MAC": [
+            "66:cf:3d:af:68:c3"
+        ],
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -60.8,
+        "First_Timestamp": 1742911892.1025784,
+        "Last_Timestamp": 1742911892.2165194,
+        "Features": "Vendor:0050F2, VendorInfo:08001400"
+    },
+    {
+        "Device_Name": "Device 14",
+        "MAC": [
+            "56:d5:ba:b1:29:66"
+        ],
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -53.0,
+        "First_Timestamp": 1742911902.0997465,
+        "Last_Timestamp": 1742911902.202642,
+        "Features": "Vendor:0050F2, VendorInfo:08001400"
+    },
+    {
+        "Device_Name": "Device 15",
+        "MAC": [
+            "ba:57:37:1d:fe:37"
+        ],
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -57.6,
+        "First_Timestamp": 1742911907.1573408,
+        "Last_Timestamp": 1742911907.3058386,
+        "Features": "Vendor:0050F2, VendorInfo:08001400"
+    },
+    {
+        "Device_Name": "Device 16",
+        "MAC": [
+            "fe:3f:5f:ac:37:1e"
+        ],
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -52.0,
+        "First_Timestamp": 1742911912.176403,
+        "Last_Timestamp": 1742911912.3332975,
+        "Features": "Vendor:0050F2, VendorInfo:08001400"
+    },
+    {
+        "Device_Name": "Device 17",
+        "MAC": [
+            "e6:51:cc:96:47:35"
+        ],
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -55.0,
+        "First_Timestamp": 1742911917.1683676,
+        "Last_Timestamp": 1742911917.343064,
+        "Features": "Vendor:0050F2, VendorInfo:08001400"
+    },
+    {
+        "Device_Name": "Device 18",
+        "MAC": [
+            "3a:6c:63:ea:0a:bd"
+        ],
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -70.0,
+        "First_Timestamp": 1742911917.2796135,
+        "Last_Timestamp": 1742911917.2796135,
+        "Features": "Vendor:0050F2, VendorInfo:08001000"
+    },
+    {
+        "Device_Name": "Device 19",
+        "MAC": [
+            "00:0e:8e:5f:0e:66"
+        ],
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -66.0,
+        "First_Timestamp": 1742911991.8797994,
+        "Last_Timestamp": 1742911991.9002867,
+        "Features": "HT:ef0103ffff000000000000000000000000000000000000000000"
+    },
+    {
+        "Device_Name": "Device 20",
+        "MAC": [
+            "96:be:22:bd:37:cf"
+        ],
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -50.0,
+        "First_Timestamp": 1742912030.8165078,
+        "Last_Timestamp": 1742912030.936084,
+        "Features": "Vendor:0050F2, VendorInfo:08001400"
+    },
+    {
+        "Device_Name": "Device 21",
+        "MAC": [
+            "7e:96:b0:97:b8:f3"
+        ],
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -70.0,
+        "First_Timestamp": 1742912127.125098,
+        "Last_Timestamp": 1742912127.125098,
+        "Features": "Vendor:0050F2, VendorInfo:08000E00"
+    },
+    {
+        "Device_Name": "Device 22",
+        "MAC": [
+            "22:e0:53:e9:ea:32"
+        ],
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -62.0,
+        "First_Timestamp": 1742912158.7150295,
+        "Last_Timestamp": 1742912158.7156482,
+        "Features": "Vendor:0050F2, VendorInfo:08001400"
+    },
+    {
+        "Device_Name": "Device 23",
+        "MAC": [
+            "ea:78:77:f5:f9:2b"
+        ],
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -69.0,
+        "First_Timestamp": 1742912181.9318626,
+        "Last_Timestamp": 1742912181.9518702,
+        "Features": "Vendor:0050F2, VendorInfo:08000E00"
+    },
+    {
+        "Device_Name": "Device 24",
+        "MAC": [
+            "74:7a:90:8a:19:ce"
+        ],
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -70.0,
+        "First_Timestamp": 1742912243.6256647,
+        "Last_Timestamp": 1742912243.646663,
+        "Features": "HT:21001fff00000000000000000080010000000000000000000000, Vendor:0050F2, VendorInfo:04104A000110103A00010010080002028010470010576A4CF1318754F29084E880527F8755105400080000000000000000103C00010110020002000010090002000010120002000010210001201023000120102400012010110001201049000600372A000120, Vendor:506F9A, VendorInfo:0902020025000605005858045106, Vendor:001018, VendorInfo:020010000000"
+    },
+    {
+        "Device_Name": "Device 25",
+        "MAC": [
+            "4e:c3:f2:01:16:e7"
+        ],
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -67.5,
+        "First_Timestamp": 1742912300.522701,
+        "Last_Timestamp": 1742912300.711668,
+        "Features": "Vendor:0050F2, VendorInfo:08001300"
+    },
+    {
+        "Device_Name": "Device 26",
+        "MAC": [
+            "8a:25:ff:bd:5b:62"
+        ],
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -61.5,
+        "First_Timestamp": 1742912352.2049594,
+        "Last_Timestamp": 1742912352.2991972,
+        "Features": "Vendor:0050F2, VendorInfo:08001300"
+    },
+    {
+        "Device_Name": "Device 27",
+        "MAC": [
+            "aa:63:7d:6a:5b:20"
+        ],
+        "SSID": "yhn951",
+        "Average_RSSI": -90.8,
+        "First_Timestamp": 1742912380.2893336,
+        "Last_Timestamp": 1742912380.309178,
+        "Features": ""
+    },
+    {
+        "Device_Name": "Device 28",
+        "MAC": [
+            "e6:ed:99:84:b6:12"
+        ],
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -57.6,
+        "First_Timestamp": 1742912477.5341964,
+        "Last_Timestamp": 1742912477.693129,
+        "Features": "Vendor:0050F2, VendorInfo:08001400"
+    },
+    {
+        "Device_Name": "Device 29",
+        "MAC": [
+            "46:82:b7:1d:6c:8b",
+            "d6:87:f3:c8:56:ed"
+        ],
+        "SSID": "eduroam",
+        "Average_RSSI": -48.0,
+        "First_Timestamp": 1742912539.1350813,
+        "Last_Timestamp": 1742912539.584272,
         "Features": "HT:2d401bffff000000000000000000000000000000000000000000, Ext:0000080400000040"
+    },
+    {
+        "Device_Name": "Device 30",
+        "MAC": [
+            "8a:65:fa:69:51:16",
+            "ba:16:7d:d8:c1:33"
+        ],
+        "SSID": "Bibliotek Reservenett",
+        "Average_RSSI": -46.0,
+        "First_Timestamp": 1742912539.5855842,
+        "Last_Timestamp": 1742912539.7109063,
+        "Features": "HT:2d401bffff000000000000000000000000000000000000000000, Ext:0000080400000040"
+    },
+    {
+        "Device_Name": "Device 31",
+        "MAC": [
+            "00:41:0e:d0:d0:0f"
+        ],
+        "SSID": "eduroam",
+        "Average_RSSI": -56.5,
+        "First_Timestamp": 1742912550.3207898,
+        "Last_Timestamp": 1742912550.4255967,
+        "Features": "Ext:04004800004000c00020, Vendor:506F9A, VendorInfo:16030103"
+    },
+    {
+        "Device_Name": "Device 32",
+        "MAC": [
+            "56:38:8c:e4:8b:fa"
+        ],
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -53.6,
+        "First_Timestamp": 1742912613.4338155,
+        "Last_Timestamp": 1742912613.6104102,
+        "Features": "Vendor:0050F2, VendorInfo:08001400"
+    },
+    {
+        "Device_Name": "Device 33",
+        "MAC": [
+            "de:7f:2f:56:de:ba"
+        ],
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -68.0,
+        "First_Timestamp": 1742912638.0990949,
+        "Last_Timestamp": 1742912638.1193545,
+        "Features": "Vendor:0050F2, VendorInfo:08001000"
+    },
+    {
+        "Device_Name": "Device 34",
+        "MAC": [
+            "c6:ff:0d:7c:14:87"
+        ],
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -70.0,
+        "First_Timestamp": 1742912666.2012827,
+        "Last_Timestamp": 1742912666.2012827,
+        "Features": "Vendor:0050F2, VendorInfo:08000E00"
+    },
+    {
+        "Device_Name": "Device 35",
+        "MAC": [
+            "4e:6a:76:47:76:29"
+        ],
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -72.0,
+        "First_Timestamp": 1742912668.4893968,
+        "Last_Timestamp": 1742912668.4893968,
+        "Features": "Vendor:0050F2, VendorInfo:08000E00"
+    },
+    {
+        "Device_Name": "Device 36",
+        "MAC": [
+            "aa:5a:94:98:a8:19"
+        ],
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -57.5,
+        "First_Timestamp": 1742912756.2647662,
+        "Last_Timestamp": 1742912756.2852037,
+        "Features": "Vendor:0050F2, VendorInfo:08001300"
+    },
+    {
+        "Device_Name": "Device 37",
+        "MAC": [
+            "da:a1:19:ef:aa:c8"
+        ],
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -70.0,
+        "First_Timestamp": 1742912765.084994,
+        "Last_Timestamp": 1742912765.1311188,
+        "Features": ""
+    },
+    {
+        "Device_Name": "Device 38",
+        "MAC": [
+            "b8:2d:28:1b:d4:5c"
+        ],
+        "SSID": "uis-gjestenett",
+        "Average_RSSI": -66.4,
+        "First_Timestamp": 1742912848.5461817,
+        "Last_Timestamp": 1742912848.7618039,
+        "Features": "HT:21001fff00000000000000000080010000000000000000000000, Vendor:0050F2, VendorInfo:04104A000110103A0001001008000231081047001060421E43D8845EAFA477550EA58E5349105400080000000000000000103C00010110020002000010090002000010120002000010210001201023000120102400012010110001201049000600372A000120, Vendor:506F9A, VendorInfo:0902020025000605005858045101, Vendor:001018, VendorInfo:020010000000"
+    },
+    {
+        "Device_Name": "Device 39",
+        "MAC": [
+            "ba:34:79:9a:26:a5"
+        ],
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -55.0,
+        "First_Timestamp": 1742912908.6006901,
+        "Last_Timestamp": 1742912908.6954572,
+        "Features": "Vendor:0050F2, VendorInfo:08001400"
+    },
+    {
+        "Device_Name": "Device 40",
+        "MAC": [
+            "ac:c3:58:9e:f2:45"
+        ],
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -69.5,
+        "First_Timestamp": 1742913055.8770025,
+        "Last_Timestamp": 1742913056.138983,
+        "Features": "HT:70001dff00000000000000000000000100000000040000000000"
+    },
+    {
+        "Device_Name": "Device 41",
+        "MAC": [
+            "5e:2f:37:b6:54:f1"
+        ],
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -56.0,
+        "First_Timestamp": 1742913056.3874218,
+        "Last_Timestamp": 1742913056.5888066,
+        "Features": "Vendor:0050F2, VendorInfo:08001400"
+    },
+    {
+        "Device_Name": "Device 42",
+        "MAC": [
+            "a4:db:30:b2:8d:ae"
+        ],
+        "SSID": "eduroam",
+        "Average_RSSI": -75.0,
+        "First_Timestamp": 1742913087.024677,
+        "Last_Timestamp": 1742913087.0531614,
+        "Features": "HT:6e0103ff00000000000000000000000000000000000000000000"
+    },
+    {
+        "Device_Name": "Device 43",
+        "MAC": [
+            "8a:24:7c:ae:01:12"
+        ],
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -57.2,
+        "First_Timestamp": 1742913187.0548441,
+        "Last_Timestamp": 1742913187.2074928,
+        "Features": "Vendor:0050F2, VendorInfo:08001400"
+    },
+    {
+        "Device_Name": "Device 44",
+        "MAC": [
+            "00:41:0e:cb:96:39"
+        ],
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -83.33333333333333,
+        "First_Timestamp": 1742913232.2044542,
+        "Last_Timestamp": 1742913232.2057748,
+        "Features": ""
+    },
+    {
+        "Device_Name": "Device 45",
+        "MAC": [
+            "d6:9c:e0:04:5d:35"
+        ],
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -68.0,
+        "First_Timestamp": 1742913255.6434782,
+        "Last_Timestamp": 1742913255.666413,
+        "Features": "Vendor:0050F2, VendorInfo:08000E00"
+    },
+    {
+        "Device_Name": "Device 46",
+        "MAC": [
+            "26:db:30:b2:8d:ae"
+        ],
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -78.0,
+        "First_Timestamp": 1742913312.6262352,
+        "Last_Timestamp": 1742913312.6262352,
+        "Features": "HT:6e0103ff00000000000000000000000000000000000000000000"
+    },
+    {
+        "Device_Name": "Device 47",
+        "MAC": [
+            "e8:98:47:e0:5a:e2"
+        ],
+        "SSID": "Dlink",
+        "Average_RSSI": -53.0,
+        "First_Timestamp": 1742913317.1878314,
+        "Last_Timestamp": 1742913317.27312,
+        "Features": "Ext:0000000000000000c0, Vendor:0050F2, VendorInfo:08000E00"
     }
 ]

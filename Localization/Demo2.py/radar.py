@@ -60,9 +60,12 @@ def visualize_radar(data, ax, time_window=60):
     print("Radar: Fifth fail")
     # Add labels for each device
     for i, name in enumerate(device_names):
-        ax.text(angles[i], distances[i] + 0.3,labels[i], 
-                fontsize=8, ha='center', va='bottom', color='black', 
-                bbox=dict(facecolor='white', alpha=0.5))  # Background for readability
+        ax.text(angles[i] - np.deg2rad(5),  # Shift left
+                distances[i] + 2.5,
+                labels[i], 
+                fontsize=8, ha='right', va='center', color='black', 
+                bbox=dict(facecolor='white', alpha=0.5))
+
     print("Radar: Sixth fail")
     # Set plot limits
     ax.set_ylim(0, max_distance)  # Max display range
