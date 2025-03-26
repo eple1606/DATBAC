@@ -36,19 +36,22 @@ def handle_probe_request(packet):
                 elt = packet.getlayer(Dot11Elt)
                 while elt:
                     print(elt)
-                    if elt.ID == 45:  # HT Capabilities
-                        wifi_features.append(f"HT:{elt.info.hex()}")
-                    elif elt.ID == 127:  # Extended Capabilities
-                        wifi_features.append(f"Ext:{elt.info.hex()}")
-                    elif elt.ID == 221:  # Vendor Specific (Extract OUI and info)
+                    if elt.ID == 1:  # Supported Rates (Element 0x01)
+                        wifi_features.append(f"Supported Rates:{elt.info.hex()}")
+                    elif elt.ID == 221:  # Vendor Specific (Element 0x2d)
                         vendor_oui = elt.info[:3].hex().upper()  # Get OUI (first 3 bytes)
                         vendor_info = elt.info[3:].hex().upper()  # Get vendor-specific data after OUI
-                        
-                        # Add vendor-specific info to the wifi_features
                         wifi_features.append(f"Vendor:{vendor_oui}")
                         wifi_features.append(f"VendorInfo:{vendor_info}")
+                    elif elt.ID == 42:  # HT Capabilities (Element 0x2a)
+                        wifi_features.append(f"HT Capabilities:{elt.info.hex()}")
+                    elif elt.ID == 50:  # Extended Supported Rates (Element 0x32)
+                        wifi_features.append(f"Extended Supported Rates:{elt.info.hex()}")
+                    elif elt.ID == 48:  # RSN (Element 0x30)
+                        wifi_features.append(f"RSN:{elt.info.hex()}")
                     # Move to the next Dot11Elt layer
                     elt = elt.payload.getlayer(Dot11Elt)
+
 
             except Exception as e:
                 print(f"[!] Error parsing Dot11Elt: {e}")
