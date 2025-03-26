@@ -1,255 +1,83 @@
+import asyncio
+
+# Device signature dictionary to store device names associated with MAC address, SSID, and features
 device_signatures = {}
 device_counter = 1
+device_signatures_lock = asyncio.Lock()  # Lock for thread safety when modifying the dictionary
 
-def get_device_name(device_signature):
+def extract_features(features):
+    """Extracts feature counts from the feature string."""
+    feature_dict = {"HT": 0, "Ext": 0, "Vendor": 0}
+    if features:
+        for feature in features.split(", "):
+            for key in feature_dict:
+                if feature.startswith(key + ":"):
+                    feature_dict[key] += 1
+    return feature_dict
+
+async def get_device_name(device_signature):
     """
     Assigns or retrieves the device name based on the device signature.
-    A device is considered the same if 3 or more attributes (SSID, MAC, HT, EXT, or Vendor) match.
-    If all three features (HT, EXT, and Vendor) are missing, it counts as 1 match.
+    - Immediate match on MAC address.
+    - If SSID is hidden, uses a lower matching threshold.
     """
     global device_counter
-
-    # Extract SSID, MAC, and Features
+    
     ssid, mac, features = device_signature
+    feature_counts = extract_features(features)
+    is_hidden_ssid = not ssid or ssid.lower() == "hidden"
+    
+    # Adjust match threshold based on SSID visibility
+    required_matches = 2 if is_hidden_ssid else 3  # Match 2 features if SSID is hidden, 3 if visible
 
-    # Extract and count specific features
-    device_features = features.split(", ") if features else []  # Split only if features exist
-    ht_count = sum(1 for f in device_features if f.startswith("HT:"))
-    ext_count = sum(1 for f in device_features if f.startswith("Ext:"))
-    vendor_count = sum(1 for f in device_features if f.startswith("Vendor:"))
+    # Log device signature for debugging
+    print(f"Processing Device Signature: SSID={ssid}, MAC={mac}, Features={features}")
 
-    # Check if all feature types are missing
-    all_features_missing = (ht_count == 0 and ext_count == 0 and vendor_count == 0)
+    async with device_signatures_lock:
+        # Keep track of all matching MAC addresses
+        matched_macs = []
 
-    print(f"New Device Signature: {device_signature}")
-    print(f"HT Count: {ht_count}, EXT Count: {ext_count}, Vendor Count: {vendor_count}")
-    print(f"All Features Missing: {all_features_missing}")
+        # Look for a matching device in the existing signatures
+        for existing_signature, existing_device_name in device_signatures.items():
+            existing_ssid, existing_mac, existing_features = existing_signature
 
-    # Compare against existing device signatures
-    for existing_signature, existing_device_name in device_signatures.items():
-        existing_ssid, existing_mac, existing_features = existing_signature
+            # Immediate match on MAC address
+            if mac == existing_mac:
+                print(f"MAC Match Found: {mac}, same device.")
+                return existing_device_name
 
-        # Early check for MAC address match
-        if mac == existing_mac:
-            print(f"MAC Match Found: {mac} == {existing_mac}, considering as same device.")
-            return existing_device_name
+            # Compare feature counts only for features that exist in both the current and existing signatures
+            existing_feature_counts = extract_features(existing_features)
+            match_count = 0
 
-        # Extract and count features for the existing device
-        existing_feature_list = existing_features.split(", ") if existing_features else []
-        existing_ht_count = sum(1 for f in existing_feature_list if f.startswith("HT:"))
-        existing_ext_count = sum(1 for f in existing_feature_list if f.startswith("Ext:"))
-        existing_vendor_count = sum(1 for f in existing_feature_list if f.startswith("Vendor:"))
+            # Check matching features (HT, Ext, Vendor)
+            for key in feature_counts:
+                if key in existing_feature_counts and feature_counts[key] > 0 and feature_counts[key] == existing_feature_counts[key]:
+                    match_count += 1
 
-        # Initialize match_count
-        match_count = 0
+            # If SSID is visible, we also match on SSID
+            if not is_hidden_ssid and ssid == existing_ssid:
+                match_count += 1
 
-        print(f"Comparing with Existing Device: {existing_device_name}")
-        print(f"Existing SSID: {existing_ssid}, Existing MAC: {existing_mac}")
-        print(f"Existing HT Count: {existing_ht_count}, EXT Count: {existing_ext_count}, Vendor Count: {existing_vendor_count}")
+            # If feature match count exceeds the threshold, this is a match
+            if match_count >= required_matches:
+                print(f"Matched with existing device: {existing_device_name} (MAC: {mac}, SSID: {ssid})")
+                
+                # Add the existing MAC to the list of matched MACs
+                matched_macs.append(existing_mac)
 
-        # Check SSID, MAC, and Features (HT, EXT, Vendor) for matching
-        if ssid and ssid == existing_ssid:
-            match_count += 1
-            print("SSID Match")
-        if mac and mac == existing_mac:
-            match_count += 1
-            print("MAC Match")
-        if ht_count > 0 and ht_count == existing_ht_count:
-            match_count += 1
-            print("HT Match")
-        if ext_count > 0 and ext_count == existing_ext_count:
-            match_count += 1
-            print("EXT Match")
-        if vendor_count > 0 and vendor_count == existing_vendor_count:
-            match_count += 1
-            print("Vendor Match")
+        # If no match was found, assign a new device name
+        if not matched_macs:
+            device_name = f"Device {device_counter}"
+            device_signatures[(ssid, mac, features)] = device_name
+            device_counter += 1
+            print(f"New Device Assigned: {device_name} (MAC: {mac}, SSID: {ssid})")
+        else:
+            # If we found matches, print all the corresponding MACs
+            print(f"[+] Device labeled as an old device (MAC: {mac})")
+            print(f"    - Corresponding MAC addresses: {', '.join(matched_macs)}")
 
-        # If all HT, EXT, and Vendor features are missing, count as 1 match
-        if all_features_missing:
-            match_count += 1
-            print("All Features Missing, Adding 1 Match")
+            # Return the first device name that matched (assuming multiple MACs correspond to the same device)
+            device_name = device_signatures.get((ssid, matched_macs[0], features))
 
-        print(f"Total Match Count: {match_count}")
-
-        # If at least 3 attributes match, assign the existing device name
-        if match_count >= 3:
-            print(f"Matched with {existing_device_name}")
-            return existing_device_name
-
-    # No match found, assign a new device name
-    device_name = f"Device {device_counter}"
-    device_signatures[device_signature] = device_name
-    device_counter += 1
-
-    print(f"New Device Assigned: {device_name}")
-    return device_name
-device_signatures = {}
-device_counter = 1
-
-def get_device_name(device_signature):
-    """
-    Assigns or retrieves the device name based on the device signature.
-    A device is considered the same if 3 or more attributes (SSID, MAC, HT, EXT, or Vendor) match.
-    If all three features (HT, EXT, and Vendor) are missing, it counts as 1 match.
-    """
-    global device_counter
-
-    # Extract SSID, MAC, and Features
-    ssid, mac, features = device_signature
-
-    # Extract and count specific features
-    device_features = features.split(", ") if features else []  # Split only if features exist
-    ht_count = sum(1 for f in device_features if f.startswith("HT:"))
-    ext_count = sum(1 for f in device_features if f.startswith("Ext:"))
-    vendor_count = sum(1 for f in device_features if f.startswith("Vendor:"))
-
-    # Check if all feature types are missing
-    all_features_missing = (ht_count == 0 and ext_count == 0 and vendor_count == 0)
-
-    print(f"New Device Signature: {device_signature}")
-    print(f"HT Count: {ht_count}, EXT Count: {ext_count}, Vendor Count: {vendor_count}")
-    print(f"All Features Missing: {all_features_missing}")
-
-    # Compare against existing device signatures
-    for existing_signature, existing_device_name in device_signatures.items():
-        existing_ssid, existing_mac, existing_features = existing_signature
-
-        # Early check for MAC address match
-        if mac == existing_mac:
-            print(f"MAC Match Found: {mac} == {existing_mac}, considering as same device.")
-            return existing_device_name
-
-        # Extract and count features for the existing device
-        existing_feature_list = existing_features.split(", ") if existing_features else []
-        existing_ht_count = sum(1 for f in existing_feature_list if f.startswith("HT:"))
-        existing_ext_count = sum(1 for f in existing_feature_list if f.startswith("Ext:"))
-        existing_vendor_count = sum(1 for f in existing_feature_list if f.startswith("Vendor:"))
-
-        # Initialize match_count
-        match_count = 0
-
-        print(f"Comparing with Existing Device: {existing_device_name}")
-        print(f"Existing SSID: {existing_ssid}, Existing MAC: {existing_mac}")
-        print(f"Existing HT Count: {existing_ht_count}, EXT Count: {existing_ext_count}, Vendor Count: {existing_vendor_count}")
-
-        # Check SSID, MAC, and Features (HT, EXT, Vendor) for matching
-        if ssid and ssid == existing_ssid:
-            match_count += 1
-            print("SSID Match")
-        if mac and mac == existing_mac:
-            match_count += 1
-            print("MAC Match")
-        if ht_count > 0 and ht_count == existing_ht_count:
-            match_count += 1
-            print("HT Match")
-        if ext_count > 0 and ext_count == existing_ext_count:
-            match_count += 1
-            print("EXT Match")
-        if vendor_count > 0 and vendor_count == existing_vendor_count:
-            match_count += 1
-            print("Vendor Match")
-
-        # If all HT, EXT, and Vendor features are missing, count as 1 match
-        if all_features_missing:
-            match_count += 1
-            print("All Features Missing, Adding 1 Match")
-
-        print(f"Total Match Count: {match_count}")
-
-        # If at least 3 attributes match, assign the existing device name
-        if match_count >= 3:
-            print(f"Matched with {existing_device_name}")
-            return existing_device_name
-
-    # No match found, assign a new device name
-    device_name = f"Device {device_counter}"
-    device_signatures[device_signature] = device_name
-    device_counter += 1
-
-    print(f"New Device Assigned: {device_name}")
-    return device_name
-device_signatures = {}
-device_counter = 1
-
-def get_device_name(device_signature):
-    """
-    Assigns or retrieves the device name based on the device signature.
-    A device is considered the same if 3 or more attributes (SSID, MAC, HT, EXT, or Vendor) match.
-    If all three features (HT, EXT, and Vendor) are missing, it counts as 1 match.
-    """
-    global device_counter
-
-    # Extract SSID, MAC, and Features
-    ssid, mac, features = device_signature
-
-    # Extract and count specific features
-    device_features = features.split(", ") if features else []  # Split only if features exist
-    ht_count = sum(1 for f in device_features if f.startswith("HT:"))
-    ext_count = sum(1 for f in device_features if f.startswith("Ext:"))
-    vendor_count = sum(1 for f in device_features if f.startswith("Vendor:"))
-
-    # Check if all feature types are missing
-    all_features_missing = (ht_count == 0 and ext_count == 0 and vendor_count == 0)
-
-    print(f"New Device Signature: {device_signature}")
-    print(f"HT Count: {ht_count}, EXT Count: {ext_count}, Vendor Count: {vendor_count}")
-    print(f"All Features Missing: {all_features_missing}")
-
-    # Compare against existing device signatures
-    for existing_signature, existing_device_name in device_signatures.items():
-        existing_ssid, existing_mac, existing_features = existing_signature
-
-        # Early check for MAC address match
-        if mac == existing_mac:
-            print(f"MAC Match Found: {mac} == {existing_mac}, considering as same device.")
-            return existing_device_name
-
-        # Extract and count features for the existing device
-        existing_feature_list = existing_features.split(", ") if existing_features else []
-        existing_ht_count = sum(1 for f in existing_feature_list if f.startswith("HT:"))
-        existing_ext_count = sum(1 for f in existing_feature_list if f.startswith("Ext:"))
-        existing_vendor_count = sum(1 for f in existing_feature_list if f.startswith("Vendor:"))
-
-        # Initialize match_count
-        match_count = 0
-
-        print(f"Comparing with Existing Device: {existing_device_name}")
-        print(f"Existing SSID: {existing_ssid}, Existing MAC: {existing_mac}")
-        print(f"Existing HT Count: {existing_ht_count}, EXT Count: {existing_ext_count}, Vendor Count: {existing_vendor_count}")
-
-        # Check SSID, MAC, and Features (HT, EXT, Vendor) for matching
-        if ssid and ssid == existing_ssid:
-            match_count += 1
-            print("SSID Match")
-        if mac and mac == existing_mac:
-            match_count += 1
-            print("MAC Match")
-        if ht_count > 0 and ht_count == existing_ht_count:
-            match_count += 1
-            print("HT Match")
-        if ext_count > 0 and ext_count == existing_ext_count:
-            match_count += 1
-            print("EXT Match")
-        if vendor_count > 0 and vendor_count == existing_vendor_count:
-            match_count += 1
-            print("Vendor Match")
-
-        # If all HT, EXT, and Vendor features are missing, count as 1 match
-        if all_features_missing:
-            match_count += 1
-            print("All Features Missing, Adding 1 Match")
-
-        print(f"Total Match Count: {match_count}")
-
-        # If at least 3 attributes match, assign the existing device name
-        if match_count >= 3:
-            print(f"Matched with {existing_device_name}")
-            return existing_device_name
-
-    # No match found, assign a new device name
-    device_name = f"Device {device_counter}"
-    device_signatures[device_signature] = device_name
-    device_counter += 1
-
-    print(f"New Device Assigned: {device_name}")
-    return device_name
+        return device_name
