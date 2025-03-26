@@ -51,9 +51,6 @@ def get_device_name(device_signature):
         if ssid and ssid == existing_ssid:
             match_count += 1
             print("SSID Match")
-        if mac and mac == existing_mac:
-            match_count += 1
-            print("MAC Match")
         if ht_count > 0 and ht_count == existing_ht_count:
             match_count += 1
             print("HT Match")
@@ -72,7 +69,7 @@ def get_device_name(device_signature):
         print(f"Total Match Count: {match_count}")
 
         # If at least 3 attributes match, assign the existing device name
-        if match_count >= 3:
+        if match_count >= 4:
             print(f"Matched with {existing_device_name}")
             return existing_device_name
 
