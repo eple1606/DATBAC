@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 import keyboard
 from device_signature import get_device_name
 import os
+from plot import visualize_plot
 
 
 TIME_WINDOW = 60  # Time window in seconds
@@ -89,8 +90,10 @@ async def save_packets(ax):
         # Step 7: Call radar visualization function
         print("Generating radar visualization...")
         print(clustered_results)
-        visualize_radar(clustered_results, ax)
-        print("[*] Radar visualization updated")
+        #visualize_radar(clustered_results, ax)
+        #print("[*] Radar visualization updated")
+        visualize_plot(clustered_results, ax)
+        print("[*] Plot visualization updated")
         
         await asyncio.sleep(1)
 

@@ -35,7 +35,6 @@ def handle_probe_request(packet):
             try:
                 elt = packet.getlayer(Dot11Elt)
                 while elt:
-                    print(elt)
                     if elt.ID == 45:  # HT Capabilities
                         wifi_features.append(f"HT:{elt.info.hex()}")
                     elif elt.ID == 127:  # Extended Capabilities
