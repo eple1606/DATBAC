@@ -7,6 +7,10 @@ def get_device_name(device_signature):
     A device is considered the same if 3 or more attributes (SSID, MAC, HT, EXT, or Vendor) match.
     If all three features (HT, EXT, and Vendor) are missing, it counts as 1 match.
     """
+
+    print("------------------")
+    print("New Data")
+    print("------------------")
     global device_counter
 
     # Extract SSID, MAC, and Features
@@ -55,7 +59,7 @@ def get_device_name(device_signature):
         missing_features += 1
 
     # Reduce the required matches by the number of missing features
-    required_matches = max(1, required_matches - missing_features)  # Ensure minimum of 1 match
+    required_matches = required_matches - missing_features  # Ensure minimum of 1 match
 
     print(f"Required Matches (after adjusting for missing features): {required_matches}")
 

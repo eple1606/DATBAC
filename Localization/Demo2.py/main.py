@@ -25,8 +25,6 @@ def on_click(event):
 
 async def save_packets():
     while True:
-        print("data_data_data_data_data_data_data_data_data_data_data")
-        print(probe_data)
         # Step 2: Feature extraction
         print("[*] Extracting features from captured probe requests...")
 
@@ -72,9 +70,6 @@ async def save_packets():
             json.dump(json_data, json_file, indent=4)
 
         print("[*] Data saved to 'probe_request_results.json'")
-        print("-----------------------------")
-        print(json_data)
-        print("-----------------------------")
         
 
         # Step 6: Cluster the data
