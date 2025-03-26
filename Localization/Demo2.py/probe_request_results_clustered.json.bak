@@ -2,20 +2,39 @@
     {
         "Device_Name": "Device 1",
         "MAC": [
+            "a0:29:42:b7:39:e1",
+            "ae:01:d8:04:89:ca",
+            "ba:d9:4a:20:59:4f",
             "a0:f4:59:8c:22:a9",
-            "3a:70:b5:9a:02:2e",
-            "d2:bd:fa:d9:d4:8f",
-            "d8:80:83:1f:0e:09",
-            "8a:15:fc:ee:63:64",
-            "e4:5e:37:ba:f1:9e",
-            "fe:74:e9:09:f5:08",
-            "c6:60:9f:a8:4a:fb",
-            "4c:77:cb:e4:a6:92"
+            "68:54:5a:cd:2e:7c",
+            "ee:4f:73:38:26:7d",
+            "32:66:84:fa:8c:89",
+            "42:42:e1:e0:de:b5",
+            "ae:68:27:22:a4:bd",
+            "a2:1f:25:08:11:14",
+            "3a:ef:dc:76:2a:79",
+            "62:0a:cb:83:da:05",
+            "da:af:bb:7a:52:ac",
+            "8a:3d:61:70:7e:9d",
+            "22:86:25:9f:c4:97"
+        ],
+        "SSID": "<Hidden SSID>",
+        "Average_RSSI": -45.0,
+        "First_Timestamp": 1743006232.2676458,
+        "Last_Timestamp": 1743006241.5895138,
+        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
+    },
+    {
+        "Device_Name": "Device 2",
+        "MAC": [
+            "12:08:fb:01:b2:51",
+            "aa:72:72:39:b3:1a",
+            "6e:f3:46:73:eb:f3"
         ],
         "SSID": "eduroam",
-        "Average_RSSI": -57.46666666666667,
-        "First_Timestamp": 1743006150.6714067,
-        "Last_Timestamp": 1743006158.9298615,
-        "Features": "Supported Rates:82848b968c129824, Extended Supported Rates:b048606c"
+        "Average_RSSI": -40.285714285714285,
+        "First_Timestamp": 1743006232.7623823,
+        "Last_Timestamp": 1743006239.4735162,
+        "Features": "Supported Rates:02040b160c121824, Extended Supported Rates:3048606c, Vendor:0050F2, VendorInfo:08001300"
     }
 ]
