@@ -2,365 +2,74 @@
     {
         "Device_Name": "Device 1",
         "MAC": [
-            "aa:72:72:39:b3:1a"
+            "2a:7e:12:58:f1:76",
+            "20:0b:74:78:59:be",
+            "ea:e6:dc:f9:0b:f6",
+            "aa:5e:5c:de:8e:79",
+            "38:7a:0e:18:b2:76",
+            "2c:3b:70:5c:85:89",
+            "9a:31:4b:b1:5b:12",
+            "ca:bf:d7:98:cb:e1",
+            "56:5e:46:da:74:b2",
+            "2a:86:85:f6:29:79",
+            "1a:92:72:69:99:2e",
+            "be:1e:1d:6f:cf:30",
+            "94:65:9c:0f:85:43",
+            "d0:c0:bf:bc:79:55",
+            "e2:87:e2:be:22:f9",
+            "7a:91:f1:50:f0:6a",
+            "b0:7d:64:86:ab:00",
+            "de:d4:44:89:92:1d",
+            "56:7c:94:41:5a:90",
+            "96:bd:53:39:25:12",
+            "d2:f4:50:d1:d7:c7"
         ],
-        "SSID": "eduroam",
-        "Average_RSSI": -52.0,
-        "First_Timestamp": 1743008383.6865947,
-        "Last_Timestamp": 1743008383.6865947,
-        "Features": "Supported Rates:8c129824b048606c, Vendor:0017F2, VendorInfo:0A00010400000000, Vendor:00904C, VendorInfo:0407, Vendor:0050F2, VendorInfo:08001300, Vendor:001018, VendorInfo:02010010000002"
+        "SSID": [
+            "<Hidden SSID>"
+        ],
+        "Average_RSSI": -48.16981132075472,
+        "First_Timestamp": 1743508650.9104743,
+        "Last_Timestamp": 1743508704.0099788,
+        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c, Vendor:0017F2, VendorInfo:0A00010400000000, Vendor:0050F2, VendorInfo:08001200, Vendor:001018, VendorInfo:02010010000002"
     },
     {
         "Device_Name": "Device 2",
         "MAC": [
-            "da:d0:1c:36:54:7d",
-            "22:21:42:3f:52:7f"
+            "38:7a:0e:18:b2:76",
+            "94:65:9c:0f:85:43"
         ],
-        "SSID": "<Hidden SSID>",
+        "SSID": [
+            "eduroam"
+        ],
         "Average_RSSI": -48.666666666666664,
-        "First_Timestamp": 1743008388.5532067,
-        "Last_Timestamp": 1743008389.3285418,
-        "Features": "Supported Rates:02040b16, Extended Supported Rates:0c1218243048606c, Vendor:0050F2, VendorInfo:08002A00, Vendor:506F9A, VendorInfo:16030101650101, Vendor:8CFDF0, VendorInfo:0101020100"
-    },
-    {
-        "Device_Name": "Device 3",
-        "MAC": [
-            "ee:1b:93:63:c2:ae"
-        ],
-        "SSID": "Leo Hoho Iphone",
-        "Average_RSSI": -54.0,
-        "First_Timestamp": 1743008396.0876758,
-        "Last_Timestamp": 1743008396.1102638,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
+        "First_Timestamp": 1743508665.606037,
+        "Last_Timestamp": 1743508683.8557374,
+        "Features": "Supported Rates:02040b160c121824, Extended Supported Rates:3048606c, Vendor:506F9A, VendorInfo:16030103650101"
     },
     {
         "Device_Name": "Device 4",
         "MAC": [
-            "0e:5d:26:1e:c3:3a"
+            "ca:bf:d7:98:cb:e1"
         ],
-        "SSID": "FABBRI 3.1",
-        "Average_RSSI": -54.0,
-        "First_Timestamp": 1743008396.0888,
-        "Last_Timestamp": 1743008396.0888,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
+        "SSID": [
+            "HUAWEI-5G-9Ysz"
+        ],
+        "Average_RSSI": -26.666666666666668,
+        "First_Timestamp": 1743508676.3566387,
+        "Last_Timestamp": 1743508676.6175594,
+        "Features": "Supported Rates:02040b16, Extended Supported Rates:0c1218243048606c, Vendor:0050F2, VendorInfo:08002600, Vendor:8CFDF0, VendorInfo:0101020100"
     },
     {
         "Device_Name": "Device 5",
         "MAC": [
-            "42:1b:1a:df:e4:94"
+            "00:41:0e:9e:e6:a5"
         ],
-        "SSID": "FABBRI 3.1",
-        "Average_RSSI": -52.0,
-        "First_Timestamp": 1743008396.135201,
-        "Last_Timestamp": 1743008396.1529138,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 6",
-        "MAC": [
-            "02:db:08:36:bc:94"
+        "SSID": [
+            "Ultra223"
         ],
-        "SSID": "Leo Hoho Iphone",
-        "Average_RSSI": -52.0,
-        "First_Timestamp": 1743008396.1381555,
-        "Last_Timestamp": 1743008396.1543157,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 7",
-        "MAC": [
-            "66:2f:0b:ff:49:2e"
-        ],
-        "SSID": "Leo Hoho Iphone",
-        "Average_RSSI": -50.0,
-        "First_Timestamp": 1743008396.1807218,
-        "Last_Timestamp": 1743008396.1807218,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 8",
-        "MAC": [
-            "3a:13:93:31:d8:36"
-        ],
-        "SSID": "iPhone (130)",
-        "Average_RSSI": -66.0,
-        "First_Timestamp": 1743008399.3409443,
-        "Last_Timestamp": 1743008399.3409443,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 9",
-        "MAC": [
-            "fa:49:9a:22:0a:bf"
-        ],
-        "SSID": "iPhone (130)",
-        "Average_RSSI": -47.0,
-        "First_Timestamp": 1743008399.3855383,
-        "Last_Timestamp": 1743008399.4051766,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 10",
-        "MAC": [
-            "3a:3e:bb:ad:71:f2"
-        ],
-        "SSID": "iPhone (130)",
-        "Average_RSSI": -54.0,
-        "First_Timestamp": 1743008399.431686,
-        "Last_Timestamp": 1743008399.4483776,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 11",
-        "MAC": [
-            "26:91:43:be:f4:0a"
-        ],
-        "SSID": "Aekreveien_14",
-        "Average_RSSI": -52.0,
-        "First_Timestamp": 1743008405.3975375,
-        "Last_Timestamp": 1743008405.3975375,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 12",
-        "MAC": [
-            "ea:e7:47:fa:61:22"
-        ],
-        "SSID": "SJ",
-        "Average_RSSI": -66.0,
-        "First_Timestamp": 1743008405.4006717,
-        "Last_Timestamp": 1743008405.4006717,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 13",
-        "MAC": [
-            "ce:1f:ec:e5:60:ba"
-        ],
-        "SSID": "Altibox619662",
-        "Average_RSSI": -52.0,
-        "First_Timestamp": 1743008405.4014494,
-        "Last_Timestamp": 1743008405.4014494,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 14",
-        "MAC": [
-            "16:2d:88:3d:52:83"
-        ],
-        "SSID": "Elvira\u2019s cave TV.v,",
-        "Average_RSSI": -50.0,
-        "First_Timestamp": 1743008405.4051733,
-        "Last_Timestamp": 1743008405.4051733,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 15",
-        "MAC": [
-            "fe:ec:73:4d:cc:91"
-        ],
-        "SSID": "Hotel C",
-        "Average_RSSI": -52.0,
-        "First_Timestamp": 1743008405.4068222,
-        "Last_Timestamp": 1743008405.4068222,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 16",
-        "MAC": [
-            "7e:44:e5:ce:44:84"
-        ],
-        "SSID": "NextGenTel_E8F9",
-        "Average_RSSI": -52.0,
-        "First_Timestamp": 1743008405.4081368,
-        "Last_Timestamp": 1743008405.4081368,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 17",
-        "MAC": [
-            "d2:18:1d:dd:97:bb"
-        ],
-        "SSID": "Elvira\u2019s cave TV.v,",
-        "Average_RSSI": -49.0,
-        "First_Timestamp": 1743008405.4670246,
-        "Last_Timestamp": 1743008405.4921918,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 18",
-        "MAC": [
-            "5e:7c:d8:4e:14:09"
-        ],
-        "SSID": "Bbox-D65A0B49",
-        "Average_RSSI": -48.0,
-        "First_Timestamp": 1743008405.4676876,
-        "Last_Timestamp": 1743008405.4676876,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 19",
-        "MAC": [
-            "9e:ad:c0:a1:31:db"
-        ],
-        "SSID": "Altibox619662",
-        "Average_RSSI": -50.0,
-        "First_Timestamp": 1743008405.4689677,
-        "Last_Timestamp": 1743008405.49383,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 20",
-        "MAC": [
-            "72:ff:aa:75:cd:e8"
-        ],
-        "SSID": "SJ",
-        "Average_RSSI": -50.0,
-        "First_Timestamp": 1743008405.4720805,
-        "Last_Timestamp": 1743008405.4720805,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 21",
-        "MAC": [
-            "96:f7:4e:50:e9:7f"
-        ],
-        "SSID": "Aekreveien_14",
-        "Average_RSSI": -48.0,
-        "First_Timestamp": 1743008405.4781332,
-        "Last_Timestamp": 1743008405.4991658,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 22",
-        "MAC": [
-            "32:54:e3:12:aa:07"
-        ],
-        "SSID": "Hotel C",
-        "Average_RSSI": -52.0,
-        "First_Timestamp": 1743008405.4794424,
-        "Last_Timestamp": 1743008405.4794424,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 23",
-        "MAC": [
-            "c2:3f:c9:ab:ce:3b"
-        ],
-        "SSID": "iPhone",
-        "Average_RSSI": -52.0,
-        "First_Timestamp": 1743008405.481502,
-        "Last_Timestamp": 1743008405.481502,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 24",
-        "MAC": [
-            "96:e6:34:65:9d:d7"
-        ],
-        "SSID": "ISS-ScandMUN",
-        "Average_RSSI": -52.0,
-        "First_Timestamp": 1743008405.4828649,
-        "Last_Timestamp": 1743008405.4828649,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 25",
-        "MAC": [
-            "ce:d1:11:0e:10:14"
-        ],
-        "SSID": "NextGenTel_E8F9",
-        "Average_RSSI": -52.0,
-        "First_Timestamp": 1743008405.484229,
-        "Last_Timestamp": 1743008405.484229,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 26",
-        "MAC": [
-            "26:07:80:a7:81:f3"
-        ],
-        "SSID": "Hotel C",
-        "Average_RSSI": -44.0,
-        "First_Timestamp": 1743008405.5075996,
-        "Last_Timestamp": 1743008405.5075996,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 27",
-        "MAC": [
-            "62:9d:96:c8:d4:dc"
-        ],
-        "SSID": "Aekreveien_14",
-        "Average_RSSI": -47.0,
-        "First_Timestamp": 1743008405.5084543,
-        "Last_Timestamp": 1743008405.5327537,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 28",
-        "MAC": [
-            "82:6b:bd:b2:88:49"
-        ],
-        "SSID": "SJ",
-        "Average_RSSI": -48.0,
-        "First_Timestamp": 1743008405.5093427,
-        "Last_Timestamp": 1743008405.533345,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 29",
-        "MAC": [
-            "c2:05:95:41:d8:92"
-        ],
-        "SSID": "Bbox-D65A0B49",
-        "Average_RSSI": -48.0,
-        "First_Timestamp": 1743008405.511238,
-        "Last_Timestamp": 1743008405.5399992,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 30",
-        "MAC": [
-            "7e:83:80:ae:3f:fb"
-        ],
-        "SSID": "iPhone",
-        "Average_RSSI": -48.0,
-        "First_Timestamp": 1743008405.5149438,
-        "Last_Timestamp": 1743008405.5149438,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 31",
-        "MAC": [
-            "ea:c4:da:0d:3e:53"
-        ],
-        "SSID": "Altibox619662",
-        "Average_RSSI": -50.0,
-        "First_Timestamp": 1743008405.5185251,
-        "Last_Timestamp": 1743008405.5185251,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 32",
-        "MAC": [
-            "aa:44:76:64:8c:6a"
-        ],
-        "SSID": "Elvira\u2019s cave TV.v,",
-        "Average_RSSI": -50.0,
-        "First_Timestamp": 1743008405.519777,
-        "Last_Timestamp": 1743008405.519777,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 33",
-        "MAC": [
-            "da:1e:58:bc:29:ea"
-        ],
-        "SSID": "NextGenTel_E8F9",
-        "Average_RSSI": -48.0,
-        "First_Timestamp": 1743008405.5431755,
-        "Last_Timestamp": 1743008405.5431755,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
+        "Average_RSSI": -43.0,
+        "First_Timestamp": 1743508690.8067796,
+        "Last_Timestamp": 1743508690.8074987,
+        "Features": "Supported Rates:82848b960c121824, Extended Supported Rates:3048606c, Vendor:506F9A, VendorInfo:16030103"
     }
 ]

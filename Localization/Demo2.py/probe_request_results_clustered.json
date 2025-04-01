@@ -2,30 +2,37 @@
     {
         "Device_Name": "Device 1",
         "MAC": [
-            "ba:03:28:0b:f7:f7",
-            "a0:f4:59:8c:22:a9",
-            "52:08:e3:77:a1:9f",
-            "46:c5:32:59:99:19",
-            "7a:04:d2:be:34:cd",
-            "02:14:ec:ee:b0:ff",
-            "d2:65:c5:45:dd:a6",
-            "d2:a2:69:97:91:85"
+            "2c:3b:70:5c:85:89",
+            "9a:31:c6:b2:cf:71",
+            "20:0b:74:78:59:be",
+            "3e:04:36:ae:50:7b",
+            "02:62:d4:6a:db:4e",
+            "a6:30:11:c1:69:82",
+            "96:cc:3a:5c:23:35",
+            "d6:d9:02:99:94:62",
+            "8a:09:fe:40:96:66",
+            "ca:c6:01:ae:a7:51",
+            "76:21:2b:d3:e9:7e",
+            "a2:7a:41:d0:f0:f7",
+            "1e:75:48:ab:3a:ca",
+            "f6:b0:ca:22:c2:18",
+            "f2:21:c6:30:b3:d1",
+            "aa:75:a7:f3:46:96",
+            "36:92:88:d3:be:a0",
+            "ae:42:0b:0e:03:43",
+            "da:4d:6e:cf:ac:53",
+            "12:b5:99:86:11:11",
+            "96:07:9a:1b:a0:49",
+            "6e:40:d4:71:e7:38",
+            "de:f9:c0:58:ad:b6",
+            "42:42:64:c3:e8:18"
         ],
-        "SSID": "<Hidden SSID>",
-        "Average_RSSI": -53.333333333333336,
-        "First_Timestamp": 1743008453.9247632,
-        "Last_Timestamp": 1743008460.8076618,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 2",
-        "MAC": [
-            "68:54:5a:cd:2e:7c"
+        "SSID": [
+            "<Hidden SSID>"
         ],
-        "SSID": "eduroam",
-        "Average_RSSI": -50.0,
-        "First_Timestamp": 1743008455.9602387,
-        "Last_Timestamp": 1743008456.0002067,
-        "Features": "Supported Rates:02040b160c121824, Extended Supported Rates:3048606c, Vendor:506F9A, VendorInfo:16030103"
+        "Average_RSSI": -52.91428571428571,
+        "First_Timestamp": 1743505878.620005,
+        "Last_Timestamp": 1743505936.3791664,
+        "Features": "Supported Rates:82848b960c121824, Extended Supported Rates:3048606c, Vendor:506F9A, VendorInfo:16030103"
     }
 ]
