@@ -3,36 +3,79 @@
         "Device_Name": "Device 1",
         "MAC": [
             "2c:3b:70:5c:85:89",
-            "9a:31:c6:b2:cf:71",
+            "4e:7f:96:93:d8:9e",
+            "ba:26:93:ed:01:9c",
+            "6e:19:bd:68:44:7d",
+            "9a:d5:8b:a9:f5:52",
+            "8e:75:31:36:7d:cb",
+            "e8:78:29:c0:56:22",
             "20:0b:74:78:59:be",
-            "3e:04:36:ae:50:7b",
-            "02:62:d4:6a:db:4e",
-            "a6:30:11:c1:69:82",
-            "96:cc:3a:5c:23:35",
-            "d6:d9:02:99:94:62",
-            "8a:09:fe:40:96:66",
-            "ca:c6:01:ae:a7:51",
-            "76:21:2b:d3:e9:7e",
-            "a2:7a:41:d0:f0:f7",
-            "1e:75:48:ab:3a:ca",
-            "f6:b0:ca:22:c2:18",
-            "f2:21:c6:30:b3:d1",
-            "aa:75:a7:f3:46:96",
-            "36:92:88:d3:be:a0",
-            "ae:42:0b:0e:03:43",
-            "da:4d:6e:cf:ac:53",
-            "12:b5:99:86:11:11",
-            "96:07:9a:1b:a0:49",
-            "6e:40:d4:71:e7:38",
-            "de:f9:c0:58:ad:b6",
-            "42:42:64:c3:e8:18"
+            "ea:f9:77:d2:d8:7f",
+            "3a:c3:0d:23:eb:85",
+            "ca:c7:bc:c7:38:cc",
+            "ce:f0:01:be:dd:a3",
+            "9e:2b:56:65:df:8c",
+            "26:5e:71:9f:71:1e",
+            "aa:3b:4f:eb:a9:36",
+            "46:29:63:c6:37:d5",
+            "04:cf:4b:0d:3f:36",
+            "7e:0e:c5:37:3f:87",
+            "56:ff:34:18:9f:ea",
+            "2e:88:fb:11:16:0b",
+            "ce:0a:dd:5c:9e:f7",
+            "78:55:cd:e4:72:3b",
+            "ea:6f:3d:3a:ec:6f",
+            "86:89:bc:28:cf:0f",
+            "52:28:23:a5:fe:5f",
+            "8e:55:45:9e:75:13",
+            "46:02:2c:bc:83:43",
+            "5e:74:d8:56:42:78",
+            "22:d4:9e:84:b1:a7",
+            "ee:2c:e9:86:ac:cb",
+            "b6:11:0c:52:df:62",
+            "d2:75:50:ec:35:ae",
+            "92:d4:9e:30:9e:8c",
+            "56:bc:1c:1a:c6:ee",
+            "86:93:61:bd:27:53",
+            "dc:45:46:c9:da:10",
+            "92:3e:a3:d4:08:14"
         ],
         "SSID": [
             "<Hidden SSID>"
         ],
-        "Average_RSSI": -52.91428571428571,
-        "First_Timestamp": 1743505878.620005,
-        "Last_Timestamp": 1743505936.3791664,
+        "Average_RSSI": -47.26984126984127,
+        "First_Timestamp": 1743511347.4600604,
+        "Last_Timestamp": 1743511406.1448846,
         "Features": "Supported Rates:82848b960c121824, Extended Supported Rates:3048606c, Vendor:506F9A, VendorInfo:16030103"
+    },
+    {
+        "Device_Name": "Device 2",
+        "MAC": [
+            "dc:46:28:6c:08:72",
+            "f8:e4:e3:d7:a1:9f",
+            "e2:50:de:d6:a9:20",
+            "de:8e:ce:1b:97:21",
+            "36:aa:1d:27:37:cf"
+        ],
+        "SSID": [
+            "eduroam"
+        ],
+        "Average_RSSI": -60.857142857142854,
+        "First_Timestamp": 1743511349.223852,
+        "Last_Timestamp": 1743511391.2321439,
+        "Features": "Supported Rates:02040b160c121824, Extended Supported Rates:3048606c, Vendor:506F9A, VendorInfo:16030103650101"
+    },
+    {
+        "Device_Name": "Device 4",
+        "MAC": [
+            "ce:0a:dd:5c:9e:f7"
+        ],
+        "SSID": [
+            "HUAWEI-5G-9Ysz"
+        ],
+        "Average_RSSI": -20.0,
+        "First_Timestamp": 1743511361.248632,
+        "Last_Timestamp": 1743511403.2025816,
+        "Features": "Supported Rates:02040b16, Extended Supported Rates:0c1218243048606c, Vendor:0050F2, VendorInfo:08002600, Vendor:8CFDF0, VendorInfo:0101020100"
     }
 ]

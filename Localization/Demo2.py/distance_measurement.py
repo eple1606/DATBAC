@@ -1,8 +1,20 @@
 import math
 import json
 
+def load_config(filename="config.json"):
+    with open(filename, "r") as file:
+        return json.load(file)
+config = load_config()
+
+# Accessing values from the config
+rssi_1_meter = config["distance_calculation"]["rssi_1_meter"]
+path_loss_exponent = config["distance_calculation"]["path_loss_exponent"]
+shadowing_effect = config["distance_calculation"]["shadowing_effect"]
+reference_distance = config["distance_calculation"]["reference_distance"]
+environmental_correction_constant= config["distance_calculation"]["environmental_correction_constant"]
+
 # Function to calculate distance from RSSI free model
-def calculate_distance(rssi, A=-22, n=2):
+def calculate_distance(rssi):
     """
     Estimate the distance to a device using RSSI.
 
@@ -11,10 +23,10 @@ def calculate_distance(rssi, A=-22, n=2):
     :param n: Path loss exponent (default is 2 for free-space, but can vary).
     :return: Estimated distance in meters.
     """
-    return 10 ** ((A - rssi) / (10 * n))
+    return 10 ** ((rssi_1_meter - rssi) / (10 * path_loss_exponent))
 
 #free loss path model
-def calculate_distance_beacon_to_device(rssi, A=-50, n=3, X=0, d0=1, C = 0):
+def calculate_distance_beacon_to_device(rssi):
     """
     Calculate the distance to a device based on RSSI using the Path Loss model.
 
@@ -27,7 +39,7 @@ def calculate_distance_beacon_to_device(rssi, A=-50, n=3, X=0, d0=1, C = 0):
     :return: Estimated distance in meters.
     """
     # Rearranged formula to calculate distance
-    distance = d0 * 10 ** ((A - rssi - X + C) / (10 * n))
+    distance = reference_distance * 10 ** ((rssi_1_meter - rssi - shadowing_effect + environmental_correction_constant) / (10 * path_loss_exponent))
     return distance
 
 # Function to measure the distance to a fingerprinted device

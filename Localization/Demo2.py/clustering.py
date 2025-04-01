@@ -2,8 +2,14 @@ import json
 import time
 from collections import defaultdict
 
+def load_config(filename="config.json"):
+    with open(filename, "r") as file:
+        return json.load(file)
+config = load_config()
 
-def cluster_data(data, TIME_WINDOW):
+TIME_WINDOW = config["general"]["time_window"]
+
+def cluster_data(data):
     clustered_results = []
     device_clusters = {}
     current_time = time.time()  # Get the current time in seconds

@@ -1,3 +1,13 @@
+import json
+
+def load_config(filename="config.json"):
+    with open(filename, "r") as file:
+        return json.load(file)
+config = load_config()
+
+# Accessing values from the config
+required_matches_config = config["device_signature"]["required_matches"]
+
 device_signatures = {}
 device_counter = 1
 
@@ -8,7 +18,7 @@ def get_device_name(device_signature):
     If all three features (HT, EXT, and Vendor) are missing, it counts as 1 match.
     """
     global device_counter
-
+    
     # Extract SSID, MAC, and Features
     ssid, mac, features = device_signature
 
@@ -31,13 +41,13 @@ def get_device_name(device_signature):
     all_features_missing = (ht_count == 0 and ext_count == 0 and vendor_oui_count == 0 and vendor_info_count == 0 and
                             supported_rates_count == 0 and rsn_count == 0)
 
-    print(f"New Device Signature: {device_signature}")
-    print(f"HT Count: {ht_count}, EXT Count: {ext_count}, Vendor OUI Count: {vendor_oui_count}, Vendor Info Count: {vendor_info_count}")
-    print(f"Supported Rates Count: {supported_rates_count}, RSN Count: {rsn_count}")
-    print(f"All Features Missing: {all_features_missing}")
+    #print(f"New Device Signature: {device_signature}")
+    #print(f"HT Count: {ht_count}, EXT Count: {ext_count}, Vendor OUI Count: {vendor_oui_count}, Vendor Info Count: {vendor_info_count}")
+    #print(f"Supported Rates Count: {supported_rates_count}, RSN Count: {rsn_count}")
+    #print(f"All Features Missing: {all_features_missing}")
 
     # Set initial threshold based on whether the SSID is hidden or not
-    required_matches = 7 if not is_hidden_ssid else 6
+    required_matches = required_matches_config if not is_hidden_ssid else required_matches_config - 1
 
     # Adjust threshold down based on missing features
     missing_features = 0
@@ -57,7 +67,7 @@ def get_device_name(device_signature):
     # Reduce the required matches by the number of missing features
     required_matches = max(1, required_matches - missing_features)  # Ensure minimum of 1 match
 
-    print(f"Required Matches (after adjusting for missing features): {required_matches}")
+    #print(f"Required Matches (after adjusting for missing features): {required_matches}")
 
     # Compare against existing device signatures
     for existing_signature, existing_device_name in device_signatures.items():
@@ -65,7 +75,7 @@ def get_device_name(device_signature):
 
         # Check for MAC address match first, and return immediately if they match
         if mac == existing_mac:
-            print(f"MAC Match Found: {mac} == {existing_mac}, considering as same device.")
+            #print(f"MAC Match Found: {mac} == {existing_mac}, considering as same device.")
             return existing_device_name
 
         # Extract and count features for the existing device
@@ -80,10 +90,10 @@ def get_device_name(device_signature):
         # Initialize match_count
         match_count = 0
 
-        print(f"Comparing with Existing Device: {existing_device_name}")
-        print(f"Existing SSID: {existing_ssid}, Existing MAC: {existing_mac}")
-        print(f"Existing HT Count: {existing_ht_count}, EXT Count: {existing_ext_count}, Vendor OUI Count: {existing_vendor_oui_count}, Vendor Info Count: {existing_vendor_info_count}")
-        print(f"Existing Supported Rates Count: {existing_supported_rates_count}")
+        #print(f"Comparing with Existing Device: {existing_device_name}")
+        #print(f"Existing SSID: {existing_ssid}, Existing MAC: {existing_mac}")
+        #print(f"Existing HT Count: {existing_ht_count}, EXT Count: {existing_ext_count}, Vendor OUI Count: {existing_vendor_oui_count}, Vendor Info Count: {existing_vendor_info_count}")
+        #print(f"Existing Supported Rates Count: {existing_supported_rates_count}")
 
         # Check SSID and Features (HT, EXT, Vendor OUI, Vendor Info, Supported Rates, RSN, WMM) for matching
         if ssid and ssid == existing_ssid:

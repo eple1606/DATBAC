@@ -4,6 +4,14 @@ import time
 import asyncio
 import json
 
+def load_config(filename="config.json"):
+    with open(filename, "r") as file:
+        return json.load(file)
+config = load_config()
+
+interface = config["general"]["interface"]
+duration = config["general"]["duration_of_sniffing"]
+
 # Global list to store captured probe data
 probe_data = []
 unsorted_probe_data = []
@@ -72,9 +80,8 @@ def handle_probe_request(packet):
         #print(f"    - RSSI: {rssi} dBm")
         #print(f"    - Features: {wifi_features}")
 
-async def start_sniffing(interface="wlan0"):
+async def start_sniffing(interface):
     while True:
-        duration = 10
         print("[*] Listening for Wi-Fi probe requests...")
         sniff(iface=interface, prn=handle_probe_request, store=0, filter="type mgt subtype probe-req", timeout=duration)
         await asyncio.sleep(2)
