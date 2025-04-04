@@ -1,7 +1,9 @@
 import json
-import matplotlib.pyplot as plt
-from distance_measurement import calculate_distance
 import time
+
+import matplotlib.pyplot as plt
+
+from distance_measurement import calculate_distance
 
 def load_config(filename="config.json"):
     with open(filename, "r") as file:

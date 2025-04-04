@@ -1,8 +1,8 @@
-from scapy.all import Dot11, Dot11ProbeReq, Dot11Elt
-from scapy.all import sniff, wrpcap
-import time
 import asyncio
 import json
+import time
+
+from scapy.all import Dot11, Dot11Elt, Dot11ProbeReq, sniff, wrpcap
 
 def load_config(filename="config.json"):
     with open(filename, "r") as file:

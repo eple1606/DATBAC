@@ -1,8 +1,8 @@
-from scapy.all import Dot11, Dot11Elt
 import pandas as pd
 import numpy as np
-from sklearn.preprocessing import StandardScaler
+from scapy.all import Dot11, Dot11Elt
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.preprocessing import StandardScaler
 
 def extract_features(probe_data):
     # Convert captured data into a DataFrame

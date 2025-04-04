@@ -1,16 +1,17 @@
-import time
-import json
-from capture import start_sniffing, probe_data
-from feature_extraction import extract_features
-from anomaly_detection import detect_anomalies
 import asyncio
-from collections import defaultdict
-#from radar import visualize_radar  # Import radar visualization function
-from clustering import cluster_data
-import matplotlib.pyplot as plt
-import keyboard
-from device_signature import get_device_name
+import json
 import os
+import time
+
+import keyboard
+import matplotlib.pyplot as plt
+
+from anomaly_detection import detect_anomalies
+from capture import start_sniffing, probe_data
+from clustering import cluster_data
+from device_signature import get_device_name
+from feature_extraction import extract_features
+#from radar import visualize_radar  # Import radar visualization function
 from plot import visualize_plot
 
 def load_config(filename="config.json"):
