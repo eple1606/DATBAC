@@ -34,5 +34,5 @@ def extract_features(probe_data):
 
     # Combine all feature matrices into a single feature set
     X = np.hstack([ssid_matrix.toarray(), features_matrix.toarray(), numeric_features])
-    print (df)
+    #print (df)
     return X, df

@@ -3,9 +3,6 @@ import json
 import time
 
 from scapy.all import Dot11, Dot11Elt, Dot11ProbeReq, sniff, wrpcap
-from scapy.utils import oui_resolve
-
-
 
 def load_config(filename="config.json"):
     with open(filename, "r") as file:
@@ -52,11 +49,9 @@ def handle_probe_request(packet):
                         wifi_features.append(f"Supported Rates: {', '.join(rates)}")
                     elif elt.ID == 221:
                         if len(elt.info) >= 3:
-                            vendor_oui = elt.info[:3]
-                            vendor_oui_str = ':'.join(f'{b:02X}' for b in vendor_oui)
-                            vendor_name = oui_resolve(vendor_oui) or "Unknown Vendor"
+                            vendor_oui = ':'.join(f'{b:02X}' for b in elt.info[:3])
                             vendor_info = elt.info[3:]
-                            wifi_features.append(f"Vendor: {vendor_oui_str} ({vendor_name})")
+                            wifi_features.append(f"Vendor OUI: {vendor_oui}")
                             wifi_features.append(f"Vendor Info: {vendor_info.hex()}")
                         else:
                             wifi_features.append("Vendor Element Malformed")

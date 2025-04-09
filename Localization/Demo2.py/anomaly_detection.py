@@ -35,7 +35,7 @@ def detect_anomalies(X, df):
     df_filtered["Device_Type"] = "Persistent Device"
 
     # Print the results
-    print(df_filtered[["MAC", "SSID", "RSSI", "Avg_Probe_Interval", "Device_Type"]])
+    #print(df_filtered[["MAC", "SSID", "RSSI", "Avg_Probe_Interval", "Device_Type"]])
 
     return df_filtered  # Return the cleaned dataframe
 
