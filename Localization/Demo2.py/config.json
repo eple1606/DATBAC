@@ -29,22 +29,3 @@
     }
   }
   
-
-{
-    "Device_Name": "Device 6",
-    "MAC": [
-        "e6:0f:3a:a7:d6:e9",
-        "e2:e4:c8:69:e8:59",
-        "66:f1:68:b7:da:14",
-        "8e:ed:a2:4c:82:a4",
-        "5e:31:75:d3:e7:79",
-        "8e:a4:4c:6f:33:54"
-    ],
-    "SSID": [
-        "Go-Ahead_Nordic_wifi"
-    ],
-    "Average_RSSI": -37.25,
-    "First_Timestamp": 1744198083.4242454,
-    "Last_Timestamp": 1744198083.8520334,
-    "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-}
