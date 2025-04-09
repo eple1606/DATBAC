@@ -1,490 +1,210 @@
 [
     {
         "Device_Name": "Device 1",
-        "MAC": "08:9d:f4:0a:e9:34",
+        "MAC": "7c:8b:ca:09:c6:b3",
         "SSID": "<Hidden SSID>",
-        "RSSI": -73,
-        "Timestamp": 1743515005.6373737,
-        "Features": "Supported Rates:02040b160c121824, Extended Supported Rates:3048606c, Vendor:506F9A, VendorInfo:16030103650101"
-    },
-    {
-        "Device_Name": "Device 1",
-        "MAC": "08:9d:f4:0a:e9:34",
-        "SSID": "<Hidden SSID>",
-        "RSSI": -54,
-        "Timestamp": 1743515005.6498544,
-        "Features": "Supported Rates:02040b160c121824, Extended Supported Rates:3048606c, Vendor:506F9A, VendorInfo:16030103650101"
-    },
-    {
-        "Device_Name": "Device 1",
-        "MAC": "2e:ba:62:29:d8:25",
-        "SSID": "<Hidden SSID>",
-        "RSSI": -56,
-        "Timestamp": 1743515008.8366594,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 1",
-        "MAC": "2e:ba:62:29:d8:25",
-        "SSID": "<Hidden SSID>",
-        "RSSI": -56,
-        "Timestamp": 1743515008.8450048,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 1",
-        "MAC": "e2:b4:8e:9e:93:11",
-        "SSID": "<Hidden SSID>",
-        "RSSI": -54,
-        "Timestamp": 1743515008.941462,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 1",
-        "MAC": "6e:23:9c:19:d0:67",
-        "SSID": "<Hidden SSID>",
-        "RSSI": -54,
-        "Timestamp": 1743515008.9935615,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 1",
-        "MAC": "6e:23:9c:19:d0:67",
-        "SSID": "<Hidden SSID>",
-        "RSSI": -56,
-        "Timestamp": 1743515009.0025296,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 2",
-        "MAC": "a8:63:7d:6a:5b:23",
-        "SSID": "yhn951",
         "RSSI": -62,
-        "Timestamp": 1743515009.0420744,
-        "Features": "Supported Rates:82848b968c9298a4, Extended Supported Rates:b048606c"
-    },
-    {
-        "Device_Name": "Device 2",
-        "MAC": "a8:63:7d:6a:5b:23",
-        "SSID": "yhn951",
-        "RSSI": -64,
-        "Timestamp": 1743515009.145171,
-        "Features": "Supported Rates:82848b968c9298a4, Extended Supported Rates:b048606c"
-    },
-    {
-        "Device_Name": "Device 2",
-        "MAC": "a8:63:7d:6a:5b:23",
-        "SSID": "yhn951",
-        "RSSI": -66,
-        "Timestamp": 1743515015.3655832,
-        "Features": "Supported Rates:82848b968c9298a4, Extended Supported Rates:b048606c"
-    },
-    {
-        "Device_Name": "Device 2",
-        "MAC": "a8:63:7d:6a:5b:23",
-        "SSID": "yhn951",
-        "RSSI": -68,
-        "Timestamp": 1743515015.3933752,
-        "Features": "Supported Rates:82848b968c9298a4, Extended Supported Rates:b048606c"
-    },
-    {
-        "Device_Name": "Device 2",
-        "MAC": "a8:63:7d:6a:5b:23",
-        "SSID": "yhn951",
-        "RSSI": -64,
-        "Timestamp": 1743515026.5998902,
-        "Features": "Supported Rates:82848b968c9298a4, Extended Supported Rates:b048606c"
-    },
-    {
-        "Device_Name": "Device 2",
-        "MAC": "a8:63:7d:6a:5b:23",
-        "SSID": "yhn951",
-        "RSSI": -66,
-        "Timestamp": 1743515026.6496656,
-        "Features": "Supported Rates:82848b968c9298a4, Extended Supported Rates:b048606c"
-    },
-    {
-        "Device_Name": "Device 2",
-        "MAC": "a8:63:7d:6a:5b:23",
-        "SSID": "yhn951",
-        "RSSI": -60,
-        "Timestamp": 1743515026.6984427,
-        "Features": "Supported Rates:82848b968c9298a4, Extended Supported Rates:b048606c"
-    },
-    {
-        "Device_Name": "Device 1",
-        "MAC": "4e:64:78:77:9c:4b",
-        "SSID": "<Hidden SSID>",
-        "RSSI": -56,
-        "Timestamp": 1743515053.9102209,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 1",
-        "MAC": "4e:64:78:77:9c:4b",
-        "SSID": "<Hidden SSID>",
-        "RSSI": -58,
-        "Timestamp": 1743515053.9191024,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 1",
-        "MAC": "5e:13:46:b1:8e:d9",
-        "SSID": "<Hidden SSID>",
-        "RSSI": -56,
-        "Timestamp": 1743515054.928053,
-        "Features": "Supported Rates:02040b16, Extended Supported Rates:0c1218243048606c, Vendor:0050F2, VendorInfo:08002A00, Vendor:506F9A, VendorInfo:16030102650101"
-    },
-    {
-        "Device_Name": "Device 1",
-        "MAC": "5e:13:46:b1:8e:d9",
-        "SSID": "<Hidden SSID>",
-        "RSSI": -54,
-        "Timestamp": 1743515054.9482355,
-        "Features": "Supported Rates:02040b16, Extended Supported Rates:0c1218243048606c, Vendor:0050F2, VendorInfo:08002A00, Vendor:506F9A, VendorInfo:16030102650101"
-    },
-    {
-        "Device_Name": "Device 1",
-        "MAC": "5e:13:46:b1:8e:d9",
-        "SSID": "<Hidden SSID>",
-        "RSSI": -46,
-        "Timestamp": 1743515054.9918058,
-        "Features": "Supported Rates:02040b16, Extended Supported Rates:0c1218243048606c, Vendor:0050F2, VendorInfo:08002A00, Vendor:506F9A, VendorInfo:16030102650101"
-    },
-    {
-        "Device_Name": "Device 1",
-        "MAC": "5e:13:46:b1:8e:d9",
-        "SSID": "<Hidden SSID>",
-        "RSSI": -48,
-        "Timestamp": 1743515055.0126204,
-        "Features": "Supported Rates:02040b16, Extended Supported Rates:0c1218243048606c, Vendor:0050F2, VendorInfo:08002A00, Vendor:506F9A, VendorInfo:16030102650101"
-    },
-    {
-        "Device_Name": "Device 2",
-        "MAC": "a8:63:7d:6a:5b:23",
-        "SSID": "yhn951",
-        "RSSI": -62,
-        "Timestamp": 1743515056.1416392,
-        "Features": "Supported Rates:82848b968c9298a4, Extended Supported Rates:b048606c"
-    },
-    {
-        "Device_Name": "Device 2",
-        "MAC": "a8:63:7d:6a:5b:23",
-        "SSID": "yhn951",
-        "RSSI": -58,
-        "Timestamp": 1743515056.1862388,
-        "Features": "Supported Rates:82848b968c9298a4, Extended Supported Rates:b048606c"
-    },
-    {
-        "Device_Name": "Device 3",
-        "MAC": "4e:ff:c2:ed:ec:f6",
-        "SSID": "eduroam",
-        "RSSI": -28,
-        "Timestamp": 1743515056.1945786,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c, Vendor:0017F2, VendorInfo:0A00010400000000, Vendor:0050F2, VendorInfo:08001000, Vendor:001018, VendorInfo:02010010000002"
-    },
-    {
-        "Device_Name": "Device 3",
-        "MAC": "4e:ff:c2:ed:ec:f6",
-        "SSID": "eduroam",
-        "RSSI": -28,
-        "Timestamp": 1743515056.213404,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c, Vendor:0017F2, VendorInfo:0A00010400000000, Vendor:0050F2, VendorInfo:08001000, Vendor:001018, VendorInfo:02010010000002"
-    },
-    {
-        "Device_Name": "Device 3",
-        "MAC": "4e:ff:c2:ed:ec:f6",
-        "SSID": "eduroam",
-        "RSSI": -30,
-        "Timestamp": 1743515056.379537,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c, Vendor:0017F2, VendorInfo:0A00010400000000, Vendor:0050F2, VendorInfo:08001000, Vendor:001018, VendorInfo:02010010000002"
-    },
-    {
-        "Device_Name": "Device 3",
-        "MAC": "4e:ff:c2:ed:ec:f6",
-        "SSID": "eduroam",
-        "RSSI": -30,
-        "Timestamp": 1743515056.3974755,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c, Vendor:0017F2, VendorInfo:0A00010400000000, Vendor:0050F2, VendorInfo:08001000, Vendor:001018, VendorInfo:02010010000002"
-    },
-    {
-        "Device_Name": "Device 3",
-        "MAC": "4e:ff:c2:ed:ec:f6",
-        "SSID": "eduroam",
-        "RSSI": -28,
-        "Timestamp": 1743515056.4222622,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c, Vendor:0017F2, VendorInfo:0A00010400000000, Vendor:0050F2, VendorInfo:08001000, Vendor:001018, VendorInfo:02010010000002"
-    },
-    {
-        "Device_Name": "Device 3",
-        "MAC": "4e:ff:c2:ed:ec:f6",
-        "SSID": "eduroam",
-        "RSSI": -28,
-        "Timestamp": 1743515056.4438927,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c, Vendor:0017F2, VendorInfo:0A00010400000000, Vendor:0050F2, VendorInfo:08001000, Vendor:001018, VendorInfo:02010010000002"
-    },
-    {
-        "Device_Name": "Device 1",
-        "MAC": "aa:63:7d:6a:5b:20",
-        "SSID": "<Hidden SSID>",
-        "RSSI": -88,
-        "Timestamp": 1743515058.646455,
-        "Features": "Supported Rates:8c129824b048606c"
-    },
-    {
-        "Device_Name": "Device 2",
-        "MAC": "aa:63:7d:6a:5b:20",
-        "SSID": "yhn951",
-        "RSSI": -91,
-        "Timestamp": 1743515058.6468992,
-        "Features": "Supported Rates:8c129824b048606c"
-    },
-    {
-        "Device_Name": "Device 2",
-        "MAC": "aa:63:7d:6a:5b:20",
-        "SSID": "yhn951",
-        "RSSI": -89,
-        "Timestamp": 1743515058.6473799,
-        "Features": "Supported Rates:8c129824b048606c"
-    },
-    {
-        "Device_Name": "Device 1",
-        "MAC": "aa:63:7d:6a:5b:20",
-        "SSID": "<Hidden SSID>",
-        "RSSI": -89,
-        "Timestamp": 1743515058.6539977,
-        "Features": "Supported Rates:8c129824b048606c"
-    },
-    {
-        "Device_Name": "Device 1",
-        "MAC": "aa:63:7d:6a:5b:20",
-        "SSID": "<Hidden SSID>",
-        "RSSI": -89,
-        "Timestamp": 1743515058.6543653,
-        "Features": "Supported Rates:8c129824b048606c"
-    },
-    {
-        "Device_Name": "Device 2",
-        "MAC": "aa:63:7d:6a:5b:20",
-        "SSID": "yhn951",
-        "RSSI": -88,
-        "Timestamp": 1743515058.654707,
-        "Features": "Supported Rates:8c129824b048606c"
-    },
-    {
-        "Device_Name": "Device 1",
-        "MAC": "aa:63:7d:6a:5b:20",
-        "SSID": "<Hidden SSID>",
-        "RSSI": -89,
-        "Timestamp": 1743515058.663746,
-        "Features": "Supported Rates:8c129824b048606c"
-    },
-    {
-        "Device_Name": "Device 1",
-        "MAC": "aa:63:7d:6a:5b:20",
-        "SSID": "<Hidden SSID>",
-        "RSSI": -89,
-        "Timestamp": 1743515058.6641357,
-        "Features": "Supported Rates:8c129824b048606c"
-    },
-    {
-        "Device_Name": "Device 2",
-        "MAC": "aa:63:7d:6a:5b:20",
-        "SSID": "yhn951",
-        "RSSI": -88,
-        "Timestamp": 1743515058.6648707,
-        "Features": "Supported Rates:8c129824b048606c"
-    },
-    {
-        "Device_Name": "Device 2",
-        "MAC": "aa:63:7d:6a:5b:20",
-        "SSID": "yhn951",
-        "RSSI": -89,
-        "Timestamp": 1743515058.6655252,
-        "Features": "Supported Rates:8c129824b048606c"
-    },
-    {
-        "Device_Name": "Device 1",
-        "MAC": "aa:63:7d:6a:5b:20",
-        "SSID": "<Hidden SSID>",
-        "RSSI": -88,
-        "Timestamp": 1743515058.6736887,
-        "Features": "Supported Rates:8c129824b048606c"
-    },
-    {
-        "Device_Name": "Device 1",
-        "MAC": "aa:63:7d:6a:5b:20",
-        "SSID": "<Hidden SSID>",
-        "RSSI": -88,
-        "Timestamp": 1743515058.674196,
-        "Features": "Supported Rates:8c129824b048606c"
-    },
-    {
-        "Device_Name": "Device 2",
-        "MAC": "aa:63:7d:6a:5b:20",
-        "SSID": "yhn951",
-        "RSSI": -89,
-        "Timestamp": 1743515058.6745715,
-        "Features": "Supported Rates:8c129824b048606c"
-    },
-    {
-        "Device_Name": "Device 2",
-        "MAC": "aa:63:7d:6a:5b:20",
-        "SSID": "yhn951",
-        "RSSI": -90,
-        "Timestamp": 1743515058.6749806,
-        "Features": "Supported Rates:8c129824b048606c"
-    },
-    {
-        "Device_Name": "Device 1",
-        "MAC": "08:9d:f4:0a:e9:34",
-        "SSID": "<Hidden SSID>",
-        "RSSI": -74,
-        "Timestamp": 1743515065.6567135,
-        "Features": "Supported Rates:02040b160c121824, Extended Supported Rates:3048606c, Vendor:506F9A, VendorInfo:16030103650101"
-    },
-    {
-        "Device_Name": "Device 1",
-        "MAC": "08:9d:f4:0a:e9:34",
-        "SSID": "<Hidden SSID>",
-        "RSSI": -56,
-        "Timestamp": 1743515065.667869,
-        "Features": "Supported Rates:02040b160c121824, Extended Supported Rates:3048606c, Vendor:506F9A, VendorInfo:16030103650101"
-    },
-    {
-        "Device_Name": "Device 1",
-        "MAC": "aa:21:48:0f:ee:94",
-        "SSID": "<Hidden SSID>",
-        "RSSI": -64,
-        "Timestamp": 1743515067.432498,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 1",
-        "MAC": "aa:21:48:0f:ee:94",
-        "SSID": "<Hidden SSID>",
-        "RSSI": -66,
-        "Timestamp": 1743515067.4551492,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 2",
-        "MAC": "a8:63:7d:6a:5b:23",
-        "SSID": "yhn951",
-        "RSSI": -62,
-        "Timestamp": 1743515067.6190474,
-        "Features": "Supported Rates:82848b968c9298a4, Extended Supported Rates:b048606c"
-    },
-    {
-        "Device_Name": "Device 2",
-        "MAC": "a8:63:7d:6a:5b:23",
-        "SSID": "yhn951",
-        "RSSI": -62,
-        "Timestamp": 1743515096.817016,
-        "Features": "Supported Rates:82848b968c9298a4, Extended Supported Rates:b048606c"
-    },
-    {
-        "Device_Name": "Device 2",
-        "MAC": "a8:63:7d:6a:5b:23",
-        "SSID": "yhn951",
-        "RSSI": -62,
-        "Timestamp": 1743515096.9429138,
-        "Features": "Supported Rates:82848b968c9298a4, Extended Supported Rates:b048606c"
-    },
-    {
-        "Device_Name": "Device 2",
-        "MAC": "a8:63:7d:6a:5b:23",
-        "SSID": "yhn951",
-        "RSSI": -62,
-        "Timestamp": 1743515097.037558,
-        "Features": "Supported Rates:82848b968c9298a4, Extended Supported Rates:b048606c"
-    },
-    {
-        "Device_Name": "Device 1",
-        "MAC": "8e:38:bf:61:28:89",
-        "SSID": "<Hidden SSID>",
-        "RSSI": -70,
-        "Timestamp": 1743515108.2354057,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 2",
-        "MAC": "a8:63:7d:6a:5b:23",
-        "SSID": "yhn951",
-        "RSSI": -64,
-        "Timestamp": 1743515108.4031408,
-        "Features": "Supported Rates:82848b968c9298a4, Extended Supported Rates:b048606c"
-    },
-    {
-        "Device_Name": "Device 1",
-        "MAC": "4a:2b:16:bb:c0:85",
-        "SSID": "<Hidden SSID>",
-        "RSSI": -58,
-        "Timestamp": 1743515108.8944414,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c, Vendor:0050F2, VendorInfo:08001000"
-    },
-    {
-        "Device_Name": "Device 1",
-        "MAC": "4a:2b:16:bb:c0:85",
-        "SSID": "<Hidden SSID>",
-        "RSSI": -56,
-        "Timestamp": 1743515108.9143934,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c, Vendor:0050F2, VendorInfo:08001000"
-    },
-    {
-        "Device_Name": "Device 1",
-        "MAC": "e2:c1:d9:ba:3b:53",
-        "SSID": "<Hidden SSID>",
-        "RSSI": -58,
-        "Timestamp": 1743515112.1375992,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 1",
-        "MAC": "6a:e3:79:ca:ab:05",
-        "SSID": "<Hidden SSID>",
-        "RSSI": -48,
-        "Timestamp": 1743515112.5097306,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 1",
-        "MAC": "6a:e3:79:ca:ab:05",
-        "SSID": "<Hidden SSID>",
-        "RSSI": -42,
-        "Timestamp": 1743515112.5104525,
-        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
-    },
-    {
-        "Device_Name": "Device 2",
-        "MAC": "a8:63:7d:6a:5b:23",
-        "SSID": "yhn951",
-        "RSSI": -64,
-        "Timestamp": 1743515114.156385,
-        "Features": "Supported Rates:82848b968c9298a4, Extended Supported Rates:b048606c"
-    },
-    {
-        "Device_Name": "Device 1",
-        "MAC": "b0:68:e6:1b:2a:fb",
-        "SSID": "<Hidden SSID>",
-        "RSSI": -72,
-        "Timestamp": 1743515115.4247344,
+        "Timestamp": 1743808975.1210814,
         "Features": "Supported Rates:82848b960c121824, Extended Supported Rates:3048606c"
     },
     {
         "Device_Name": "Device 1",
-        "MAC": "9e:95:26:29:28:2e",
+        "MAC": "92:f7:6e:ef:2d:b7",
         "SSID": "<Hidden SSID>",
-        "RSSI": -71,
-        "Timestamp": 1743515121.4537168,
-        "Features": "Supported Rates:8c129824b048606c"
+        "RSSI": -52,
+        "Timestamp": 1743808983.2077,
+        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
     },
     {
         "Device_Name": "Device 1",
-        "MAC": "9e:95:26:29:28:2e",
+        "MAC": "b2:c8:1d:13:f7:c8",
         "SSID": "<Hidden SSID>",
-        "RSSI": -70,
-        "Timestamp": 1743515121.4745617,
-        "Features": "Supported Rates:8c129824b048606c"
+        "RSSI": -50,
+        "Timestamp": 1743808986.2905655,
+        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
+    },
+    {
+        "Device_Name": "Device 1",
+        "MAC": "7c:8b:ca:09:c6:b3",
+        "SSID": "<Hidden SSID>",
+        "RSSI": -12,
+        "Timestamp": 1743809034.274583,
+        "Features": "Supported Rates:82848b960c121824, Extended Supported Rates:3048606c"
+    },
+    {
+        "Device_Name": "Device 1",
+        "MAC": "7c:8b:ca:09:c6:b3",
+        "SSID": "<Hidden SSID>",
+        "RSSI": -62,
+        "Timestamp": 1743809035.3050377,
+        "Features": "Supported Rates:82848b960c121824, Extended Supported Rates:3048606c"
+    },
+    {
+        "Device_Name": "Device 1",
+        "MAC": "7c:8b:ca:09:c6:b3",
+        "SSID": "<Hidden SSID>",
+        "RSSI": -58,
+        "Timestamp": 1743809035.3553922,
+        "Features": "Supported Rates:82848b960c121824, Extended Supported Rates:3048606c"
+    },
+    {
+        "Device_Name": "Device 1",
+        "MAC": "7c:8b:ca:09:c6:b3",
+        "SSID": "<Hidden SSID>",
+        "RSSI": -60,
+        "Timestamp": 1743809035.3640046,
+        "Features": "Supported Rates:82848b960c121824, Extended Supported Rates:3048606c"
+    },
+    {
+        "Device_Name": "Device 1",
+        "MAC": "7c:8b:ca:09:c6:b3",
+        "SSID": "<Hidden SSID>",
+        "RSSI": -58,
+        "Timestamp": 1743809035.3903985,
+        "Features": "Supported Rates:82848b960c121824, Extended Supported Rates:3048606c"
+    },
+    {
+        "Device_Name": "Device 1",
+        "MAC": "7c:8b:ca:09:c6:b3",
+        "SSID": "<Hidden SSID>",
+        "RSSI": -60,
+        "Timestamp": 1743809035.3966901,
+        "Features": "Supported Rates:82848b960c121824, Extended Supported Rates:3048606c"
+    },
+    {
+        "Device_Name": "Device 1",
+        "MAC": "7c:8b:ca:09:c6:b3",
+        "SSID": "<Hidden SSID>",
+        "RSSI": -62,
+        "Timestamp": 1743809035.4350626,
+        "Features": "Supported Rates:82848b960c121824, Extended Supported Rates:3048606c"
+    },
+    {
+        "Device_Name": "Device 1",
+        "MAC": "d2:a7:08:d6:6d:40",
+        "SSID": "<Hidden SSID>",
+        "RSSI": -56,
+        "Timestamp": 1743809080.9794047,
+        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
+    },
+    {
+        "Device_Name": "Device 1",
+        "MAC": "d2:a7:08:d6:6d:40",
+        "SSID": "<Hidden SSID>",
+        "RSSI": -54,
+        "Timestamp": 1743809080.9895442,
+        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
+    },
+    {
+        "Device_Name": "Device 1",
+        "MAC": "5a:3b:57:a0:f3:0e",
+        "SSID": "<Hidden SSID>",
+        "RSSI": -46,
+        "Timestamp": 1743809082.002205,
+        "Features": "Supported Rates:02040b16, Extended Supported Rates:0c1218243048606c"
+    },
+    {
+        "Device_Name": "Device 1",
+        "MAC": "5a:3b:57:a0:f3:0e",
+        "SSID": "<Hidden SSID>",
+        "RSSI": -46,
+        "Timestamp": 1743809082.0049706,
+        "Features": "Supported Rates:02040b16, Extended Supported Rates:0c1218243048606c"
+    },
+    {
+        "Device_Name": "Device 1",
+        "MAC": "7c:8b:ca:09:c6:b3",
+        "SSID": "<Hidden SSID>",
+        "RSSI": -62,
+        "Timestamp": 1743809095.2133777,
+        "Features": "Supported Rates:82848b960c121824, Extended Supported Rates:3048606c"
+    },
+    {
+        "Device_Name": "Device 1",
+        "MAC": "7c:8b:ca:09:c6:b3",
+        "SSID": "<Hidden SSID>",
+        "RSSI": -62,
+        "Timestamp": 1743809095.3188555,
+        "Features": "Supported Rates:82848b960c121824, Extended Supported Rates:3048606c"
+    },
+    {
+        "Device_Name": "Device 1",
+        "MAC": "7c:8b:ca:09:c6:b3",
+        "SSID": "<Hidden SSID>",
+        "RSSI": -56,
+        "Timestamp": 1743809095.3863697,
+        "Features": "Supported Rates:82848b960c121824, Extended Supported Rates:3048606c"
+    },
+    {
+        "Device_Name": "Device 1",
+        "MAC": "7c:8b:ca:09:c6:b3",
+        "SSID": "<Hidden SSID>",
+        "RSSI": -62,
+        "Timestamp": 1743809095.4099762,
+        "Features": "Supported Rates:82848b960c121824, Extended Supported Rates:3048606c"
+    },
+    {
+        "Device_Name": "Device 1",
+        "MAC": "7c:8b:ca:09:c6:b3",
+        "SSID": "<Hidden SSID>",
+        "RSSI": -60,
+        "Timestamp": 1743809095.5056012,
+        "Features": "Supported Rates:82848b960c121824, Extended Supported Rates:3048606c"
+    },
+    {
+        "Device_Name": "Device 1",
+        "MAC": "a2:4e:3a:8a:e7:5a",
+        "SSID": "<Hidden SSID>",
+        "RSSI": -54,
+        "Timestamp": 1743809110.561002,
+        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
+    },
+    {
+        "Device_Name": "Device 1",
+        "MAC": "a2:4e:3a:8a:e7:5a",
+        "SSID": "<Hidden SSID>",
+        "RSSI": -56,
+        "Timestamp": 1743809110.570687,
+        "Features": "Supported Rates:82848b96, Extended Supported Rates:0c1218243048606c"
+    },
+    {
+        "Device_Name": "Device 1",
+        "MAC": "d4:3d:f3:d5:d5:19",
+        "SSID": "<Hidden SSID>",
+        "RSSI": -46,
+        "Timestamp": 1743809123.8706827,
+        "Features": "Supported Rates:02040b16, Extended Supported Rates:0c1218243048606c, Vendor:0050F2, VendorInfo:08001200, Vendor:001018, VendorInfo:0200001C0000"
+    },
+    {
+        "Device_Name": "Device 1",
+        "MAC": "d4:3d:f3:d5:d5:19",
+        "SSID": "<Hidden SSID>",
+        "RSSI": -46,
+        "Timestamp": 1743809123.9981894,
+        "Features": "Supported Rates:02040b16, Extended Supported Rates:0c1218243048606c, Vendor:0050F2, VendorInfo:08001200, Vendor:001018, VendorInfo:0200001C0000"
+    },
+    {
+        "Device_Name": "Device 1",
+        "MAC": "d4:3d:f3:d5:d5:19",
+        "SSID": "<Hidden SSID>",
+        "RSSI": -44,
+        "Timestamp": 1743809124.1469386,
+        "Features": "Supported Rates:02040b16, Extended Supported Rates:0c1218243048606c, Vendor:0050F2, VendorInfo:08001200, Vendor:001018, VendorInfo:0200001C0000"
+    },
+    {
+        "Device_Name": "Device 1",
+        "MAC": "d4:3d:f3:d5:d5:19",
+        "SSID": "<Hidden SSID>",
+        "RSSI": -44,
+        "Timestamp": 1743809124.273055,
+        "Features": "Supported Rates:02040b16, Extended Supported Rates:0c1218243048606c, Vendor:0050F2, VendorInfo:08001200, Vendor:001018, VendorInfo:0200001C0000"
+    },
+    {
+        "Device_Name": "Device 1",
+        "MAC": "d4:3d:f3:d5:d5:19",
+        "SSID": "<Hidden SSID>",
+        "RSSI": -42,
+        "Timestamp": 1743809124.6011221,
+        "Features": "Supported Rates:02040b16, Extended Supported Rates:0c1218243048606c, Vendor:0050F2, VendorInfo:08001200, Vendor:001018, VendorInfo:0200001C0000"
     }
 ]
