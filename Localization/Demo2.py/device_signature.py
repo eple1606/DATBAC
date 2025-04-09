@@ -1,80 +1,88 @@
-device_signatures = {}
-device_counter = 1
-temporary_signatures = {}  # Store devices with very limited feature sets
+import json
+import time
+from collections import defaultdict
 
-def get_device_name(device_signature):
-    """
-    Assigns or retrieves the device name based on the device signature.
-    A device is considered the same if enough features match.
-    If a device only has one feature, it is temporarily stored until more data is received.
-    """
+# Load configuration
+def load_config(filename="config.json"):
+    with open(filename, "r") as file:
+        return json.load(file)
 
-    print("------------------")
-    print("New Data")
-    print("------------------")
+config = load_config()
+
+# Accessing values from the config
+required_matches_config = config["device_signature"]["required_matches"]
+
+device_signatures = {}  # Existing devices
+device_counter = 1  # To assign new device IDs
+temp_devices = defaultdict(list)  # Temporary devices in Batch 1
+semi_devices = defaultdict(list)  # Devices in Batch 2
+device_time_stamps = {}  # Time of last capture for each device
+
+# SSID matching threshold (70% similarity)
+SSID_MATCH_THRESHOLD = 0.7
+
+# Helper functions
+def calculate_ssid_match_percentage(ssids_a, ssids_b):
+    """ Calculate the percentage of SSIDs that match between two sets of SSIDs. """
+    common_ssids = set(ssids_a).intersection(set(ssids_b))
+    return len(common_ssids) / len(set(ssids_a)) if ssids_a else 0
+
+def device_age(mac):
+    """ Return the time difference between the current time and the last seen time of the device. """
+    return time.time() - device_time_stamps.get(mac, 0)
+
+def get_device_name(device_signature, ssid_match_priority=True):
     global device_counter
 
-    # Extract SSID, MAC, and Features
     ssid, mac, features = device_signature
+    device_time_stamps[mac] = time.time()  # Update last seen time for the device
 
-    # Determine if SSID is hidden
-    is_hidden_ssid = ssid == "<Hidden SSID>"
+    # Handle Temporary Devices in Batch 1
+    if mac not in temp_devices:
+        temp_devices[mac].append(device_signature)
 
-    # Extract and count features
-    device_features = features.split(", ") if features else []
+    # Process Batch 2 (semi-stored devices) after a specific time window
+    if mac in semi_devices:
+        # Compare SSID matches first, if the match is strong enough, prioritize SSID
+        for stored_device in semi_devices[mac]:
+            stored_ssids = [d[0] for d in stored_device]  # Extract all SSIDs for comparison
+            temp_ssids = [d[0] for d in temp_devices[mac]]
 
-    # Count feature types
-    ht_count = sum(1 for f in device_features if f.startswith("HT:"))
-    ext_count = sum(1 for f in device_features if f.startswith("Ext:"))
-    vendor_oui_count = sum(1 for f in device_features if f.startswith("Vendor OUI:"))
-    vendor_info_count = sum(1 for f in device_features if f.startswith("Vendor Info:"))
-    supported_rates_count = sum(1 for f in device_features if f.startswith("Supported Rates:"))
-    rsn_count = sum(1 for f in device_features if f.startswith("RSN:"))
+            ssid_match_percentage = calculate_ssid_match_percentage(stored_ssids, temp_ssids)
+            if ssid_match_percentage >= SSID_MATCH_THRESHOLD:
+                # Skip to features check if SSID match is sufficient
+                return stored_device[0][1]  # Return the first device name
 
-    total_features = ht_count + ext_count + vendor_oui_count + vendor_info_count + supported_rates_count + rsn_count
+        # Fallback to features comparison if SSID match is too low
+        for existing_signature, existing_device_name in device_signatures.items():
+            existing_ssid, existing_mac, existing_features = existing_signature
 
-    print(f"New Device Signature: {device_signature}")
-    print(f"Total Features Found: {total_features}")
+            if mac == existing_mac:
+                # Prioritize SSID match, then check features if needed
+                existing_features = existing_features.split(", ")
+                match_count = sum(1 for f in existing_features if f in features.split(", "))
+                if match_count >= required_matches_config:
+                    return existing_device_name
 
-    # Handle very limited feature sets
-    if total_features <= 1:
-        print("Warning: Only 1 feature detected. Storing temporarily for future validation.")
-
-        # Check if the MAC has been seen before
-        if mac in temporary_signatures:
-            print("Matching previously stored temporary device.")
-            return temporary_signatures[mac]
-
-        # Store temporarily until more probe requests arrive
-        device_name = f"Device {device_counter} (Unverified)"
-        temporary_signatures[mac] = device_name
-        return device_name
-
-    # Full matching logic (as before)
-    required_matches = 6 if not is_hidden_ssid else 5
-
-    # Compare against existing devices
+    # After SSID match check, fallback to batch comparison by checking features
+    # Check against existing devices (Batch 3)
     for existing_signature, existing_device_name in device_signatures.items():
         existing_ssid, existing_mac, existing_features = existing_signature
 
-        # If MAC address matches, return immediately
-        if mac == existing_mac:
-            print(f"MAC Match Found: {mac} == {existing_mac}, considering as same device.")
+        # Compare SSID
+        if ssid == existing_ssid:
             return existing_device_name
 
-        # Extract existing feature counts
+        # Extract and count features for the existing device
         existing_feature_list = existing_features.split(", ") if existing_features else []
-        existing_total_features = len(existing_feature_list)
+        existing_match_count = sum(1 for f in existing_feature_list if f in features.split(", "))
 
-        # Check exact feature match
-        if device_features == existing_feature_list:
-            print(f"Perfect feature match found with {existing_device_name}")
+        if existing_match_count >= required_matches_config:
             return existing_device_name
 
-    # If no match, assign a new device name
+    # No match found, assign a new device name
     device_name = f"Device {device_counter}"
     device_signatures[device_signature] = device_name
     device_counter += 1
 
-    print(f"New Device Assigned: {device_name}")
     return device_name
