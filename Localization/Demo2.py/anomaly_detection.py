@@ -1,6 +1,6 @@
-from scapy.all import Dot11ProbeReq, Dot11Elt  # Make sure Scapy is imported
-from sklearn.ensemble import IsolationForest
 import matplotlib.pyplot as plt
+from scapy.all import Dot11Elt, Dot11ProbeReq  # Make sure Scapy is imported
+from sklearn.ensemble import IsolationForest
 
 def detect_anomalies(X, df):
     ## Apply Isolation Forest for anomaly detection (to detect new devices)

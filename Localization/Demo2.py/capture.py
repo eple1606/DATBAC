@@ -1,8 +1,11 @@
-from scapy.all import Dot11, Dot11ProbeReq, Dot11Elt
-from scapy.all import sniff, wrpcap
-import time
 import asyncio
 import json
+import time
+
+from scapy.all import Dot11, Dot11Elt, Dot11ProbeReq, sniff, wrpcap
+from scapy.utils import oui_resolve
+
+
 
 def load_config(filename="config.json"):
     with open(filename, "r") as file:
@@ -44,19 +47,32 @@ def handle_probe_request(packet):
             try:
                 elt = packet.getlayer(Dot11Elt)
                 while elt:
-                    if elt.ID == 1:  # Supported Rates (Element 0x01)
-                        wifi_features.append(f"Supported Rates:{elt.info.hex()}")
-                    elif elt.ID == 221:  # Vendor Specific (Element 0x2d)
-                        vendor_oui = elt.info[:3].hex().upper()  # Get OUI (first 3 bytes)
-                        vendor_info = elt.info[3:].hex().upper()  # Get vendor-specific data after OUI
-                        wifi_features.append(f"Vendor:{vendor_oui}")
-                        wifi_features.append(f"VendorInfo:{vendor_info}")
-                    elif elt.ID == 42:  # HT Capabilities (Element 0x2a)
-                        wifi_features.append(f"HT Capabilities:{elt.info.hex()}")
-                    elif elt.ID == 50:  # Extended Supported Rates (Element 0x32)
-                        wifi_features.append(f"Extended Supported Rates:{elt.info.hex()}")
-                    elif elt.ID == 48:  # RSN (Element 0x30)
-                        wifi_features.append(f"RSN:{elt.info.hex()}")
+                    if elt.ID == 1:  # Supported Rates
+                        rates = [f"{(b & 0x7F) / 2} Mbps" for b in elt.info]
+                        wifi_features.append(f"Supported Rates: {', '.join(rates)}")
+                    elif elt.ID == 221:
+                        if len(elt.info) >= 3:
+                            vendor_oui = elt.info[:3]
+                            vendor_oui_str = ':'.join(f'{b:02X}' for b in vendor_oui)
+                            vendor_name = oui_resolve(vendor_oui) or "Unknown Vendor"
+                            vendor_info = elt.info[3:]
+                            wifi_features.append(f"Vendor: {vendor_oui_str} ({vendor_name})")
+                            wifi_features.append(f"Vendor Info: {vendor_info.hex()}")
+                        else:
+                            wifi_features.append("Vendor Element Malformed")
+                    elif elt.ID == 42:
+                        wifi_features.append(f"HT Capabilities: {elt.info.hex()}")
+                    elif elt.ID == 50:  # Extended Supported Rates
+                        rates = [f"{(b & 0x7F) / 2} Mbps" for b in elt.info]
+                        wifi_features.append(f"Extended Supported Rates: {', '.join(rates)}")
+                    elif elt.ID == 48:
+                        try:
+                            version = int.from_bytes(elt.info[0:2], byteorder='little')
+                            wifi_features.append(f"RSN Version: {version}")
+                            # You can go further and parse cipher suites, AKM etc if needed
+                        except:
+                            wifi_features.append(f"RSN: Malformed ({elt.info.hex()})")
+
                     # Move to the next Dot11Elt layer
                     elt = elt.payload.getlayer(Dot11Elt)
 

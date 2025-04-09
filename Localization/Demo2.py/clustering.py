@@ -1,5 +1,6 @@
 import json
 import time
+
 from collections import defaultdict
 
 def load_config(filename="config.json"):
