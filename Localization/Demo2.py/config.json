@@ -12,7 +12,8 @@
       "environmental_correction_constant": 0
     },
     "device_signature": {
-      "required_matches": 7
+      "required_matches": 7,
+      "time_window": 60
     },
     "plot": {
       "max_distance": 100,

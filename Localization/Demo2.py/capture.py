@@ -3,6 +3,8 @@ import json
 import time
 
 from scapy.all import Dot11, Dot11Elt, Dot11ProbeReq, sniff, wrpcap
+from scapy.all import getmacbyip
+from netaddr import EUI, AddrFormatError, NotRegisteredError
 
 def load_config(filename="config.json"):
     with open(filename, "r") as file:
@@ -12,6 +14,26 @@ config = load_config()
 interface = config["general"]["interface"]
 duration = config["general"]["duration_of_sniffing"]
 
+def get_vendor_name(oui_bytes: bytes) -> str:
+    if len(oui_bytes) != 3:
+        raise ValueError("OUI must be exactly 3 bytes")
+
+    # Pad the OUI to a full 48-bit MAC address
+    padded_mac = oui_bytes + b'\x00\x00\x00'
+    
+    # Convert to MAC address string
+    mac_str = '-'.join(f'{b:02X}' for b in padded_mac)
+
+    try:
+        # Create EUI object
+        mac = EUI(mac_str)
+
+        # Try to retrieve the vendor name
+        return mac.oui.registration().org
+    except (AddrFormatError, TypeError, KeyError, AttributeError, NotRegisteredError):
+        return "Unknown Vendor"
+
+    
 # Global list to store captured probe data
 probe_data = []
 unsorted_probe_data = []
@@ -49,9 +71,11 @@ def handle_probe_request(packet):
                         wifi_features.append(f"Supported Rates: {', '.join(rates)}")
                     elif elt.ID == 221:
                         if len(elt.info) >= 3:
-                            vendor_oui = ':'.join(f'{b:02X}' for b in elt.info[:3])
+                            vendor_oui = elt.info[:3]
+                            vendor_oui_str = ':'.join(f'{b:02X}' for b in vendor_oui)
+                            vendor_name = get_vendor_name(vendor_oui)
                             vendor_info = elt.info[3:]
-                            wifi_features.append(f"Vendor OUI: {vendor_oui}")
+                            wifi_features.append(f"Vendor: {vendor_oui_str} ({vendor_name})")
                             wifi_features.append(f"Vendor Info: {vendor_info.hex()}")
                         else:
                             wifi_features.append("Vendor Element Malformed")
